@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration Hausmeisterservice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef8fd"/>
+      <stop offset="1" stop-color="#d8eefb"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="400" cy="300" r="230" fill="#ffffff" opacity="0.55"/>
+
+  <path d="M0 500 h800 v100 H0 z" fill="#dcf0fb"/>
+
+  <!-- Wohnanlage -->
+  <g>
+    <rect x="150" y="230" width="340" height="270" rx="10" fill="#223a58"/>
+    <path d="M130 240 L 320 110 L 510 240 z" fill="#16243d"/>
+    <g fill="#45b3e7">
+      <rect x="190" y="270" width="70" height="66" rx="7"/>
+      <rect x="380" y="270" width="70" height="66" rx="7"/>
+      <rect x="190" y="380" width="70" height="66" rx="7"/>
+      <rect x="380" y="380" width="70" height="66" rx="7"/>
+    </g>
+    <rect x="286" y="390" width="68" height="110" rx="8" fill="#219cd8"/>
+    <circle cx="340" cy="448" r="5" fill="#eaf6fd"/>
+  </g>
+
+  <!-- Grünpflege -->
+  <g>
+    <path d="M600 500 q -6 -60 30 -86 q 8 50 -14 86 z" fill="#219cd8"/>
+    <path d="M620 500 q 20 -44 62 -46 q -10 42 -46 50 z" fill="#45b3e7"/>
+    <rect x="592" y="496" width="84" height="16" rx="8" fill="#16243d"/>
+  </g>
+
+  <!-- Werkzeug-Badge -->
+  <g transform="translate(560 220)">
+    <circle r="74" fill="#ffffff"/>
+    <circle r="74" fill="none" stroke="#d8eefb" stroke-width="6"/>
+    <!-- Schraubenschlüssel -->
+    <g transform="rotate(-45)">
+      <path d="M-8 -50 a 18 18 0 1 0 16 0 v 66 a 18 18 0 1 1 -16 0 z" fill="#16243d" transform="rotate(0)"/>
+    </g>
+    <!-- Schraubendreher -->
+    <g transform="rotate(45)">
+      <rect x="-6" y="-52" width="12" height="34" rx="6" fill="#219cd8"/>
+      <rect x="-4" y="-18" width="8" height="52" rx="4" fill="#45b3e7"/>
+    </g>
+  </g>
+
+  <!-- Checkliste -->
+  <g transform="translate(96 96)">
+    <rect width="120" height="150" rx="12" fill="#ffffff"/>
+    <rect x="34" y="-10" width="52" height="24" rx="8" fill="#16243d"/>
+    <g stroke="#d8eefb" stroke-width="8" stroke-linecap="round">
+      <path d="M46 44 H 96"/>
+      <path d="M46 78 H 96"/>
+      <path d="M46 112 H 96"/>
+    </g>
+    <g fill="none" stroke="#219cd8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m20 40 6 6 12 -12"/>
+      <path d="m20 74 6 6 12 -12"/>
+      <path d="m20 108 6 6 12 -12"/>
+    </g>
+  </g>
+
+  <!-- Funkeln -->
+  <g fill="#219cd8">
+    <path d="M700 120c2.6 12 7.8 17.2 20 20-12.2 2.6-17.4 7.8-20 20-2.6-12.2-7.8-17.4-20-20 12.2-2.8 17.4-8 20-20z" opacity="0.85"/>
+  </g>
+</svg>

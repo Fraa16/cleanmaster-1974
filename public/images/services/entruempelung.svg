@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration Entrümpelung und Haushaltsauflösung">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef8fd"/>
+      <stop offset="1" stop-color="#d8eefb"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="400" cy="300" r="230" fill="#ffffff" opacity="0.55"/>
+
+  <path d="M0 500 h800 v100 H0 z" fill="#dcf0fb"/>
+
+  <!-- Offene Tür -->
+  <rect x="110" y="120" width="190" height="380" rx="12" fill="#16243d"/>
+  <rect x="128" y="138" width="154" height="362" rx="8" fill="#d8eefb"/>
+  <path d="M128 138 h154 v362 h-154 z" fill="#eaf6fd"/>
+  <rect x="240" y="300" width="14" height="34" rx="7" fill="#16243d"/>
+
+  <!-- Kartons -->
+  <g>
+    <rect x="380" y="330" width="170" height="170" rx="10" fill="#219cd8"/>
+    <rect x="380" y="330" width="170" height="36" rx="10" fill="#167eb4"/>
+    <path d="M465 330 v 170" stroke="#eaf6fd" stroke-width="8"/>
+    <rect x="560" y="380" width="130" height="120" rx="10" fill="#45b3e7"/>
+    <rect x="560" y="380" width="130" height="28" rx="10" fill="#219cd8"/>
+    <rect x="430" y="210" width="130" height="120" rx="10" fill="#223a58"/>
+    <rect x="430" y="210" width="130" height="26" rx="10" fill="#16243d"/>
+    <path d="M495 210 v 120" stroke="#98c9e8" stroke-width="7"/>
+  </g>
+
+  <!-- Sackkarre -->
+  <g>
+    <path d="M700 300 L 700 480" stroke="#16243d" stroke-width="10" stroke-linecap="round"/>
+    <path d="M700 480 L 660 480" stroke="#16243d" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="700" cy="505" r="22" fill="#16243d"/>
+    <circle cx="700" cy="505" r="9" fill="#d8eefb"/>
+    <rect x="686" y="284" width="28" height="18" rx="9" fill="#16243d"/>
+  </g>
+
+  <!-- Besen (besenrein) -->
+  <g transform="rotate(-16 320 420)">
+    <path d="M320 220 L 320 420" stroke="#16243d" stroke-width="9" stroke-linecap="round"/>
+    <path d="M296 420 h 48 l 10 24 h -68 z" fill="#219cd8"/>
+    <g stroke="#45b3e7" stroke-width="7" stroke-linecap="round">
+      <path d="M296 448 l -4 22"/>
+      <path d="M312 448 l -2 26"/>
+      <path d="M328 448 l 2 26"/>
+      <path d="M344 448 l 4 22"/>
+    </g>
+  </g>
+  <path d="M250 512 q 50 16 110 4" stroke="#ffffff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Funkeln -->
+  <g fill="#219cd8">
+    <path d="M620 150c2.6 12 7.8 17.2 20 20-12.2 2.6-17.4 7.8-20 20-2.6-12.2-7.8-17.4-20-20 12.2-2.8 17.4-8 20-20z" opacity="0.9"/>
+    <path d="M350 130c1.8 8.4 5.5 12 14 14-8.5 1.8-12.2 5.5-14 14-1.8-8.5-5.5-12.2-14-14 8.5-2 12.2-5.6 14-14z" opacity="0.7"/>
+  </g>
+</svg>

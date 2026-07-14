@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration Glas- und Fensterreinigung">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef8fd"/>
+      <stop offset="1" stop-color="#d8eefb"/>
+    </linearGradient>
+    <linearGradient id="pane" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7ecbf0"/>
+      <stop offset="1" stop-color="#219cd8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="400" cy="300" r="230" fill="#ffffff" opacity="0.55"/>
+
+  <path d="M0 520 h800 v80 H0 z" fill="#dcf0fb"/>
+
+  <!-- Großes Fenster -->
+  <rect x="180" y="80" width="440" height="440" rx="18" fill="#16243d"/>
+  <rect x="200" y="100" width="400" height="400" rx="10" fill="url(#pane)"/>
+  <path d="M400 100 v 400 M200 300 h 400" stroke="#16243d" stroke-width="14"/>
+
+  <!-- Spiegelung Skyline im Glas -->
+  <g fill="#ffffff" opacity="0.25">
+    <rect x="230" y="200" width="40" height="90" rx="4"/>
+    <rect x="286" y="230" width="30" height="60" rx="4"/>
+    <rect x="440" y="180" width="36" height="110" rx="4"/>
+  </g>
+
+  <!-- Abzieher mit sauberem Streifen -->
+  <g transform="rotate(-18 470 220)">
+    <rect x="420" y="196" width="130" height="16" rx="8" fill="#16243d"/>
+    <rect x="420" y="186" width="130" height="12" rx="6" fill="#45b3e7"/>
+    <rect x="476" y="212" width="16" height="86" rx="8" fill="#219cd8"/>
+  </g>
+  <path d="M440 340 Q 500 260 560 210" stroke="#ffffff" stroke-width="34" stroke-linecap="round" fill="none" opacity="0.5"/>
+
+  <!-- Glanzstreifen -->
+  <g stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity="0.8">
+    <path d="M250 250 L 300 170"/>
+    <path d="M280 260 L 318 200"/>
+    <path d="M470 460 L 520 380"/>
+  </g>
+
+  <!-- Seifenblasen -->
+  <g fill="none" stroke="#ffffff" stroke-width="3.5">
+    <circle cx="150" cy="200 " r="16" opacity="0.9"/>
+    <circle cx="120" cy="250" r="9" opacity="0.7"/>
+    <circle cx="662" cy="330" r="14" opacity="0.9"/>
+    <circle cx="690" cy="380" r="8" opacity="0.7"/>
+  </g>
+
+  <!-- Funkeln -->
+  <g fill="#ffffff">
+    <path d="M330 380c2.6 12 7.8 17.2 20 20-12.2 2.6-17.4 7.8-20 20-2.6-12.2-7.8-17.4-20-20 12.2-2.8 17.4-8 20-20z"/>
+    <path d="M540 140c1.8 8.4 5.5 12 14 14-8.5 1.8-12.2 5.5-14 14-1.8-8.5-5.5-12.2-14-14 8.5-2 12.2-5.6 14-14z" opacity="0.85"/>
+  </g>
+</svg>

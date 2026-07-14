@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 760" role="img" aria-label="Illustration: Gebäudereinigung in Stuttgart">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef8fd"/>
+      <stop offset="1" stop-color="#cfeafa"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#45b3e7"/>
+      <stop offset="1" stop-color="#167eb4"/>
+    </linearGradient>
+    <linearGradient id="glassClean" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7ecbf0"/>
+      <stop offset="1" stop-color="#219cd8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="960" height="760" fill="url(#sky)"/>
+
+  <!-- Sonne -->
+  <circle cx="150" cy="130" r="56" fill="#ffd97a"/>
+  <circle cx="150" cy="130" r="76" fill="#ffd97a" opacity="0.25"/>
+
+  <!-- Wolken -->
+  <g fill="#ffffff" opacity="0.9">
+    <path d="M640 96a26 26 0 0 1 50-8 20 20 0 0 1 28 18h-96a22 22 0 0 1 18-10z"/>
+    <path d="M250 250a20 20 0 0 1 38-6 15 15 0 0 1 22 14h-74a17 17 0 0 1 14-8z" opacity="0.7"/>
+  </g>
+
+  <!-- Skyline hinten -->
+  <g fill="#b5e0f7">
+    <rect x="40" y="420" width="90" height="220" rx="6"/>
+    <rect x="150" y="470" width="70" height="170" rx="6"/>
+    <rect x="770" y="440" width="80" height="200" rx="6"/>
+    <rect x="860" y="490" width="70" height="150" rx="6"/>
+  </g>
+  <!-- Stuttgarter Fernsehturm -->
+  <g fill="#98c9e8">
+    <rect x="716" y="300" width="8" height="340"/>
+    <rect x="702" y="330" width="36" height="34" rx="8"/>
+    <rect x="706" y="368" width="28" height="10" rx="4"/>
+    <rect x="718" y="280" width="4" height="24"/>
+  </g>
+
+  <!-- Hügel -->
+  <path d="M0 640 Q 240 570 480 630 T 960 620 V 760 H 0 Z" fill="#dcf0fb"/>
+  <path d="M0 680 Q 300 630 620 680 T 960 670 V 760 H 0 Z" fill="#eaf6fd"/>
+
+  <!-- Hauptgebäude -->
+  <g>
+    <rect x="290" y="180" width="380" height="470" rx="18" fill="#16243d"/>
+    <rect x="306" y="196" width="348" height="438" rx="12" fill="#223a58"/>
+    <!-- Fensterraster (links: noch zu reinigen) -->
+    <g fill="url(#glass)">
+      <rect x="326" y="220" width="70" height="86" rx="8"/>
+      <rect x="326" y="322" width="70" height="86" rx="8"/>
+      <rect x="326" y="424" width="70" height="86" rx="8"/>
+      <rect x="412" y="220" width="70" height="86" rx="8"/>
+      <rect x="412" y="322" width="70" height="86" rx="8"/>
+      <rect x="412" y="424" width="70" height="86" rx="8"/>
+    </g>
+    <!-- Frisch gereinigte Fenster -->
+    <g fill="url(#glassClean)">
+      <rect x="498" y="220" width="70" height="86" rx="8"/>
+      <rect x="498" y="322" width="70" height="86" rx="8"/>
+      <rect x="498" y="424" width="70" height="86" rx="8"/>
+      <rect x="584" y="220" width="50" height="86" rx="8"/>
+      <rect x="584" y="322" width="50" height="86" rx="8"/>
+      <rect x="584" y="424" width="50" height="86" rx="8"/>
+    </g>
+    <!-- Glanzstreifen auf gereinigten Fenstern -->
+    <g stroke="#ffffff" stroke-width="7" stroke-linecap="round" opacity="0.75">
+      <path d="M512 296 L 552 234"/>
+      <path d="M530 300 L 560 254"/>
+      <path d="M596 398 L 626 340"/>
+    </g>
+    <!-- Eingang -->
+    <rect x="440" y="540" width="80" height="94" rx="10" fill="#45b3e7"/>
+    <rect x="452" y="552" width="56" height="82" rx="6" fill="#d8eefb"/>
+  </g>
+
+  <!-- Fensterputzer-Gondel -->
+  <g>
+    <path d="M700 150 v 130" stroke="#16243d" stroke-width="6" stroke-linecap="round"/>
+    <path d="M760 150 v 130" stroke="#16243d" stroke-width="6" stroke-linecap="round"/>
+    <rect x="676" y="280" width="132" height="46" rx="12" fill="#219cd8"/>
+    <rect x="676" y="280" width="132" height="14" rx="7" fill="#167eb4"/>
+    <rect x="660" y="120" width="160" height="18" rx="9" fill="#16243d"/>
+  </g>
+
+  <!-- Abzieher an der Fassade -->
+  <g transform="rotate(-24 620 360)">
+    <rect x="600" y="352" width="90" height="14" rx="7" fill="#16243d"/>
+    <rect x="600" y="344" width="90" height="10" rx="5" fill="#45b3e7"/>
+    <rect x="638" y="366" width="14" height="70" rx="7" fill="#219cd8"/>
+  </g>
+
+  <!-- Seifenblasen -->
+  <g fill="none" stroke="#ffffff" stroke-width="3">
+    <circle cx="252" cy="330" r="18" opacity="0.9"/>
+    <circle cx="222" cy="384" r="10" opacity="0.7"/>
+    <circle cx="276" cy="420" r="13" opacity="0.8"/>
+    <circle cx="708" cy="470" r="16" opacity="0.9"/>
+    <circle cx="742" cy="520" r="9" opacity="0.7"/>
+  </g>
+
+  <!-- Funkeln -->
+  <g fill="#ffffff">
+    <path d="M212 236c3 14 9 20 23 23-14 3-20 9-23 23-3-14-9-20-23-23 14-3 20-9 23-23z"/>
+    <path d="M752 396c2.4 11 7 15.6 18 18-11 2.4-15.6 7-18 18-2.4-11-7-15.6-18-18 11-2.4 15.6-7 18-18z"/>
+    <path d="M560 130c2 9 6 13 15 15-9 2-13 6-15 15-2-9-6-13-15-15 9-2 13-6 15-15z" opacity="0.9"/>
+  </g>
+
+  <!-- Putzeimer im Vordergrund -->
+  <g>
+    <path d="M180 600 h 84 l -10 76 a 8 8 0 0 1 -8 7 h -48 a 8 8 0 0 1 -8 -7 z" fill="#219cd8"/>
+    <path d="M180 600 h 84 l -3 22 h -78 z" fill="#167eb4"/>
+    <path d="M188 596 a 34 26 0 0 1 68 0" fill="none" stroke="#16243d" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="205" cy="588" r="10" fill="#ffffff" opacity="0.9"/>
+    <circle cx="228" cy="580" r="7" fill="#ffffff" opacity="0.7"/>
+    <circle cx="248" cy="590" r="8" fill="#ffffff" opacity="0.8"/>
+  </g>
+</svg>

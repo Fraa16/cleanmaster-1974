@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration Treppenhausreinigung">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef8fd"/>
+      <stop offset="1" stop-color="#d8eefb"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="400" cy="300" r="230" fill="#ffffff" opacity="0.55"/>
+
+  <!-- Fenster im Treppenhaus -->
+  <rect x="120" y="100" width="150" height="190" rx="10" fill="#b5e0f7"/>
+  <rect x="134" y="114" width="56" height="76" rx="5" fill="#eaf6fd"/>
+  <rect x="200" y="114" width="56" height="76" rx="5" fill="#eaf6fd"/>
+  <rect x="134" y="200" width="56" height="76" rx="5" fill="#eaf6fd"/>
+  <rect x="200" y="200" width="56" height="76" rx="5" fill="#eaf6fd"/>
+
+  <path d="M0 520 h800 v80 H0 z" fill="#dcf0fb"/>
+
+  <!-- Treppe -->
+  <g fill="#16243d">
+    <path d="M180 520 h130 v-70 h130 v-70 h130 v-70 h130 v-70 h60 v280 z" opacity="0.12"/>
+  </g>
+  <g>
+    <rect x="180" y="450" width="140" height="70" rx="8" fill="#223a58"/>
+    <rect x="310" y="380" width="140" height="140" rx="8" fill="#16243d"/>
+    <rect x="440" y="310" width="140" height="210" rx="8" fill="#223a58"/>
+    <rect x="570" y="240" width="140" height="280" rx="8" fill="#16243d"/>
+    <!-- Stufenkanten -->
+    <rect x="180" y="450" width="140" height="14" rx="7" fill="#45b3e7"/>
+    <rect x="310" y="380" width="140" height="14" rx="7" fill="#45b3e7"/>
+    <rect x="440" y="310" width="140" height="14" rx="7" fill="#45b3e7"/>
+    <rect x="570" y="240" width="140" height="14" rx="7" fill="#45b3e7"/>
+  </g>
+
+  <!-- Handlauf -->
+  <path d="M200 400 L 660 170" stroke="#219cd8" stroke-width="12" stroke-linecap="round"/>
+  <g stroke="#219cd8" stroke-width="8" stroke-linecap="round">
+    <path d="M244 380 v 66"/>
+    <path d="M374 315 v 61"/>
+    <path d="M504 250 v 56"/>
+    <path d="M634 185 v 51"/>
+  </g>
+
+  <!-- Eimer + Glanz -->
+  <g>
+    <path d="M80 462 h 64 l -8 52 a 6 6 0 0 1 -6 5 h -36 a 6 6 0 0 1 -6 -5 z" fill="#219cd8"/>
+    <path d="M80 462 h 64 l -2.5 16 h -59 z" fill="#167eb4"/>
+    <path d="M86 458 a 26 20 0 0 1 52 0" fill="none" stroke="#16243d" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="98" cy="450" r="7" fill="#ffffff" opacity="0.9"/>
+    <circle cx="116" cy="444" r="5" fill="#ffffff" opacity="0.7"/>
+  </g>
+  <path d="M170 508 q 46 16 96 4" stroke="#ffffff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Funkeln -->
+  <g fill="#219cd8">
+    <path d="M560 130c2.6 12 7.8 17.2 20 20-12.2 2.6-17.4 7.8-20 20-2.6-12.2-7.8-17.4-20-20 12.2-2.8 17.4-8 20-20z" opacity="0.85"/>
+    <path d="M120 380c1.8 8.4 5.5 12 14 14-8.5 1.8-12.2 5.5-14 14-1.8-8.5-5.5-12.2-14-14 8.5-2 12.2-5.6 14-14z" opacity="0.7"/>
+  </g>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration Büroreinigung">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef8fd"/>
+      <stop offset="1" stop-color="#d8eefb"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="400" cy="300" r="230" fill="#ffffff" opacity="0.55"/>
+
+  <!-- Fenster im Hintergrund -->
+  <rect x="90" y="90" width="180" height="220" rx="12" fill="#b5e0f7"/>
+  <rect x="104" y="104" width="72" height="90" rx="6" fill="#eaf6fd"/>
+  <rect x="184" y="104" width="72" height="90" rx="6" fill="#eaf6fd"/>
+  <rect x="104" y="206" width="72" height="90" rx="6" fill="#eaf6fd"/>
+  <rect x="184" y="206" width="72" height="90" rx="6" fill="#eaf6fd"/>
+
+  <!-- Boden -->
+  <path d="M0 480 h800 v120 H0 z" fill="#dcf0fb"/>
+
+  <!-- Schreibtisch -->
+  <rect x="180" y="360" width="440" height="22" rx="11" fill="#16243d"/>
+  <rect x="210" y="382" width="20" height="120" rx="8" fill="#223a58"/>
+  <rect x="570" y="382" width="20" height="120" rx="8" fill="#223a58"/>
+
+  <!-- Monitor mit Haken -->
+  <rect x="300" y="220" width="200" height="130" rx="12" fill="#16243d"/>
+  <rect x="310" y="230" width="180" height="110" rx="8" fill="#219cd8"/>
+  <path d="m368 288 20 20 44-48" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="386" y="350" width="28" height="14" rx="4" fill="#223a58"/>
+
+  <!-- Pflanze -->
+  <path d="M556 322 q-4 -34 22 -50 q4 30 -12 50 z" fill="#219cd8" opacity="0.85"/>
+  <path d="M566 324 q14 -26 40 -26 q-8 26 -32 32 z" fill="#45b3e7"/>
+  <path d="M552 324 h44 l-6 36 h-32 z" fill="#16243d"/>
+
+  <!-- Sprühflasche -->
+  <g>
+    <rect x="236" y="292" width="40" height="66" rx="10" fill="#45b3e7"/>
+    <rect x="244" y="266" width="24" height="30" rx="6" fill="#16243d"/>
+    <rect x="238" y="258" width="44" height="14" rx="7" fill="#219cd8"/>
+    <path d="M226 262 l-16 -6" stroke="#219cd8" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="196" cy="250" r="5" fill="#ffffff"/>
+    <circle cx="184" cy="262" r="3.6" fill="#ffffff" opacity="0.8"/>
+    <circle cx="198" cy="270" r="3" fill="#ffffff" opacity="0.7"/>
+  </g>
+
+  <!-- Funkeln -->
+  <g fill="#219cd8">
+    <path d="M620 150c2.6 12 7.8 17.2 20 20-12.2 2.6-17.4 7.8-20 20-2.6-12.2-7.8-17.4-20-20 12.2-2.8 17.4-8 20-20z"/>
+    <path d="M672 236c1.8 8.4 5.5 12 14 14-8.5 1.8-12.2 5.5-14 14-1.8-8.5-5.5-12.2-14-14 8.5-2 12.2-5.6 14-14z" opacity="0.7"/>
+  </g>
+</svg>
