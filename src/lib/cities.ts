@@ -7,29 +7,29 @@ export interface City {
 
 /**
  * Die 18 Städte des Einzugsgebiets in der Reihenfolge der Städte-Chips
- * (Startseite, Sektion 6). Aktiv sind zum Start die 5 Kernstädte laut
- * Copy-Empfehlung; weitere Städte werden aktiviert, sobald deren
- * individueller Lokal-Absatz in city-content.ts geschrieben ist.
+ * (Startseite, Sektion 6). Alle 18 Städte sind aktiv; jede hat einen
+ * individuell geschriebenen Lokal-Absatz in city-content.ts.
+ * Eine neue Stadt braucht IMMER erst ihren Eintrag dort.
  */
 export const cities: City[] = [
   { slug: "stuttgart", name: "Stuttgart", active: true },
-  { slug: "vaihingen", name: "Vaihingen", active: false },
-  { slug: "waiblingen", name: "Waiblingen", active: false },
-  { slug: "kirchheim", name: "Kirchheim", active: false },
-  { slug: "echterdingen", name: "Echterdingen", active: false },
-  { slug: "ostfildern", name: "Ostfildern", active: false },
-  { slug: "fellbach", name: "Fellbach", active: false },
-  { slug: "kornwestheim", name: "Kornwestheim", active: false },
-  { slug: "filderstadt", name: "Filderstadt", active: false },
-  { slug: "ditzingen", name: "Ditzingen", active: false },
+  { slug: "vaihingen", name: "Vaihingen", active: true },
+  { slug: "waiblingen", name: "Waiblingen", active: true },
+  { slug: "kirchheim", name: "Kirchheim", active: true },
+  { slug: "echterdingen", name: "Echterdingen", active: true },
+  { slug: "ostfildern", name: "Ostfildern", active: true },
+  { slug: "fellbach", name: "Fellbach", active: true },
+  { slug: "kornwestheim", name: "Kornwestheim", active: true },
+  { slug: "filderstadt", name: "Filderstadt", active: true },
+  { slug: "ditzingen", name: "Ditzingen", active: true },
   { slug: "sindelfingen", name: "Sindelfingen", active: true },
-  { slug: "rutesheim", name: "Rutesheim", active: false },
+  { slug: "rutesheim", name: "Rutesheim", active: true },
   { slug: "leonberg", name: "Leonberg", active: true },
   { slug: "ludwigsburg", name: "Ludwigsburg", active: true },
-  { slug: "winnenden", name: "Winnenden", active: false },
-  { slug: "weinstadt", name: "Weinstadt", active: false },
+  { slug: "winnenden", name: "Winnenden", active: true },
+  { slug: "weinstadt", name: "Weinstadt", active: true },
   { slug: "boeblingen", name: "Böblingen", active: true },
-  { slug: "gerlingen", name: "Gerlingen", active: false },
+  { slug: "gerlingen", name: "Gerlingen", active: true },
 ];
 
 export const activeCities = cities.filter((c) => c.active);
