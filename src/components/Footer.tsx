@@ -41,7 +41,7 @@ export function Footer() {
         1974
       </span>
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 pb-10 pt-16 sm:px-8">
+      <div className="relative mx-auto w-full max-w-6xl px-5 pb-28 pt-16 sm:px-8 lg:pb-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_0.9fr_1.1fr]">
           <div>
             <Logo variant="light" />

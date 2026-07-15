@@ -67,6 +67,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anker-Ziele nicht unter dem Sticky-Header verstecken */
+[id] {
+  scroll-margin-top: 6.5rem;
+}
+
 /* Lange deutsche Komposita auf schmalen Screens trennen */
 @media (max-width: 40rem) {
   h1,

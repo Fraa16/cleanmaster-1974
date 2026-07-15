@@ -99,7 +99,7 @@ export function Header() {
                 <IconChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
               </Link>
               <div className="invisible absolute left-1/2 top-full z-50 w-[38rem] -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                <div className="overflow-hidden rounded-3xl border border-line bg-white p-3 shadow-2xl shadow-navy-950/10">
+                <div className="max-h-[calc(100vh-9.5rem)] overflow-y-auto overscroll-contain rounded-3xl border border-line bg-white p-3 shadow-2xl shadow-navy-950/10">
                   <div className="grid grid-cols-2 gap-1">
                     {services.map((s) => {
                       const Icon = serviceIcons[s.icon];
