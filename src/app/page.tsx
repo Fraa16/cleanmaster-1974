@@ -190,12 +190,12 @@ export default function HomePage() {
                 </p>
                 <h1 className="font-display text-[clamp(2.4rem,1.5rem+4vw,4.3rem)] font-extrabold leading-[1.02] tracking-tight text-navy-950">
                   Gebäudereinigung in{" "}
-                  <span className="relative inline-block whitespace-nowrap">
+                  <span className="relative isolate inline-block whitespace-nowrap">
                     Stuttgart
                     <svg
                       viewBox="0 0 320 24"
                       aria-hidden="true"
-                      className="hero-underline absolute -bottom-2 left-0 w-full"
+                      className="hero-underline absolute -bottom-2 left-0 -z-10 w-full"
                       fill="none"
                     >
                       <path

@@ -82,7 +82,7 @@ export function Stats() {
   return (
     <div
       ref={ref}
-      className="grid grid-cols-2 gap-y-8 divide-line py-2 lg:grid-cols-4 lg:divide-x lg:divide-line"
+      className="grid grid-cols-2 gap-y-8 py-2 lg:grid-cols-4 lg:divide-x lg:divide-line"
     >
       {stats.map((s) => (
         <Stat key={s.label} {...s} start={start} />

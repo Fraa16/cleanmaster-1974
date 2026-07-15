@@ -196,33 +196,33 @@ export function ProcessSteps({
   steps: { title: string; text: string }[];
 }) {
   const cols: Record<number, string> = {
-    2: "md:grid-cols-2",
-    3: "md:grid-cols-3",
-    4: "md:grid-cols-4",
-    5: "md:grid-cols-5",
+    2: "lg:grid-cols-2",
+    3: "lg:grid-cols-3",
+    4: "md:grid-cols-2 lg:grid-cols-4",
+    5: "md:grid-cols-2 lg:grid-cols-5",
   };
   return (
     <Container>
       <Reveal>
         <SectionHeading kicker={kicker} title={title} lead={lead} />
       </Reveal>
-      <ol className={`relative grid grid-cols-1 gap-10 md:gap-6 ${cols[steps.length] ?? "md:grid-cols-3"}`}>
-        {/* Verbindungslinie (Desktop) */}
+      <ol className={`relative grid grid-cols-1 gap-10 lg:gap-6 ${cols[steps.length] ?? "lg:grid-cols-3"}`}>
+        {/* Verbindungslinie: nur wenn alle Schritte in einer Zeile stehen */}
         <div
           aria-hidden="true"
-          className="absolute left-0 right-0 top-[1.35rem] hidden h-px bg-line md:block"
+          className="absolute left-0 right-0 top-[1.35rem] hidden h-px bg-line lg:block"
         />
         {steps.map((step, i) => (
           <Reveal
             as="li"
             key={step.title}
             delay={0.08 * i}
-            className="relative flex gap-5 md:block"
+            className="relative flex gap-5 lg:block"
           >
-            <span className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-sky-500 bg-white font-display text-sm font-extrabold text-sky-600 md:mb-5">
+            <span className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-sky-500 bg-white font-display text-sm font-extrabold text-sky-600 lg:mb-5">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <div className="md:pr-6">
+            <div className="lg:pr-6">
               <h3 className="font-display text-lg font-bold text-navy-950">
                 {step.title}
               </h3>
@@ -256,7 +256,7 @@ export function QuestionSection({
         <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-cloud">
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute -right-7 top-7 rotate-12 rounded-xl border-[3px] border-sky-200 px-5 py-2 font-display text-lg font-extrabold uppercase tracking-widest text-sky-300 opacity-70"
+            className="pointer-events-none absolute -right-7 top-7 hidden rotate-12 rounded-xl border-[3px] border-sky-200 px-5 py-2 font-display text-lg font-extrabold uppercase tracking-widest text-sky-300 opacity-70 sm:block"
           >
             Festpreis
           </span>
@@ -316,7 +316,7 @@ export function RegionSection({ text }: { text: string }) {
             </ul>
           </Reveal>
         </div>
-        <Reveal delay={0.12} className="lg:col-span-7">
+        <Reveal delay={0.12} className="hidden lg:col-span-7 sm:block">
           <div className="dots flex justify-center rounded-[1.75rem] border border-line bg-white p-4 sm:p-8">
             <RegionMap />
           </div>
@@ -378,7 +378,7 @@ export function Faq({
           <div className="border-t border-line">
             {items.map((item, i) => (
               <Reveal key={item.q} delay={0.04 * i}>
-                <details className="faq-item group border-b border-line">
+                <details name="faq-accordion" className="faq-item group border-b border-line">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
                     <h3 className="font-display text-[1.05rem] font-bold text-navy-950 transition-colors group-hover:text-sky-700">
                       {item.q}

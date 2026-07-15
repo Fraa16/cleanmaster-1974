@@ -22,12 +22,25 @@ const navLinks = [
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     setMobileOpen(false);
+    setMobileServicesOpen(false);
   }, [pathname]);
+
+  // Menü schließen, wenn das Fenster auf Desktop-Breite wächst —
+  // sonst bleibt der Scroll-Lock aktiv, obwohl das Menü unsichtbar ist.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 64rem)");
+    const onChange = () => {
+      if (mq.matches) setMobileOpen(false);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -187,48 +200,58 @@ export function Header() {
       {/* Mobile-Menü: Fullscreen-Overlay */}
       {mobileOpen && (
         <nav
-          className="fixed inset-0 top-[70px] z-40 overflow-y-auto bg-white px-6 pb-28 pt-6 lg:hidden"
+          className="fixed inset-0 top-[70px] z-40 overflow-y-auto bg-white px-6 pb-28 pt-6 md:top-[106px] lg:hidden"
           aria-label="Mobile Navigation"
         >
           <Link
             href="/"
             className="block border-b border-line py-4 font-display text-2xl font-bold text-navy-950"
-            data-reveal=""
-            style={{ opacity: 1, transform: "none" }}
           >
             Startseite
           </Link>
-          <p className="pt-5 text-xs font-bold uppercase tracking-[0.18em] text-navy-400">
+          <button
+            type="button"
+            onClick={() => setMobileServicesOpen((v) => !v)}
+            className="flex w-full items-center justify-between border-b border-line py-4 font-display text-2xl font-bold text-navy-950"
+            aria-expanded={mobileServicesOpen}
+          >
             Leistungen
-          </p>
-          <div className="mt-2 grid gap-0.5">
-            {services.map((s) => {
-              const Icon = serviceIcons[s.icon];
-              return (
-                <Link
-                  key={s.slug}
-                  href={s.href}
-                  className="flex items-center gap-3 rounded-2xl px-2 py-2.5 text-[0.95rem] font-semibold text-navy-800 active:bg-sky-50"
-                >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-navy-50 text-navy-600">
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  {s.title}
-                </Link>
-              );
-            })}
-            <Link
-              href="/leistungen/"
-              className="mt-1 flex items-center gap-2 px-2 py-2 text-sm font-bold text-sky-600"
-            >
-              Alle Leistungen <IconArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+            <IconChevronDown
+              className={`h-6 w-6 text-sky-600 transition-transform duration-300 ${
+                mobileServicesOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {mobileServicesOpen && (
+            <div className="grid gap-0.5 border-b border-line py-3">
+              {services.map((s) => {
+                const Icon = serviceIcons[s.icon];
+                return (
+                  <Link
+                    key={s.slug}
+                    href={s.href}
+                    className="flex items-center gap-3 rounded-2xl px-2 py-2.5 text-[0.95rem] font-semibold text-navy-800 active:bg-sky-50"
+                  >
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-navy-50 text-navy-600">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    {s.title}
+                  </Link>
+                );
+              })}
+              <Link
+                href="/leistungen/"
+                className="mt-1 flex items-center gap-2 px-2 py-2 text-sm font-bold text-sky-600"
+              >
+                Alle Leistungen <IconArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          )}
           {navLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="block border-t border-line py-4 font-display text-2xl font-bold text-navy-950"
+              className="block border-b border-line py-4 font-display text-2xl font-bold text-navy-950"
             >
               {l.label}
             </Link>
