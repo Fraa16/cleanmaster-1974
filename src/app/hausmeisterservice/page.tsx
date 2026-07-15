@@ -30,10 +30,13 @@ export default function HausmeisterservicePage() {
   return (
     <>
       <PageHero
+        crumbs={[
+          { label: "Leistungen", href: "/leistungen/" },
+          { label: "Hausmeisterservice" },
+        ]}
         overline="Leistung · Objektbetreuung"
         title="Hausmeisterservice Stuttgart"
         intro="Cleanmaster 1974 übernimmt den Hausmeisterservice für Wohnanlagen und Gewerbeobjekte in Stuttgart und der Region: regelmäßige Kontrollgänge, Kleinreparaturen, Grünpflege, Mülltonnendienst und Winterdienst. Umfang und Turnus regelt ein Leistungsverzeichnis, abgerechnet wird über eine monatliche Pauschale. Hausverwaltungen und Eigentümer erhalten einen festen Ansprechpartner für das gesamte Objekt."
-        image="/images/services/hausmeisterservice.svg"
       />
 
       <section className="pb-4">

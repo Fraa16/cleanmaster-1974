@@ -15,7 +15,7 @@ export function Container({
   );
 }
 
-/** Kleine Überzeile in Versalien (Kicker) */
+/** Kicker mit Glanz-Ornament (Markenmotiv) */
 export function Kicker({
   children,
   onDark = false,
@@ -25,10 +25,18 @@ export function Kicker({
 }) {
   return (
     <p
-      className={`mb-3 text-xs font-bold uppercase tracking-[0.18em] ${
+      className={`mb-4 flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.2em] ${
         onDark ? "text-sky-300" : "text-sky-600"
       }`}
     >
+      <svg
+        viewBox="0 0 16 16"
+        className="h-3.5 w-3.5 shrink-0"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M8 1c.5 3.2 2.3 5 5.5 5.5C10.3 7 8.5 8.8 8 12 7.5 8.8 5.7 7 2.5 6.5 5.7 6 7.5 4.2 8 1Z" />
+      </svg>
       {children}
     </p>
   );
@@ -39,7 +47,7 @@ export function SectionHeading({
   title,
   lead,
   onDark = false,
-  align = "center",
+  align = "left",
   as: Tag = "h2",
 }: {
   kicker?: string;
@@ -51,21 +59,25 @@ export function SectionHeading({
 }) {
   return (
     <div
-      className={`mb-10 max-w-3xl ${
+      className={`mb-12 max-w-3xl ${
         align === "center" ? "mx-auto text-center" : "text-left"
       }`}
     >
-      {kicker && <Kicker onDark={onDark}>{kicker}</Kicker>}
+      {kicker && (
+        <div className={align === "center" ? "flex justify-center" : ""}>
+          <Kicker onDark={onDark}>{kicker}</Kicker>
+        </div>
+      )}
       <Tag
-        className={`text-3xl font-extrabold tracking-tight sm:text-4xl ${
-          onDark ? "text-white" : "text-navy-900"
+        className={`font-display text-[clamp(1.9rem,1.4rem+2vw,3rem)] font-extrabold leading-[1.08] tracking-tight ${
+          onDark ? "text-white" : "text-navy-950"
         }`}
       >
         {title}
       </Tag>
       {lead && (
         <p
-          className={`mt-4 text-base leading-relaxed sm:text-lg ${
+          className={`mt-5 text-base leading-relaxed sm:text-lg ${
             onDark ? "text-navy-200" : "text-navy-600"
           }`}
         >
@@ -78,14 +90,14 @@ export function SectionHeading({
 
 const buttonStyles = {
   primary:
-    "bg-sky-500 text-white hover:bg-sky-600 shadow-lg shadow-sky-500/25",
-  dark: "bg-navy-900 text-white hover:bg-navy-800",
+    "bg-sky-500 text-white hover:bg-sky-600 shadow-lg shadow-sky-500/25 hover:shadow-xl hover:shadow-sky-500/30",
+  dark: "bg-navy-950 text-white hover:bg-navy-800 hover:shadow-lg hover:shadow-navy-950/25",
   light:
-    "bg-white text-navy-900 hover:bg-sky-50 shadow-lg shadow-navy-900/10",
+    "bg-white text-navy-950 hover:bg-sky-50 shadow-lg shadow-navy-950/10",
   outline:
-    "border-2 border-navy-200 text-navy-900 hover:border-sky-400 hover:text-sky-600",
+    "border-2 border-navy-200 text-navy-950 hover:border-sky-400 hover:text-sky-600",
   outlineLight:
-    "border-2 border-white/40 text-white hover:border-white hover:bg-white/10",
+    "border-2 border-white/30 text-white hover:border-white hover:bg-white/10",
 } as const;
 
 export function ButtonLink({
@@ -100,7 +112,7 @@ export function ButtonLink({
   className?: string;
 }) {
   const external = href.startsWith("tel:") || href.startsWith("mailto:");
-  const cls = `inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold transition-colors ${buttonStyles[variant]} ${className}`;
+  const cls = `inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold transition-all duration-200 hover:-translate-y-px active:translate-y-0 ${buttonStyles[variant]} ${className}`;
   if (external) {
     return (
       <a href={href} className={cls}>

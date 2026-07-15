@@ -68,10 +68,13 @@ export default function WinterdienstPage() {
     <>
       <JsonLd data={howToSchema} />
       <PageHero
+        crumbs={[
+          { label: "Leistungen", href: "/leistungen/" },
+          { label: "Winterdienst" },
+        ]}
         overline="Leistung"
         title="Winterdienst Stuttgart"
         intro="Cleanmaster 1974 übernimmt den Winterdienst in Stuttgart und der Region: räumen, streuen und die Dokumentation jedes Einsatzes. Damit ist Ihre Räum- und Streupflicht als Eigentümer oder Verwalter erfüllt, auch bei Schneefall vor Sonnenaufgang. Abgerechnet wird über eine Saisonpauschale, die vor dem Winter verbindlich feststeht."
-        image="/images/services/winterdienst.svg"
       />
 
       <ContentSection title="Ihre Räum- und Streupflicht, unsere Verantwortung">
@@ -104,7 +107,6 @@ export default function WinterdienstPage() {
           kicker="Ablauf"
           title="So läuft der Winterdienst ab"
           steps={steps}
-          image="/images/services/winterdienst.svg"
         />
       </section>
 

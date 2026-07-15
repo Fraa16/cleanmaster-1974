@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ButtonLink, Container, SectionHeading } from "@/components/ui";
+import { Reveal } from "@/components/Reveal";
+import { Stats } from "@/components/Stats";
+import { LogoMark } from "@/components/Logo";
 import {
   CtaBanner,
   DarkFeatureSection,
   Faq,
   ProcessSteps,
   QuestionSection,
-  RegionChips,
+  RegionSection,
   ServiceGrid,
-  TrustBar,
 } from "@/components/sections";
 import {
   IconArrowRight,
-  IconEuro,
-  IconFamily,
+  IconCheck,
+  IconCheckCircle,
   IconPhone,
-  IconPin,
-  IconTeam,
 } from "@/components/icons";
 import { site } from "@/lib/site";
 
@@ -30,22 +30,18 @@ export const metadata: Metadata = {
 
 const whyItems = [
   {
-    icon: <IconEuro className="h-6 w-6" />,
     title: "Festpreis statt Nachberechnung",
     text: "Sie erhalten den Endpreis schriftlich vor Auftragsbeginn. Was im Angebot steht, steht auch auf der Rechnung.",
   },
   {
-    icon: <IconFamily className="h-6 w-6" />,
     title: "Familienbetrieb mit kurzen Wegen",
     text: "Sie sprechen direkt mit den Inhabern. Entscheidungen fallen schnell, Reklamationen werden nicht durch drei Abteilungen gereicht.",
   },
   {
-    icon: <IconTeam className="h-6 w-6" />,
     title: "Ein Ansprechpartner für alle Gewerke",
     text: "Reinigung, Winterdienst, Hausmeisterservice und Taubenabwehr aus einer Hand. Sie koordinieren nicht drei Dienstleister, sondern einen.",
   },
   {
-    icon: <IconPin className="h-6 w-6" />,
     title: "Feste Teams vor Ort",
     text: "Kurze Anfahrten im Großraum Stuttgart und gleichbleibende Reinigungskräfte in Ihrem Objekt. Das Team kennt Ihr Haus.",
   },
@@ -89,99 +85,207 @@ const faqItems = [
   },
 ];
 
+/** Angebots-Karte im Hero: echtes Produkt (Festpreis-Angebot) statt Stockfoto. */
+function HeroOfferCard() {
+  return (
+    <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+      {/* Hintergrund-Panel */}
+      <div
+        aria-hidden="true"
+        className="absolute -inset-4 rotate-2 rounded-[2rem] bg-gradient-to-br from-sky-200/60 via-sky-100/40 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-sky-300/30 blur-2xl"
+      />
+
+      {/* Angebotskarte */}
+      <div className="relative rounded-[1.75rem] border border-line bg-white p-7 shadow-2xl shadow-navy-950/10 sm:p-8">
+        <div className="flex items-center justify-between gap-4 border-b border-line pb-5">
+          <div className="flex items-center gap-3">
+            <LogoMark className="h-9 w-9" />
+            <div>
+              <p className="font-display text-sm font-extrabold text-navy-950">
+                Ihr Festpreis-Angebot
+              </p>
+              <p className="text-[0.7rem] font-medium text-navy-400">
+                Nach kostenloser Objektbesichtigung
+              </p>
+            </div>
+          </div>
+          <span className="rounded-full bg-navy-50 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-navy-500">
+            Schriftlich
+          </span>
+        </div>
+
+        <ul className="space-y-3.5 py-6">
+          {[
+            "Leistungsverzeichnis für Ihr Objekt",
+            "Monatlicher Pauschalpreis, verbindlich",
+            "Keine Nachberechnung für Anfahrt & Material",
+            "Fester Ansprechpartner, festes Team",
+          ].map((line) => (
+            <li key={line} className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-5.5 w-5.5 shrink-0 items-center justify-center rounded-full bg-mint-100 text-mint-600">
+                <IconCheck className="h-3 w-3" strokeWidth={2.6} />
+              </span>
+              <span className="text-sm font-medium text-navy-800">{line}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-end justify-between gap-4 border-t border-line pt-5">
+          <div>
+            <p className="text-[0.7rem] font-medium text-navy-400">
+              Angebotspreis
+            </p>
+            <p className="font-display text-lg font-extrabold text-navy-950">
+              = Rechnungspreis
+            </p>
+          </div>
+          <span className="rotate-[-6deg] rounded-lg border-[2.5px] border-sky-500 px-3.5 py-1 font-display text-sm font-extrabold uppercase tracking-[0.14em] text-sky-600">
+            Festpreis
+          </span>
+        </div>
+      </div>
+
+      {/* Schwebende Chips */}
+      <div className="absolute -left-4 -top-5 rounded-full border border-line bg-white px-4 py-2.5 shadow-lg shadow-navy-950/8 sm:-left-8">
+        <p className="flex items-center gap-2 text-xs font-bold text-navy-900">
+          <IconCheckCircle className="h-4 w-4 text-mint-600" />
+          Kostenlose Besichtigung
+        </p>
+      </div>
+      <div className="absolute -bottom-5 -right-2 rounded-full border border-line bg-white px-4 py-2.5 shadow-lg shadow-navy-950/8 sm:-right-6">
+        <p className="flex items-center gap-2 text-xs font-bold text-navy-900">
+          <span className="flex h-4 w-4 items-center justify-center rounded-full bg-sky-100">
+            <IconPhone className="h-2.5 w-2.5 text-sky-600" />
+          </span>
+          Ein Ansprechpartner
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-sky-50 to-white pb-20">
+      <section className="relative overflow-hidden bg-gradient-to-b from-sky-50/90 via-sky-50/40 to-white">
         <div
-          className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-sky-100/60"
           aria-hidden="true"
+          className="dots absolute inset-y-0 right-0 w-2/5 [mask-image:linear-gradient(to_left,black,transparent)]"
         />
-        <Container className="relative pt-12 sm:pt-16">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_1fr]">
-            <div>
-              <p className="mb-4 inline-flex flex-wrap items-center gap-x-2 rounded-full bg-white px-4 py-2 text-xs font-bold text-navy-700 shadow-sm ring-1 ring-navy-100">
-                <span>Familienbetrieb</span>
-                <span className="text-sky-500">·</span>
-                <span>Festpreis-Garantie</span>
-                <span className="text-sky-500">·</span>
-                <span>Großraum Stuttgart</span>
-              </p>
-              <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-navy-900 sm:text-5xl xl:text-[3.4rem]">
-                Gebäudereinigung in{" "}
-                <span className="text-sky-500">Stuttgart</span> und Region
-              </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-navy-700 sm:text-lg">
-                Cleanmaster 1974 ist Ihr familiengeführter Gebäudedienstleister
-                für Stuttgart und die Region. Wir übernehmen Büroreinigung,
-                Unterhaltsreinigung, Treppenhausreinigung, Glasreinigung,
-                Winterdienst, Entrümpelung und Hausmeisterservice für Gewerbe,
-                Hausverwaltungen und Privathaushalte. Jedes Angebot erstellen
-                wir nach kostenloser Objektbesichtigung, mit garantiertem
-                Festpreis und einem festen Ansprechpartner für Ihr Objekt.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <ButtonLink href="/kontakt/">
-                  Jetzt Angebot anfordern
-                  <IconArrowRight className="h-4 w-4" />
-                </ButtonLink>
-                <ButtonLink href={site.phoneHref} variant="outline">
-                  <IconPhone className="h-4 w-4" />
-                  Anrufen: {site.phone}
-                </ButtonLink>
+        <Container className="relative pb-16 pt-14 sm:pt-20 lg:pb-24">
+          <div className="grid items-center gap-14 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <div className="anim-up">
+                <p className="mb-5 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 rounded-full border border-line bg-white px-4 py-2 text-[0.72rem] font-bold uppercase tracking-[0.08em] text-navy-700 shadow-sm">
+                  <span>Familienbetrieb</span>
+                  <span className="text-sky-400">·</span>
+                  <span>Festpreis-Garantie</span>
+                  <span className="text-sky-400">·</span>
+                  <span>Großraum Stuttgart</span>
+                </p>
+                <h1 className="font-display text-[clamp(2.4rem,1.5rem+4vw,4.3rem)] font-extrabold leading-[1.02] tracking-tight text-navy-950">
+                  Gebäudereinigung in{" "}
+                  <span className="relative inline-block whitespace-nowrap">
+                    Stuttgart
+                    <svg
+                      viewBox="0 0 320 24"
+                      aria-hidden="true"
+                      className="hero-underline absolute -bottom-2 left-0 w-full"
+                      fill="none"
+                    >
+                      <path
+                        d="M6 17 C 80 7, 240 5, 314 12"
+                        stroke="var(--color-sky-400)"
+                        strokeWidth="7"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>{" "}
+                  und Region
+                </h1>
+                <p className="mt-7 max-w-xl text-base leading-relaxed text-navy-600 sm:text-lg">
+                  Cleanmaster 1974 ist Ihr familiengeführter
+                  Gebäudedienstleister für Stuttgart und die Region. Wir
+                  übernehmen Büroreinigung, Unterhaltsreinigung,
+                  Treppenhausreinigung, Glasreinigung, Winterdienst,
+                  Entrümpelung und Hausmeisterservice für Gewerbe,
+                  Hausverwaltungen und Privathaushalte. Jedes Angebot
+                  erstellen wir nach kostenloser Objektbesichtigung, mit
+                  garantiertem Festpreis und einem festen Ansprechpartner für
+                  Ihr Objekt.
+                </p>
               </div>
-              <p className="mt-4 text-sm text-navy-500">
-                Oder{" "}
-                <Link
-                  href="/kontakt/"
-                  className="font-semibold text-sky-600 underline-offset-2 hover:underline"
-                >
-                  Rückruf vereinbaren
-                </Link>{" "}
-                – wir melden uns.
-              </p>
+              <div className="anim-up" style={{ "--enter-delay": "0.12s" } as React.CSSProperties}>
+                <div className="mt-9 flex flex-wrap items-center gap-4">
+                  <ButtonLink href="/kontakt/">
+                    Jetzt Angebot anfordern
+                    <IconArrowRight className="h-4 w-4" />
+                  </ButtonLink>
+                  <ButtonLink href={site.phoneHref} variant="outline">
+                    <IconPhone className="h-4 w-4" />
+                    <span className="tabular-nums">Anrufen: {site.phone}</span>
+                  </ButtonLink>
+                </div>
+                <p className="mt-4 text-sm text-navy-500">
+                  Oder{" "}
+                  <Link
+                    href="/kontakt/"
+                    className="font-semibold text-sky-600 underline-offset-4 hover:underline"
+                  >
+                    Rückruf vereinbaren
+                  </Link>{" "}
+                  – wir melden uns.
+                </p>
+              </div>
             </div>
-            <div className="relative">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/hero.svg"
-                alt="Illustration: Gebäudereinigung in Stuttgart – Fassade, Fenster und Gebäudedienste"
-                className="w-full rounded-[2.5rem] shadow-2xl shadow-sky-500/20"
-              />
+            <div className="anim-up lg:col-span-5" style={{ "--enter-delay": "0.2s" } as React.CSSProperties}>
+              <HeroOfferCard />
             </div>
           </div>
         </Container>
       </section>
 
-      {/* 2. Vertrauens-Leiste */}
-      <TrustBar />
+      {/* 2. Zahlenleiste (Vertrauen, nur belegbare Fakten) */}
+      <section className="border-b border-line">
+        <Container className="py-10 sm:py-12">
+          <Stats />
+        </Container>
+      </section>
 
       {/* 3. Leistungsübersicht */}
-      <section className="py-16 sm:py-24" id="leistungen">
+      <section className="py-20 sm:py-28" id="leistungen">
         <Container>
-          <SectionHeading
-            kicker="Unsere Leistungen"
-            title="Gebäudedienste aus einer Hand"
-            lead="Von der regelmäßigen Unterhaltsreinigung bis zum Winterdienst deckt Cleanmaster 1974 alle Gebäudedienste ab. Sie kombinieren die Leistungen nach Bedarf, mit einem Vertrag und einem Ansprechpartner."
-          />
+          <Reveal>
+            <SectionHeading
+              kicker="Unsere Leistungen"
+              title="Gebäudedienste aus einer Hand"
+              lead="Von der regelmäßigen Unterhaltsreinigung bis zum Winterdienst deckt Cleanmaster 1974 alle Gebäudedienste ab. Sie kombinieren die Leistungen nach Bedarf, mit einem Vertrag und einem Ansprechpartner."
+            />
+          </Reveal>
         </Container>
         <Container>
           <ServiceGrid />
-          <div className="mt-10 text-center">
-            <Link
-              href="/leistungen/"
-              className="inline-flex items-center gap-2 text-sm font-bold text-sky-600 hover:text-sky-700"
-            >
-              Alle Leistungen im Detail
-              <IconArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+          <Reveal>
+            <div className="mt-10">
+              <Link
+                href="/leistungen/"
+                className="group inline-flex items-center gap-2 text-sm font-bold text-sky-600 transition-colors hover:text-sky-700"
+              >
+                Alle Leistungen im Detail
+                <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
       {/* 4. Preis-Sektion */}
-      <section className="pb-16 sm:pb-24">
+      <section className="pb-20 sm:pb-28">
         <QuestionSection
           title="Was kostet eine Gebäudereinigung in Stuttgart?"
           cta={{
@@ -200,17 +304,15 @@ export default function HomePage() {
         </QuestionSection>
       </section>
 
-      {/* 5. Warum Cleanmaster 1974 */}
-      <section className="pb-16 sm:pb-24">
-        <DarkFeatureSection
-          kicker="Ihre Vorteile"
-          title="Warum Cleanmaster 1974?"
-          items={whyItems}
-        />
-      </section>
+      {/* 5. Warum Cleanmaster 1974 (full-bleed dark) */}
+      <DarkFeatureSection
+        kicker="Ihre Vorteile"
+        title="Warum Cleanmaster 1974?"
+        items={whyItems}
+      />
 
       {/* Ablauf */}
-      <section className="pb-16 sm:pb-24">
+      <section className="py-20 sm:py-28">
         <ProcessSteps
           kicker="So läuft es ab"
           title="In drei Schritten zum Festpreis-Angebot"
@@ -219,22 +321,20 @@ export default function HomePage() {
       </section>
 
       {/* 6. Regionale Abdeckung */}
-      <section className="bg-cloud py-16 sm:py-24">
-        <RegionChips text="Cleanmaster 1974 ist in Stuttgart und den umliegenden Städten im Einsatz, von Leonberg bis Ludwigsburg, von Sindelfingen bis Waiblingen. Hausverwaltungen mit verteiltem Bestand betreuen wir standortübergreifend, mit einem Vertrag für alle Objekte." />
+      <section className="bg-cloud py-20 sm:py-28">
+        <RegionSection text="Cleanmaster 1974 ist in Stuttgart und den umliegenden Städten im Einsatz, von Leonberg bis Ludwigsburg, von Sindelfingen bis Waiblingen. Hausverwaltungen mit verteiltem Bestand betreuen wir standortübergreifend, mit einem Vertrag für alle Objekte." />
       </section>
 
       {/* 7. FAQ */}
-      <section className="py-16 sm:py-24">
+      <section className="py-20 sm:py-28">
         <Faq title="Häufige Fragen zur Gebäudereinigung" items={faqItems} />
       </section>
 
       {/* 8. Abschluss-CTA */}
-      <section className="pb-16 sm:pb-24">
-        <CtaBanner
-          title="Jetzt unverbindliches Angebot anfordern"
-          text="Rufen Sie an oder schicken Sie uns kurz die Eckdaten zu Ihrem Objekt: Art, Größe, gewünschte Leistung. Wir melden uns, vereinbaren eine kostenlose Besichtigung und erstellen Ihr Festpreis-Angebot. Kostenlos und ohne Vertragsbindung."
-        />
-      </section>
+      <CtaBanner
+        title="Jetzt unverbindliches Angebot anfordern"
+        text="Rufen Sie an oder schicken Sie uns kurz die Eckdaten zu Ihrem Objekt: Art, Größe, gewünschte Leistung. Wir melden uns, vereinbaren eine kostenlose Besichtigung und erstellen Ihr Festpreis-Angebot. Kostenlos und ohne Vertragsbindung."
+      />
     </>
   );
 }

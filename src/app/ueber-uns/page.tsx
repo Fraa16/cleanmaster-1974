@@ -13,10 +13,10 @@ export default function UeberUnsPage() {
   return (
     <>
       <PageHero
+        crumbs={[{ label: "Über uns" }]}
         overline="Über uns"
         title="Über Cleanmaster 1974"
         intro="Cleanmaster 1974 ist ein familiengeführtes Unternehmen für Gebäudereinigung und Facility Services mit Sitz in Stuttgart. Zu den Leistungen gehören Unterhaltsreinigung, Büroreinigung, Treppenhausreinigung, Glasreinigung, Winterdienst, Entrümpelung, Taubenabwehr, Baureinigung und Hausmeisterservice in Stuttgart und 18 umliegenden Städten."
-        image="/images/ueber-uns.svg"
       />
 
       <ContentSection title="Ein Familienbetrieb, keine Filiale">

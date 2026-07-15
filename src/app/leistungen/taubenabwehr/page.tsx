@@ -28,10 +28,13 @@ export default function TaubenabwehrPage() {
   return (
     <>
       <PageHero
+        crumbs={[
+          { label: "Leistungen", href: "/leistungen/" },
+          { label: "Taubenabwehr" },
+        ]}
         overline="Leistung"
         title="Taubenabwehr Stuttgart"
         intro="Cleanmaster 1974 schützt Gebäude in Stuttgart und der Region vor Taubenbefall: mit Spikes, Spannnetzen und Vergrämungssystemen an Fassaden, Balkonen, Simsen und Dächern. Zur Leistung gehört auch die Reinigung und Desinfektion befallener Flächen. Alle Maßnahmen sind tierschutzkonform, die Tiere werden vergrämt, nicht verletzt."
-        image="/images/services/taubenabwehr.svg"
       />
 
       <ContentSection title="Warum Taubenkot mehr als ein Schönheitsproblem ist">

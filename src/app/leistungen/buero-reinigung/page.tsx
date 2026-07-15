@@ -28,10 +28,13 @@ export default function BueroReinigungPage() {
   return (
     <>
       <PageHero
+        crumbs={[
+          { label: "Leistungen", href: "/leistungen/" },
+          { label: "Büroreinigung" },
+        ]}
         overline="Leistung"
         title="Büroreinigung Stuttgart"
         intro="Cleanmaster 1974 reinigt Büros in Stuttgart und der Region, täglich, wöchentlich oder im vereinbarten Turnus. Ein festes Reinigungsteam arbeitet vor oder nach Ihren Geschäftszeiten, nach einem gemeinsam festgelegten Leistungsverzeichnis und zum monatlichen Pauschalpreis. Die Besichtigung vor dem Angebot ist kostenlos, der angebotene Preis verbindlich."
-        image="/images/services/bueroreinigung.svg"
       />
 
       <ContentSection title="Was zur Büroreinigung gehört">

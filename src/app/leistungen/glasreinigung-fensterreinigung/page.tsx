@@ -28,10 +28,13 @@ export default function GlasreinigungPage() {
   return (
     <>
       <PageHero
+        crumbs={[
+          { label: "Leistungen", href: "/leistungen/" },
+          { label: "Glas- und Fensterreinigung" },
+        ]}
         overline="Leistung"
         title="Glas- und Fensterreinigung Stuttgart"
         intro="Cleanmaster 1974 reinigt Fenster, Schaufenster, Glastüren, Glasfassaden und Wintergärten in Stuttgart und der Region, streifenfrei und inklusive Rahmen und Falze. Schwer erreichbare Flächen erreichen wir mit Teleskopstangen und entmineralisiertem Wasser. Einzeltermin oder fester Turnus, beides zum verbindlichen Festpreis nach kostenloser Besichtigung."
-        image="/images/services/glasreinigung.svg"
       />
 
       <ContentSection title="Rahmen und Falze gehören dazu">

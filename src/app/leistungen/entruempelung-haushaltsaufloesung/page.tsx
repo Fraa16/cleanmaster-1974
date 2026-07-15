@@ -28,10 +28,13 @@ export default function EntruempelungPage() {
   return (
     <>
       <PageHero
+        crumbs={[
+          { label: "Leistungen", href: "/leistungen/" },
+          { label: "Entrümpelung & Haushaltsauflösung" },
+        ]}
         overline="Leistung · auch für Privathaushalte"
         title="Entrümpelung und Haushaltsauflösung Stuttgart"
         intro="Cleanmaster 1974 entrümpelt Wohnungen, Häuser, Keller, Dachböden und Gewerbeflächen in Stuttgart und der Region und übergibt besenrein. Der Festpreis steht nach kostenloser Besichtigung verbindlich fest, inklusive Demontage, Abtransport und fachgerechter Entsorgung. Auch kurzfristige Termine sind möglich, etwa bei Wohnungsübergaben oder im Nachlassfall. Diskretion ist selbstverständlich."
-        image="/images/services/entruempelung.svg"
       />
 
       <ContentSection title="Besenrein heißt bei uns: übergabefertig">

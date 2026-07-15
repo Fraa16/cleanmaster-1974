@@ -50,10 +50,14 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
   return (
     <>
       <PageHero
+        crumbs={[
+          { label: "Leistungen", href: "/leistungen/" },
+          { label: "Gebäudereinigung", href: "/leistungen/gebaeudereinigung/stuttgart/" },
+          { label: city.name },
+        ]}
         overline="Leistung · Unterhaltsreinigung"
         title={`Gebäudereinigung ${city.name}`}
         intro={`Cleanmaster 1974 übernimmt die Gebäudereinigung in ${city.name}: Unterhaltsreinigung für Gewerbeflächen, Praxen, Wohnanlagen und öffentliche Bereiche, im festen Turnus nach Leistungsverzeichnis. Ein gleichbleibendes Team reinigt Ihr Objekt zum monatlichen Pauschalpreis. Die Besichtigung ist kostenlos, der angebotene Preis verbindlich, Ihr Ansprechpartner bleibt derselbe.`}
-        image="/images/services/gebaeudereinigung.svg"
       />
 
       <ContentSection title="Unterhaltsreinigung nach Leistungsverzeichnis">

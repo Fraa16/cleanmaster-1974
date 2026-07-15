@@ -1,41 +1,49 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand: Sky-Blau + tiefes Navy (HomePro-Referenz) */
+  /* Marke: Sky-Blau (Kern) · tiefes Navy · Mint-Akzent (sparsam) */
   --color-sky-50: #eef8fd;
   --color-sky-100: #d8eefb;
   --color-sky-200: #b5e0f7;
   --color-sky-300: #7ecbf0;
-  --color-sky-400: #45b3e7;
-  --color-sky-500: #219cd8;
-  --color-sky-600: #167eb4;
-  --color-sky-700: #136592;
-  --color-sky-800: #145578;
-  --color-sky-900: #164764;
+  --color-sky-400: #41b0e6;
+  --color-sky-500: #1a9ad9;
+  --color-sky-600: #0f7ec0;
+  --color-sky-700: #0e659a;
+  --color-sky-800: #10547d;
+  --color-sky-900: #124667;
 
-  --color-navy-50: #f3f6fa;
+  --color-navy-50: #f4f7fa;
   --color-navy-100: #e6ecf4;
-  --color-navy-200: #c8d5e6;
-  --color-navy-300: #98b1d0;
-  --color-navy-400: #6188b5;
-  --color-navy-500: #3e6a9b;
-  --color-navy-600: #2e5381;
-  --color-navy-700: #274369;
-  --color-navy-800: #223a58;
-  --color-navy-900: #16243d;
-  --color-navy-950: #101a2c;
+  --color-navy-200: #c9d6e6;
+  --color-navy-300: #9ab2ce;
+  --color-navy-400: #6488b0;
+  --color-navy-500: #416a96;
+  --color-navy-600: #30537d;
+  --color-navy-700: #274365;
+  --color-navy-800: #1b3050;
+  --color-navy-900: #12213a;
+  --color-navy-950: #0b1526;
 
-  --color-cloud: #f2f7fb;
+  --color-mint-100: #d6f7ec;
+  --color-mint-400: #2fd4a7;
+  --color-mint-600: #0d9e74;
+
+  --color-cloud: #f6f9fb;
+  --color-line: #e4ebf2;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif,
+  --font-display: var(--font-bricolage), var(--font-inter), ui-sans-serif,
     system-ui, sans-serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 body {
   background: #ffffff;
   color: var(--color-navy-900);
   font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
 }
 
 h1,
@@ -43,12 +51,179 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 ::selection {
   background: var(--color-sky-200);
+  color: var(--color-navy-950);
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Lange deutsche Komposita auf schmalen Screens trennen */
+@media (max-width: 40rem) {
+  h1,
+  h2,
+  h3 {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphenate-limit-chars: 12 6 4;
+  }
+}
+
+/* Fokus-Ringe */
+:focus-visible {
+  outline: 2px solid var(--color-sky-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Texturen                                                            */
+/* ------------------------------------------------------------------ */
+
+/* Feines Korn für dunkle Sektionen */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* Punktraster für helle Flächen */
+.dots {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(18, 33, 58, 0.09) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+}
+
+/* Radialer Glow für dunkle Sektionen */
+.glow-sky {
+  background:
+    radial-gradient(
+      52rem 32rem at 82% -12%,
+      rgba(26, 154, 217, 0.28),
+      transparent 60%
+    ),
+    radial-gradient(
+      40rem 30rem at -8% 108%,
+      rgba(26, 154, 217, 0.14),
+      transparent 55%
+    ),
+    var(--color-navy-950);
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion (dezent, reduced-motion-sicher)                              */
+/* ------------------------------------------------------------------ */
+
+/* Nur verstecken, wenn JS nachweislich läuft (html.js wird inline gesetzt).
+   Ohne JS bleibt alles sichtbar — kein Blank-Content, kein LCP-Risiko. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.65s var(--ease-out-soft),
+    transform 0.65s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Einstiegs-Animation für Above-the-fold-Inhalte: reines CSS, läuft immer */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.anim-up {
+  animation: fade-up 0.7s var(--ease-out-soft) both;
+  animation-delay: var(--enter-delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .anim-up {
+    animation: none;
+  }
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* FAQ-Accordion: sanfte Höhen-Animation (progressive enhancement) */
+details.faq-item {
+  interpolate-size: allow-keywords;
+}
+details.faq-item::details-content {
+  block-size: 0;
+  overflow-y: clip;
+  transition:
+    content-visibility 0.4s allow-discrete,
+    block-size 0.4s var(--ease-out-soft);
+}
+details.faq-item[open]::details-content {
+  block-size: auto;
+}
+
+/* Sanfter Puls für den Stuttgart-Punkt der Regionskarte */
+@keyframes map-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+.map-pulse {
+  animation: map-pulse 2.6s var(--ease-out-soft) infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* Unterstrich-Ornament im Hero */
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 320;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.hero-underline path {
+  stroke-dasharray: 320;
+  animation: draw-line 1.1s var(--ease-out-soft) 0.35s both;
 }

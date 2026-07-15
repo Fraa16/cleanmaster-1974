@@ -14,6 +14,7 @@ export default function LeistungenPage() {
   return (
     <>
       <PageHero
+        crumbs={[{ label: "Leistungen" }]}
         overline="Leistungen"
         title="Unsere Leistungen im Überblick"
         intro="Cleanmaster 1974 übernimmt Gebäudereinigung und Gebäudedienste in Stuttgart und der Region: Büroreinigung, Unterhaltsreinigung, Treppenhausreinigung, Glas- und Fensterreinigung, Winterdienst, Entrümpelung, Taubenabwehr, Baureinigung und Hausmeisterservice. Alle Leistungen lassen sich kombinieren, mit einem Vertrag, einem Leistungsverzeichnis und einem festen Ansprechpartner für Ihr Objekt."
@@ -21,7 +22,7 @@ export default function LeistungenPage() {
 
       <section className="pb-16 sm:pb-24">
         <Container>
-          <ServiceGrid withImage />
+          <ServiceGrid />
         </Container>
       </section>
 

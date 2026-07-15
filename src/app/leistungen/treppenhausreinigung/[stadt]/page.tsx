@@ -57,10 +57,14 @@ export default async function TreppenhausreinigungStadtPage({ params }: Props) {
   return (
     <>
       <PageHero
+        crumbs={[
+          { label: "Leistungen", href: "/leistungen/" },
+          { label: "Treppenhausreinigung", href: "/leistungen/treppenhausreinigung/stuttgart/" },
+          { label: city.name },
+        ]}
         overline="Leistung · Hausverwaltungen & WEG"
         title={`Treppenhausreinigung ${city.name}`}
         intro={`Cleanmaster 1974 reinigt Treppenhäuser in ${city.name} für Hausverwaltungen, Eigentümergemeinschaften und private Vermieter. Die Reinigung läuft im festen Turnus nach Reinigungsplan, der im Objekt aushängt. So sehen Mieter jederzeit, wann zuletzt gereinigt wurde. Abgerechnet wird über einen monatlichen Pauschalpreis, der nach kostenloser Besichtigung verbindlich feststeht.`}
-        image="/images/services/treppenhausreinigung.svg"
       />
 
       <ContentSection title="Was zur Treppenhausreinigung gehört">

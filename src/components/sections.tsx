@@ -1,14 +1,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ButtonLink, Container, JsonLd, Kicker, SectionHeading } from "@/components/ui";
+import { Reveal } from "@/components/Reveal";
+import { RegionMap } from "@/components/RegionMap";
 import {
   IconArrowRight,
   IconCheckCircle,
-  IconDocument,
-  IconEuro,
-  IconFamily,
   IconPhone,
-  IconPin,
   serviceIcons,
 } from "@/components/icons";
 import { services, type Service } from "@/lib/services";
@@ -16,114 +14,109 @@ import { cities } from "@/lib/cities";
 import { site } from "@/lib/site";
 
 /* ------------------------------------------------------------------ */
-/* Vertrauens-Leiste                                                   */
+/* Leistungen: Bento-Grid                                              */
 /* ------------------------------------------------------------------ */
 
-const trustItems = [
-  {
-    icon: IconEuro,
-    title: "Festpreis-Garantie",
-    text: "Der Angebotspreis ist verbindlich",
-  },
-  {
-    icon: IconFamily,
-    title: "Familienbetrieb",
-    text: "Inhabergeführt, kurze Entscheidungswege",
-  },
-  {
-    icon: IconDocument,
-    title: "Ein Ansprechpartner",
-    text: "Für alle Leistungen und Objekte",
-  },
-  {
-    icon: IconPin,
-    title: "Vor Ort",
-    text: "In Stuttgart und der ganzen Region",
-  },
-];
-
-export function TrustBar() {
-  return (
-    <Container className="relative z-10 -mt-10">
-      <div className="grid grid-cols-1 gap-x-4 gap-y-6 rounded-3xl bg-navy-900 px-8 py-8 shadow-2xl shadow-navy-900/30 sm:grid-cols-2 lg:grid-cols-4">
-        {trustItems.map((item) => (
-          <div key={item.title} className="flex items-start gap-3.5">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-500/15 text-sky-300">
-              <item.icon className="h-5.5 w-5.5" />
-            </span>
-            <div>
-              <p className="font-display text-sm font-bold text-white">
-                {item.title}
-              </p>
-              <p className="mt-0.5 text-xs leading-relaxed text-navy-300">
-                {item.text}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </Container>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Leistungs-Karten                                                    */
-/* ------------------------------------------------------------------ */
-
-export function ServiceCard({
-  service,
-  withImage = false,
-}: {
-  service: Service;
-  withImage?: boolean;
-}) {
+function FeaturedServiceCard({ service, delay }: { service: Service; delay: number }) {
   const Icon = serviceIcons[service.icon];
   return (
-    <Link
-      href={service.href}
-      className="group flex flex-col rounded-3xl border border-navy-100 bg-white p-6 transition-all hover:-translate-y-1 hover:border-sky-200 hover:shadow-xl hover:shadow-sky-500/10"
-    >
-      {withImage ? (
-        <span className="mb-5 block overflow-hidden rounded-2xl">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={service.image}
-            alt=""
-            className="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-            loading="lazy"
-          />
+    <Reveal delay={delay} className="lg:col-span-6">
+      <Link
+        href={service.href}
+        className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[1.75rem] border border-line bg-gradient-to-br from-cloud via-white to-sky-50 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-sky-200 hover:shadow-2xl hover:shadow-sky-500/10 sm:p-10"
+      >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-10 -top-14 text-sky-100 transition-transform duration-500 group-hover:scale-110 group-hover:text-sky-200"
+        >
+          <Icon className="h-52 w-52 opacity-70" strokeWidth={1} />
+        </div>
+        <div className="relative">
+          <span className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-950 text-white transition-colors duration-300 group-hover:bg-sky-500">
+            <Icon className="h-6 w-6" />
+          </span>
+          <h3 className="font-display text-2xl font-bold tracking-tight text-navy-950">
+            {service.title}
+          </h3>
+          <p className="mt-3 max-w-md text-[0.95rem] leading-relaxed text-navy-600">
+            {service.teaser}
+          </p>
+        </div>
+        <span className="relative mt-8 inline-flex items-center gap-2 text-sm font-bold text-sky-600">
+          Mehr erfahren
+          <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
         </span>
-      ) : (
-        <span className="mb-5 flex h-13 w-13 items-center justify-center rounded-2xl bg-sky-100 text-sky-600 transition-colors group-hover:bg-sky-500 group-hover:text-white">
-          <Icon className="h-6.5 w-6.5" />
-        </span>
-      )}
-      <h3 className="font-display text-lg font-bold text-navy-900">
-        {service.title}
-      </h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-navy-600">
-        {service.teaser}
-      </p>
-      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-sky-600">
-        Mehr erfahren
-        <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-      </span>
-    </Link>
+      </Link>
+    </Reveal>
   );
 }
 
-export function ServiceGrid({ withImage = false }: { withImage?: boolean }) {
+function CompactServiceCard({ service, delay }: { service: Service; delay: number }) {
+  const Icon = serviceIcons[service.icon];
   return (
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {services.map((s) => (
-        <ServiceCard key={s.slug} service={s} withImage={withImage} />
+    <Reveal delay={delay} className="lg:col-span-3">
+      <Link
+        href={service.href}
+        className="group flex h-full flex-col rounded-[1.75rem] border border-line bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-200 hover:shadow-xl hover:shadow-sky-500/10"
+      >
+        <span className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy-700 transition-colors duration-300 group-hover:bg-sky-500 group-hover:text-white">
+          <Icon className="h-5 w-5" />
+        </span>
+        <h3 className="font-display text-[1.05rem] font-bold leading-snug text-navy-950">
+          {service.title}
+        </h3>
+        <p className="mt-2 flex-1 text-[0.83rem] leading-relaxed text-navy-500">
+          {service.teaser}
+        </p>
+        <span className="mt-4 inline-flex items-center gap-1.5 text-[0.83rem] font-bold text-sky-600">
+          Mehr erfahren
+          <IconArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+        </span>
+      </Link>
+    </Reveal>
+  );
+}
+
+export function ServiceGrid() {
+  const [featured1, featured2, ...rest] = services;
+  return (
+    <div className="grid gap-4 lg:grid-cols-12">
+      <FeaturedServiceCard service={featured2} delay={0} />
+      <FeaturedServiceCard service={featured1} delay={0.08} />
+      {rest.map((s, i) => (
+        <CompactServiceCard key={s.slug} service={s} delay={0.05 * (i % 4)} />
       ))}
+      {/* Abschluss-Kachel: Conversion statt Lückenfüller */}
+      <Reveal delay={0.15} className="lg:col-span-3">
+        <Link
+          href="/kontakt/"
+          className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[1.75rem] bg-navy-950 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy-950/25"
+        >
+          <div
+            className="absolute inset-0 bg-[radial-gradient(24rem_16rem_at_110%_-20%,rgba(26,154,217,0.45),transparent_60%)]"
+            aria-hidden="true"
+          />
+          <div className="relative">
+            <h3 className="font-display text-[1.05rem] font-bold leading-snug text-white">
+              Nicht sicher, welche Leistung passt?
+            </h3>
+            <p className="mt-2 text-[0.83rem] leading-relaxed text-navy-200">
+              Wir besichtigen kostenlos und empfehlen, was Ihr Objekt wirklich
+              braucht.
+            </p>
+          </div>
+          <span className="relative mt-4 inline-flex items-center gap-1.5 text-[0.83rem] font-bold text-sky-300">
+            Besichtigung vereinbaren
+            <IconArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+          </span>
+        </Link>
+      </Reveal>
     </div>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Dunkle Feature-Sektion (Warum Cleanmaster 1974)                     */
+/* Dunkle Feature-Sektion (Warum Cleanmaster 1974) — full-bleed        */
 /* ------------------------------------------------------------------ */
 
 export function DarkFeatureSection({
@@ -135,47 +128,60 @@ export function DarkFeatureSection({
   kicker?: string;
   title: string;
   lead?: string;
-  items: { icon: ReactNode; title: string; text: string }[];
+  items: { title: string; text: string }[];
 }) {
   return (
-    <Container>
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-navy-900 px-6 py-14 sm:px-12 sm:py-16">
-        {/* Deko */}
-        <div
-          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-sky-500/10"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-sky-500/5"
-          aria-hidden="true"
-        />
-        <div className="relative">
-          <SectionHeading kicker={kicker} title={title} lead={lead} onDark />
-          <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
-            {items.map((item) => (
-              <div key={item.title} className="flex items-start gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-sky-500/15 text-sky-300">
-                  {item.icon}
-                </span>
-                <div>
-                  <h3 className="font-display text-base font-bold text-white">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-navy-200">
-                    {item.text}
-                  </p>
-                </div>
-              </div>
-            ))}
+    <section className="grain glow-sky relative overflow-hidden py-20 sm:py-28">
+      <Container className="relative">
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-32">
+              <Reveal>
+                <SectionHeading kicker={kicker} title={title} lead={lead} onDark />
+              </Reveal>
+              <Reveal delay={0.1}>
+                <ButtonLink href="/kontakt/" variant="light">
+                  Angebot anfordern
+                  <IconArrowRight className="h-4 w-4" />
+                </ButtonLink>
+              </Reveal>
+            </div>
           </div>
+          <ol className="lg:col-span-7">
+            {items.map((item, i) => (
+              <Reveal
+                as="li"
+                key={item.title}
+                delay={0.06 * i}
+                className="group relative border-t border-white/10 py-8 last:border-b sm:py-10"
+              >
+                <div className="flex items-start gap-6 sm:gap-10">
+                  <span
+                    aria-hidden="true"
+                    className="font-display text-4xl font-extrabold leading-none tracking-tight text-white/15 transition-colors duration-300 group-hover:text-sky-400/60 sm:text-5xl"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-xl font-bold text-white">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2.5 max-w-xl text-[0.95rem] leading-relaxed text-navy-200">
+                      {item.text}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </section>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Ablauf-Schritte                                                     */
+/* Ablauf: Timeline                                                    */
 /* ------------------------------------------------------------------ */
 
 export function ProcessSteps({
@@ -183,53 +189,56 @@ export function ProcessSteps({
   title,
   lead,
   steps,
-  image = "/images/kontakt.svg",
 }: {
   kicker?: string;
   title: string;
   lead?: string;
   steps: { title: string; text: string }[];
-  image?: string;
 }) {
+  const cols: Record<number, string> = {
+    2: "md:grid-cols-2",
+    3: "md:grid-cols-3",
+    4: "md:grid-cols-4",
+    5: "md:grid-cols-5",
+  };
   return (
     <Container>
-      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <div className="order-2 lg:order-1">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={image}
-            alt=""
-            className="w-full rounded-[2.5rem]"
-            loading="lazy"
-          />
-        </div>
-        <div className="order-1 lg:order-2">
-          <SectionHeading kicker={kicker} title={title} lead={lead} align="left" />
-          <ol className="space-y-6">
-            {steps.map((step, i) => (
-              <li key={step.title} className="flex items-start gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sky-500 font-display text-base font-extrabold text-white">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="font-display text-base font-bold text-navy-900">
-                    {step.title}
-                  </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-navy-600">
-                    {step.text}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </div>
+      <Reveal>
+        <SectionHeading kicker={kicker} title={title} lead={lead} />
+      </Reveal>
+      <ol className={`relative grid grid-cols-1 gap-10 md:gap-6 ${cols[steps.length] ?? "md:grid-cols-3"}`}>
+        {/* Verbindungslinie (Desktop) */}
+        <div
+          aria-hidden="true"
+          className="absolute left-0 right-0 top-[1.35rem] hidden h-px bg-line md:block"
+        />
+        {steps.map((step, i) => (
+          <Reveal
+            as="li"
+            key={step.title}
+            delay={0.08 * i}
+            className="relative flex gap-5 md:block"
+          >
+            <span className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-sky-500 bg-white font-display text-sm font-extrabold text-sky-600 md:mb-5">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div className="md:pr-6">
+              <h3 className="font-display text-lg font-bold text-navy-950">
+                {step.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-navy-600">
+                {step.text}
+              </p>
+            </div>
+          </Reveal>
+        ))}
+      </ol>
     </Container>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Frage-Sektion (AEO)                                                 */
+/* Frage-Sektion (AEO): Split-Layout                                   */
 /* ------------------------------------------------------------------ */
 
 export function QuestionSection({
@@ -243,55 +252,76 @@ export function QuestionSection({
 }) {
   return (
     <Container>
-      <div className="mx-auto max-w-3xl rounded-[2.5rem] bg-cloud px-6 py-12 text-center sm:px-12">
-        <h2 className="text-2xl font-extrabold tracking-tight text-navy-900 sm:text-3xl">
-          {title}
-        </h2>
-        <div className="mt-5 text-base leading-relaxed text-navy-700">
-          {children}
-        </div>
-        {cta && (
-          <Link
-            href={cta.href}
-            className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-sky-600 hover:text-sky-700"
+      <Reveal>
+        <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-cloud">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-7 top-7 rotate-12 rounded-xl border-[3px] border-sky-200 px-5 py-2 font-display text-lg font-extrabold uppercase tracking-widest text-sky-300 opacity-70"
           >
-            {cta.label}
-            <IconArrowRight className="h-4 w-4" />
-          </Link>
-        )}
-      </div>
+            Festpreis
+          </span>
+          <div className="grid gap-6 p-8 sm:p-12 lg:grid-cols-[1fr_1.25fr] lg:gap-14">
+            <h2 className="font-display text-[clamp(1.6rem,1.2rem+1.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight text-navy-950">
+              {title}
+            </h2>
+            <div>
+              <div className="text-[0.97rem] leading-relaxed text-navy-700">
+                {children}
+              </div>
+              {cta && (
+                <Link
+                  href={cta.href}
+                  className="group mt-6 inline-flex items-center gap-2 text-sm font-bold text-sky-600 transition-colors hover:text-sky-700"
+                >
+                  {cta.label}
+                  <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      </Reveal>
     </Container>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Regionale Abdeckung                                                 */
+/* Regionale Abdeckung: Karte + Chips                                  */
 /* ------------------------------------------------------------------ */
 
-export function RegionChips({ text }: { text: string }) {
+export function RegionSection({ text }: { text: string }) {
   return (
     <Container>
-      <SectionHeading title="Vor Ort im Großraum Stuttgart" lead={text} />
-      <ul className="mx-auto flex max-w-3xl flex-wrap justify-center gap-2.5">
-        {cities.map((city) =>
-          city.active ? (
-            <li key={city.slug}>
-              <Link
-                href={`/leistungen/gebaeudereinigung/${city.slug}/`}
-                className="inline-flex rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-semibold text-sky-700 transition-colors hover:bg-sky-500 hover:text-white"
-              >
-                {city.name}
-              </Link>
-            </li>
-          ) : (
-            <li key={city.slug}>
-              <span className="inline-flex rounded-full border border-navy-100 bg-white px-4 py-2 text-sm font-medium text-navy-600">
-                {city.name}
-              </span>
-            </li>
-          ),
-        )}
-      </ul>
+      <div className="grid items-center gap-12 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <Reveal>
+            <SectionHeading
+              kicker="Einsatzgebiet"
+              title="Vor Ort im Großraum Stuttgart"
+              lead={text}
+            />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ul className="flex flex-wrap gap-2">
+              {cities.map((city) => (
+                <li key={city.slug}>
+                  <Link
+                    href={`/leistungen/gebaeudereinigung/${city.slug}/`}
+                    className="inline-flex rounded-full border border-line bg-white px-3.5 py-1.5 text-[0.8rem] font-semibold text-navy-700 transition-all duration-200 hover:-translate-y-px hover:border-sky-300 hover:text-sky-700"
+                  >
+                    {city.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+        <Reveal delay={0.12} className="lg:col-span-7">
+          <div className="dots flex justify-center rounded-[1.75rem] border border-line bg-white p-4 sm:p-8">
+            <RegionMap />
+          </div>
+        </Reveal>
+      </div>
     </Container>
   );
 }
@@ -327,39 +357,57 @@ export function Faq({
   return (
     <Container>
       <JsonLd data={schema} />
-      <SectionHeading kicker={kicker} title={title} />
-      <div className="mx-auto max-w-3xl space-y-3">
-        {items.map((item) => (
-          <details
-            key={item.q}
-            className="group rounded-2xl border border-navy-100 bg-white px-6 py-1 open:border-sky-200 open:shadow-lg open:shadow-sky-500/5"
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 [&::-webkit-details-marker]:hidden">
-              <h3 className="font-display text-base font-bold text-navy-900">
-                {item.q}
-              </h3>
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sky-600 transition-transform group-open:rotate-45">
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-              </span>
-            </summary>
-            <p className="pb-5 text-sm leading-relaxed text-navy-600">
-              {item.a}
+      <div className="grid gap-10 lg:grid-cols-12">
+        <div className="lg:col-span-4">
+          <Reveal>
+            <SectionHeading kicker={kicker} title={title} />
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="-mt-6 text-sm text-navy-500">
+              Ihre Frage ist nicht dabei?{" "}
+              <Link
+                href="/kontakt/"
+                className="font-bold text-sky-600 hover:underline"
+              >
+                Fragen Sie uns direkt.
+              </Link>
             </p>
-          </details>
-        ))}
+          </Reveal>
+        </div>
+        <div className="lg:col-span-8">
+          <div className="border-t border-line">
+            {items.map((item, i) => (
+              <Reveal key={item.q} delay={0.04 * i}>
+                <details className="faq-item group border-b border-line">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
+                    <h3 className="font-display text-[1.05rem] font-bold text-navy-950 transition-colors group-hover:text-sky-700">
+                      {item.q}
+                    </h3>
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-navy-600 transition-all duration-300 group-open:rotate-45 group-open:border-sky-500 group-open:bg-sky-500 group-open:text-white">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+                        <path d="M12 5v14M5 12h14" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <p className="max-w-2xl pb-7 text-[0.95rem] leading-relaxed text-navy-600">
+                    {item.a}
+                  </p>
+                </details>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </div>
     </Container>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Abschluss-CTA-Banner                                                */
+/* Abschluss-CTA: full-bleed Dark-Band                                 */
 /* ------------------------------------------------------------------ */
 
 export function CtaBanner({
-  kicker = "KONTAKT",
+  kicker = "Kontakt",
   title,
   text,
   primaryLabel = "Angebot anfordern",
@@ -372,51 +420,42 @@ export function CtaBanner({
   microcopy?: string;
 }) {
   return (
-    <Container>
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-sky-500 to-sky-700 px-6 py-14 sm:px-12">
-        <div
-          className="pointer-events-none absolute -right-20 -bottom-24 h-80 w-80 rounded-full bg-white/10"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute right-24 top-8 h-24 w-24 rounded-full bg-white/10"
-          aria-hidden="true"
-        />
-        <div className="relative grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
-          <div>
+    <section className="grain glow-sky relative overflow-hidden py-20 sm:py-28">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-8 right-6 select-none font-display text-[11rem] font-extrabold leading-none tracking-tighter text-white/[0.04]"
+      >
+        1974
+      </span>
+      <Container className="relative">
+        <div className="max-w-3xl">
+          <Reveal>
             <Kicker onDark>{kicker}</Kicker>
-            <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <h2 className="font-display text-[clamp(2rem,1.4rem+2.6vw,3.4rem)] font-extrabold leading-[1.06] tracking-tight text-white">
               {title}
             </h2>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-sky-50">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-navy-200 sm:text-lg">
               {text}
             </p>
-            <div className="mt-7 flex flex-wrap items-center gap-4">
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-9 flex flex-wrap items-center gap-4">
               <ButtonLink href="/kontakt/" variant="light">
                 {primaryLabel}
                 <IconArrowRight className="h-4 w-4" />
               </ButtonLink>
               <ButtonLink href={site.phoneHref} variant="outlineLight">
                 <IconPhone className="h-4 w-4" />
-                {site.phone}
+                <span className="tabular-nums">{site.phone}</span>
               </ButtonLink>
             </div>
-            <p className="mt-4 flex items-center gap-2 text-sm font-medium text-sky-100">
-              <IconCheckCircle className="h-4 w-4" />
+            <p className="mt-5 flex items-center gap-2 text-sm font-medium text-navy-300">
+              <IconCheckCircle className="h-4 w-4 text-mint-400" />
               {microcopy}
             </p>
-          </div>
-          <div className="hidden lg:block">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/kontakt.svg"
-              alt=""
-              className="w-full max-w-sm rounded-3xl"
-              loading="lazy"
-            />
-          </div>
+          </Reveal>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </section>
   );
 }

@@ -43,31 +43,36 @@ export default function BaureinigungPage() {
   return (
     <>
       <PageHero
+        crumbs={[
+          { label: "Leistungen", href: "/leistungen/" },
+          { label: "Baureinigung" },
+        ]}
         overline="Leistung"
         title="Baureinigung Stuttgart"
         intro="Cleanmaster 1974 übernimmt die Baureinigung in Stuttgart und der Region: Baugrobreinigung während der Bauphase, Bauzwischenreinigung vor den Folgegewerken und Bauendreinigung vor Abnahme und Übergabe. Wir richten uns nach Ihrem Bauzeitenplan, auch bei Verschiebungen. Der Festpreis steht nach Besichtigung oder Planunterlagen verbindlich fest."
-        image="/images/services/baureinigung.svg"
       />
 
       <ContentSection title="Drei Stufen der Baureinigung">
-        <div className="grid gap-5 sm:grid-cols-3">
+        <ol className="space-y-4">
           {stages.map((stage, i) => (
-            <div
+            <li
               key={stage.title}
-              className="rounded-3xl border border-navy-100 bg-white p-6"
+              className="flex items-start gap-5 rounded-[1.5rem] border border-line bg-white p-6"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-500 font-display text-sm font-extrabold text-white">
-                {i + 1}
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-sky-500 font-display text-sm font-extrabold text-sky-600">
+                {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-4 font-display text-base font-bold text-navy-900">
-                {stage.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-navy-600">
-                {stage.text}
-              </p>
-            </div>
+              <div>
+                <h3 className="font-display text-base font-bold text-navy-950">
+                  {stage.title}
+                </h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-navy-600">
+                  {stage.text}
+                </p>
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </ContentSection>
 
       <ContentSection title="Termintreue auf der Baustelle" tinted>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
+import { PageHero } from "@/components/page-blocks";
 import { Container, JsonLd } from "@/components/ui";
 import { IconCheckCircle, IconMail, IconPhone, IconPin } from "@/components/icons";
 import { site } from "@/lib/site";
@@ -36,33 +37,22 @@ export default function KontaktPage() {
     <>
       <JsonLd data={localBusinessSchema} />
 
-      <section className="bg-gradient-to-b from-sky-50 to-white">
-        <Container className="py-14 sm:py-20">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-sky-600">
-              Kontakt
-            </p>
-            <h1 className="text-3xl font-extrabold tracking-tight text-navy-900 sm:text-5xl">
-              Kontakt zu Cleanmaster 1974
-            </h1>
-            <p className="mt-5 text-base leading-relaxed text-navy-700 sm:text-lg">
-              So erreichen Sie uns: telefonisch, per E-Mail oder über das
-              Formular. Beschreiben Sie kurz Ihr Objekt und die gewünschte
-              Leistung. Wir melden uns, vereinbaren eine kostenlose
-              Besichtigung und erstellen Ihr Festpreis-Angebot.
-            </p>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        crumbs={[{ label: "Kontakt" }]}
+        overline="Kontakt"
+        title="Kontakt zu Cleanmaster 1974"
+        intro="So erreichen Sie uns: telefonisch, per E-Mail oder über das Formular. Beschreiben Sie kurz Ihr Objekt und die gewünschte Leistung. Wir melden uns, vereinbaren eine kostenlose Besichtigung und erstellen Ihr Festpreis-Angebot."
+        withCta={false}
+      />
 
-      <section className="pb-16 sm:pb-24">
+      <section className="py-14 sm:py-20">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
             {/* Kontaktblock */}
             <div className="space-y-4">
               <a
                 href={site.phoneHref}
-                className="flex items-start gap-4 rounded-3xl border border-navy-100 bg-white p-6 transition-colors hover:border-sky-200"
+                className="flex items-start gap-4 rounded-[1.5rem] border border-line bg-white p-6 transition-all duration-200 hover:-translate-y-px hover:border-sky-300 hover:shadow-lg hover:shadow-sky-500/10"
               >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-sky-100 text-sky-600">
                   <IconPhone className="h-5 w-5" />
@@ -79,7 +69,7 @@ export default function KontaktPage() {
 
               <a
                 href={site.emailHref}
-                className="flex items-start gap-4 rounded-3xl border border-navy-100 bg-white p-6 transition-colors hover:border-sky-200"
+                className="flex items-start gap-4 rounded-[1.5rem] border border-line bg-white p-6 transition-all duration-200 hover:-translate-y-px hover:border-sky-300 hover:shadow-lg hover:shadow-sky-500/10"
               >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-sky-100 text-sky-600">
                   <IconMail className="h-5 w-5" />
@@ -94,7 +84,7 @@ export default function KontaktPage() {
                 </span>
               </a>
 
-              <div className="flex items-start gap-4 rounded-3xl border border-navy-100 bg-white p-6">
+              <div className="flex items-start gap-4 rounded-3xl border border-line bg-white p-6">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-sky-100 text-sky-600">
                   <IconPin className="h-5 w-5" />
                 </span>
@@ -112,7 +102,7 @@ export default function KontaktPage() {
                 </span>
               </div>
 
-              <div className="rounded-3xl bg-navy-900 p-6">
+              <div className="grain relative overflow-hidden rounded-[1.5rem] bg-navy-950 p-6">
                 <p className="text-sm font-semibold leading-relaxed text-white">
                   Einsatzgebiet: Stuttgart und 18 Städte der Region, von
                   Leonberg bis Ludwigsburg.
@@ -121,7 +111,7 @@ export default function KontaktPage() {
             </div>
 
             {/* Formular */}
-            <div className="rounded-[2rem] border border-navy-100 bg-white p-6 shadow-xl shadow-sky-500/5 sm:p-10">
+            <div className="rounded-[1.75rem] border border-line bg-white p-6 shadow-2xl shadow-navy-950/8 sm:p-10">
               <h2 className="font-display text-xl font-extrabold text-navy-900">
                 Anfrage senden
               </h2>
@@ -130,7 +120,7 @@ export default function KontaktPage() {
                 Besichtigung.
               </p>
               <ContactForm />
-              <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-navy-100 pt-6 text-xs font-semibold text-navy-600">
+              <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-line pt-6 text-xs font-semibold text-navy-600">
                 {[
                   "Kostenlose Besichtigung",
                   "Verbindlicher Festpreis",
