@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
+import { serviceBySlug } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Glas- & Fensterreinigung Stuttgart | Cleanmaster 1974",
@@ -35,6 +36,7 @@ export default function GlasreinigungPage() {
         overline="Leistung"
         title="Glas- und Fensterreinigung Stuttgart"
         intro="Cleanmaster 1974 reinigt Fenster, Schaufenster, Glastüren, Glasfassaden und Wintergärten in Stuttgart und der Region, streifenfrei und inklusive Rahmen und Falze. Schwer erreichbare Flächen erreichen wir mit Teleskopstangen und entmineralisiertem Wasser. Einzeltermin oder fester Turnus, beides zum verbindlichen Festpreis nach kostenloser Besichtigung."
+        image={serviceBySlug("glasreinigung-fensterreinigung")?.image}
       />
 
       <ContentSection title="Rahmen und Falze gehören dazu">

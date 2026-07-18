@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
+import { serviceBySlug } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Entrümpelung Stuttgart zum Festpreis | Cleanmaster 1974",
@@ -35,6 +36,7 @@ export default function EntruempelungPage() {
         overline="Leistung · auch für Privathaushalte"
         title="Entrümpelung und Haushaltsauflösung Stuttgart"
         intro="Cleanmaster 1974 entrümpelt Wohnungen, Häuser, Keller, Dachböden und Gewerbeflächen in Stuttgart und der Region und übergibt besenrein. Der Festpreis steht nach kostenloser Besichtigung verbindlich fest, inklusive Demontage, Abtransport und fachgerechter Entsorgung. Auch kurzfristige Termine sind möglich, etwa bei Wohnungsübergaben oder im Nachlassfall. Diskretion ist selbstverständlich."
+        image={serviceBySlug("entruempelung-haushaltsaufloesung")?.image}
       />
 
       <ContentSection title="Besenrein heißt bei uns: übergabefertig">

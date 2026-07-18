@@ -21,6 +21,17 @@ export const metadata: Metadata = {
   title: "Gebäudereinigung Stuttgart & Region | Cleanmaster 1974",
   description:
     "Gebäudereinigung in Stuttgart vom Familienbetrieb ✓ Büroreinigung ✓ Treppenhausreinigung ✓ Winterdienst ✓ Festpreis-Garantie. Jetzt Angebot anfordern!",
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    siteName: site.name,
+    title: "Gebäudereinigung Stuttgart & Region | Cleanmaster 1974",
+    description:
+      "Gebäudereinigung in Stuttgart vom Familienbetrieb ✓ Büroreinigung ✓ Treppenhausreinigung ✓ Winterdienst ✓ Festpreis-Garantie. Jetzt Angebot anfordern!",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

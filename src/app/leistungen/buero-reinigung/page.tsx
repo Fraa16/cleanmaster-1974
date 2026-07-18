@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CheckList, ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
+import { serviceBySlug } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Büroreinigung Stuttgart & Region | Cleanmaster 1974",
@@ -35,6 +36,7 @@ export default function BueroReinigungPage() {
         overline="Leistung"
         title="Büroreinigung Stuttgart"
         intro="Cleanmaster 1974 reinigt Büros in Stuttgart und der Region, täglich, wöchentlich oder im vereinbarten Turnus. Ein festes Reinigungsteam arbeitet vor oder nach Ihren Geschäftszeiten, nach einem gemeinsam festgelegten Leistungsverzeichnis und zum monatlichen Pauschalpreis. Die Besichtigung vor dem Angebot ist kostenlos, der angebotene Preis verbindlich."
+        image={serviceBySlug("buero-reinigung")?.image}
       />
 
       <ContentSection title="Was zur Büroreinigung gehört">

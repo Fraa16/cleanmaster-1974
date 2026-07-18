@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ButtonLink, Container, SectionHeading } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 import { Stats } from "@/components/Stats";
@@ -15,7 +16,6 @@ import {
 } from "@/components/sections";
 import {
   IconArrowRight,
-  IconCheck,
   IconCheckCircle,
   IconPhone,
 } from "@/components/icons";
@@ -85,8 +85,8 @@ const faqItems = [
   },
 ];
 
-/** Angebots-Karte im Hero: echtes Produkt (Festpreis-Angebot) statt Stockfoto. */
-function HeroOfferCard() {
+/** Hero-Visual: echtes Foto des Teams, kombiniert mit den Festpreis-Signalen. */
+function HeroVisual() {
   return (
     <div className="relative mx-auto w-full max-w-md lg:max-w-none">
       {/* Hintergrund-Panel */}
@@ -99,53 +99,33 @@ function HeroOfferCard() {
         className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-sky-300/30 blur-2xl"
       />
 
-      {/* Angebotskarte */}
-      <div className="relative rounded-[1.75rem] border border-line bg-white p-7 shadow-2xl shadow-navy-950/10 sm:p-8">
-        <div className="flex items-center justify-between gap-4 border-b border-line pb-5">
-          <div className="flex items-center gap-3">
-            <LogoMark className="h-9 w-9" />
-            <div>
-              <p className="font-display text-sm font-extrabold text-navy-950">
-                Ihr Festpreis-Angebot
-              </p>
-              <p className="text-[0.7rem] font-medium text-navy-400">
-                Nach kostenloser Objektbesichtigung
-              </p>
-            </div>
-          </div>
-          <span className="rounded-full bg-navy-50 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-navy-500">
-            Schriftlich
+      {/* Foto-Karte */}
+      <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-white shadow-2xl shadow-navy-950/10">
+        <div className="relative aspect-[4/3]">
+          <Image
+            src="/images/homepage-hero.jpg"
+            alt="Reinigungskräfte von Cleanmaster 1974 bei der Arbeit in einem Büro in Stuttgart"
+            fill
+            sizes="(max-width: 1024px) 28rem, 34rem"
+            className="object-cover"
+            priority
+          />
+          <span className="absolute right-4 top-4 rotate-[-6deg] rounded-lg border-[2.5px] border-sky-500 bg-white/95 px-3.5 py-1 font-display text-sm font-extrabold uppercase tracking-[0.14em] text-sky-600 shadow-sm">
+            Festpreis
           </span>
         </div>
 
-        <ul className="space-y-3.5 py-6">
-          {[
-            "Leistungsverzeichnis für Ihr Objekt",
-            "Monatlicher Pauschalpreis, verbindlich",
-            "Keine Nachberechnung für Anfahrt & Material",
-            "Fester Ansprechpartner, festes Team",
-          ].map((line) => (
-            <li key={line} className="flex items-start gap-3">
-              <span className="mt-0.5 flex h-5.5 w-5.5 shrink-0 items-center justify-center rounded-full bg-mint-100 text-mint-600">
-                <IconCheck className="h-3 w-3" strokeWidth={2.6} />
-              </span>
-              <span className="text-sm font-medium text-navy-800">{line}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex items-end justify-between gap-4 border-t border-line pt-5">
+        {/* Info-Leiste mit Logo */}
+        <div className="flex items-center gap-3 border-t border-line px-6 py-4">
+          <LogoMark className="h-9 w-9" />
           <div>
-            <p className="text-[0.7rem] font-medium text-navy-400">
-              Angebotspreis
+            <p className="font-display text-sm font-extrabold text-navy-950">
+              Ihr Festpreis-Angebot
             </p>
-            <p className="font-display text-lg font-extrabold text-navy-950">
-              = Rechnungspreis
+            <p className="text-[0.7rem] font-medium text-navy-400">
+              Nach kostenloser Objektbesichtigung
             </p>
           </div>
-          <span className="rotate-[-6deg] rounded-lg border-[2.5px] border-sky-500 px-3.5 py-1 font-display text-sm font-extrabold uppercase tracking-[0.14em] text-sky-600">
-            Festpreis
-          </span>
         </div>
       </div>
 
@@ -244,7 +224,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="anim-up lg:col-span-5" style={{ "--enter-delay": "0.2s" } as React.CSSProperties}>
-              <HeroOfferCard />
+              <HeroVisual />
             </div>
           </div>
         </Container>

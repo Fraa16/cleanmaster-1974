@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { ButtonLink, Container, JsonLd, Kicker, SectionHeading } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
@@ -23,29 +24,44 @@ function FeaturedServiceCard({ service, delay }: { service: Service; delay: numb
     <Reveal delay={delay} className="lg:col-span-6">
       <Link
         href={service.href}
-        className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[1.75rem] border border-line bg-gradient-to-br from-cloud via-white to-sky-50 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-sky-200 hover:shadow-2xl hover:shadow-sky-500/10 sm:p-10"
+        className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-sky-200 hover:shadow-2xl hover:shadow-sky-500/10"
       >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-10 -top-14 text-sky-100 transition-transform duration-500 group-hover:scale-110 group-hover:text-sky-200"
-        >
-          <Icon className="h-52 w-52 opacity-70" strokeWidth={1} />
-        </div>
-        <div className="relative">
-          <span className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-950 text-white transition-colors duration-300 group-hover:bg-sky-500">
-            <Icon className="h-6 w-6" />
+        {service.image && (
+          <div className="relative aspect-[16/9] w-full overflow-hidden">
+            <Image
+              src={service.image.src}
+              alt={service.image.alt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 34rem"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+            />
+          </div>
+        )}
+        <div className="relative flex flex-1 flex-col justify-between bg-gradient-to-br from-cloud via-white to-sky-50 p-8 sm:p-10">
+          {!service.image && (
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-10 -top-14 text-sky-100 transition-transform duration-500 group-hover:scale-110 group-hover:text-sky-200"
+            >
+              <Icon className="h-52 w-52 opacity-70" strokeWidth={1} />
+            </div>
+          )}
+          <div className="relative">
+            <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-950 text-white transition-colors duration-300 group-hover:bg-sky-500">
+              <Icon className="h-6 w-6" />
+            </span>
+            <h3 className="font-display text-2xl font-bold tracking-tight text-navy-950">
+              {service.title}
+            </h3>
+            <p className="mt-3 max-w-md text-[0.95rem] leading-relaxed text-navy-600">
+              {service.teaser}
+            </p>
+          </div>
+          <span className="relative mt-8 inline-flex items-center gap-2 text-sm font-bold text-sky-600">
+            Mehr erfahren
+            <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
           </span>
-          <h3 className="font-display text-2xl font-bold tracking-tight text-navy-950">
-            {service.title}
-          </h3>
-          <p className="mt-3 max-w-md text-[0.95rem] leading-relaxed text-navy-600">
-            {service.teaser}
-          </p>
         </div>
-        <span className="relative mt-8 inline-flex items-center gap-2 text-sm font-bold text-sky-600">
-          Mehr erfahren
-          <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-        </span>
       </Link>
     </Reveal>
   );
