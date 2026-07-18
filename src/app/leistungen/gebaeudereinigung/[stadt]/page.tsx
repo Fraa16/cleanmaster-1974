@@ -4,6 +4,7 @@ import { activeCities, cityBySlug } from "@/lib/cities";
 import { cityContent } from "@/lib/city-content";
 import { ContentSection, NeighborLinks, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
+import { serviceBySlug } from "@/lib/services";
 
 interface Props {
   params: Promise<{ stadt: string }>;
@@ -58,6 +59,7 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
         overline="Leistung · Unterhaltsreinigung"
         title={`Gebäudereinigung ${city.name}`}
         intro={`Cleanmaster 1974 übernimmt die Gebäudereinigung in ${city.name}: Unterhaltsreinigung für Gewerbeflächen, Praxen, Wohnanlagen und öffentliche Bereiche, im festen Turnus nach Leistungsverzeichnis. Ein gleichbleibendes Team reinigt Ihr Objekt zum monatlichen Pauschalpreis. Die Besichtigung ist kostenlos, der angebotene Preis verbindlich, Ihr Ansprechpartner bleibt derselbe.`}
+        image={serviceBySlug("gebaeudereinigung")?.image}
       />
 
       <ContentSection title="Unterhaltsreinigung nach Leistungsverzeichnis">

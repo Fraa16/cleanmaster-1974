@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
+import { serviceBySlug } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Baureinigung Stuttgart | Bauendreinigung | Cleanmaster 1974",
@@ -50,6 +51,7 @@ export default function BaureinigungPage() {
         overline="Leistung"
         title="Baureinigung Stuttgart"
         intro="Cleanmaster 1974 übernimmt die Baureinigung in Stuttgart und der Region: Baugrobreinigung während der Bauphase, Bauzwischenreinigung vor den Folgegewerken und Bauendreinigung vor Abnahme und Übergabe. Wir richten uns nach Ihrem Bauzeitenplan, auch bei Verschiebungen. Der Festpreis steht nach Besichtigung oder Planunterlagen verbindlich fest."
+        image={serviceBySlug("baureinigung")?.image}
       />
 
       <ContentSection title="Drei Stufen der Baureinigung">

@@ -11,6 +11,7 @@ import {
 } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { Container } from "@/components/ui";
+import { serviceBySlug } from "@/lib/services";
 
 interface Props {
   params: Promise<{ stadt: string }>;
@@ -65,6 +66,7 @@ export default async function TreppenhausreinigungStadtPage({ params }: Props) {
         overline="Leistung · Hausverwaltungen & WEG"
         title={`Treppenhausreinigung ${city.name}`}
         intro={`Cleanmaster 1974 reinigt Treppenhäuser in ${city.name} für Hausverwaltungen, Eigentümergemeinschaften und private Vermieter. Die Reinigung läuft im festen Turnus nach Reinigungsplan, der im Objekt aushängt. So sehen Mieter jederzeit, wann zuletzt gereinigt wurde. Abgerechnet wird über einen monatlichen Pauschalpreis, der nach kostenloser Besichtigung verbindlich feststeht.`}
+        image={serviceBySlug("treppenhausreinigung")?.image}
       />
 
       <ContentSection title="Was zur Treppenhausreinigung gehört">

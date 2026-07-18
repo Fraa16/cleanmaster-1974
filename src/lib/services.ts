@@ -9,12 +9,20 @@ export type ServiceIcon =
   | "bau"
   | "hausmeister";
 
+/** Stockfoto zur Leistung. Pfade unter public/images/, Alt-Text auf Deutsch. */
+export interface ServiceImage {
+  src: string;
+  alt: string;
+}
+
 export interface Service {
   slug: string;
   href: string;
   title: string;
   teaser: string;
   icon: ServiceIcon;
+  /** Optional: manche Leistungen haben (noch) kein passendes Foto. */
+  image?: ServiceImage;
 }
 
 /** Die 9 Hauptleistungen mit den Teasern der Startseite (Copy V2, Sektion 3). */
@@ -26,6 +34,10 @@ export const services: Service[] = [
     teaser:
       "Saubere Büros vor oder nach Ihren Geschäftszeiten. Täglich, wöchentlich oder im vereinbarten Turnus, mit festem Reinigungsteam.",
     icon: "buero",
+    image: {
+      src: "/images/buero.jpg",
+      alt: "Reinigungskraft von Cleanmaster 1974 wischt einen Tisch im Büro",
+    },
   },
   {
     slug: "gebaeudereinigung",
@@ -34,6 +46,10 @@ export const services: Service[] = [
     teaser:
       "Die regelmäßige Reinigung Ihrer Gewerbeflächen, Praxen und Wohnanlagen nach Leistungsverzeichnis. Zum festen monatlichen Pauschalpreis.",
     icon: "gebaeude",
+    image: {
+      src: "/images/gebaeude.jpg",
+      alt: "Unterhaltsreinigung: maschinelle Bodenreinigung in einem Gewerbeobjekt",
+    },
   },
   {
     slug: "treppenhausreinigung",
@@ -42,6 +58,10 @@ export const services: Service[] = [
     teaser:
       "Gepflegte Treppenhäuser für Hausverwaltungen und Eigentümergemeinschaften. Mit Reinigungsplan zum Aushang im Objekt.",
     icon: "treppenhaus",
+    image: {
+      src: "/images/treppenhaus.jpg",
+      alt: "Treppenhausreinigung in einem Mehrfamilienhaus",
+    },
   },
   {
     slug: "glasreinigung-fensterreinigung",
@@ -50,6 +70,10 @@ export const services: Service[] = [
     teaser:
       "Streifenfreie Fenster, Schaufenster und Glasfassaden. Auch in großer Höhe mit Teleskop- und Osmosetechnik.",
     icon: "glas",
+    image: {
+      src: "/images/fenster.jpg",
+      alt: "Fensterreinigung einer Glasfassade mit Einwascher am Teleskopstiel",
+    },
   },
   {
     slug: "winterdienst",
@@ -66,6 +90,10 @@ export const services: Service[] = [
     teaser:
       "Wohnungen, Häuser, Keller und Gewerbeflächen, besenrein übergeben. Zum verbindlichen Festpreis nach Besichtigung.",
     icon: "entruempelung",
+    image: {
+      src: "/images/entruempelung.jpg",
+      alt: "Entrümpelung: Team von Cleanmaster 1974 trägt Umzugskartons aus einem Objekt",
+    },
   },
   {
     slug: "taubenabwehr",
@@ -82,6 +110,10 @@ export const services: Service[] = [
     teaser:
       "Baugrob-, Bauzwischen- und Bauendreinigung, abgestimmt auf Ihren Bauzeitenplan. Damit die Übergabe termingerecht klappt.",
     icon: "bau",
+    image: {
+      src: "/images/baureinigung.jpg",
+      alt: "Baureinigung: Entfernen von Bauschutt und Mörtelresten nach dem Innenausbau",
+    },
   },
   {
     slug: "hausmeisterservice",
@@ -92,3 +124,6 @@ export const services: Service[] = [
     icon: "hausmeister",
   },
 ];
+
+export const serviceBySlug = (slug: string) =>
+  services.find((s) => s.slug === slug);

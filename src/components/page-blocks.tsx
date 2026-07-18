@@ -1,9 +1,11 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { ButtonLink, Container } from "@/components/ui";
 import { Breadcrumbs, type Crumb } from "@/components/Breadcrumbs";
 import { Reveal } from "@/components/Reveal";
 import { IconArrowRight, IconCheck, IconPhone } from "@/components/icons";
 import { site } from "@/lib/site";
+import type { ServiceImage } from "@/lib/services";
 
 /* ------------------------------------------------------------------ */
 /* Unterseiten-Hero: typografisch, mit Breadcrumb                      */
@@ -15,13 +17,49 @@ export function PageHero({
   title,
   intro,
   withCta = true,
+  image,
 }: {
   crumbs?: Crumb[];
   overline?: string;
   title: string;
   intro: string;
   withCta?: boolean;
+  image?: ServiceImage;
 }) {
+  const text = (
+    <>
+      <div className="anim-up">
+        {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
+        {overline && (
+          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white px-3.5 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-sky-700">
+            {overline}
+          </p>
+        )}
+        <h1 className="max-w-4xl font-display text-[clamp(2.1rem,1.4rem+3vw,3.6rem)] font-extrabold leading-[1.05] tracking-tight text-navy-950">
+          {title}
+        </h1>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-navy-600 sm:text-lg">
+          {intro}
+        </p>
+      </div>
+      {withCta && (
+        <div
+          className="anim-up mt-9 flex flex-wrap items-center gap-4"
+          style={{ "--enter-delay": "0.12s" } as React.CSSProperties}
+        >
+          <ButtonLink href="/kontakt/">
+            Jetzt Angebot anfordern
+            <IconArrowRight className="h-4 w-4" />
+          </ButtonLink>
+          <ButtonLink href={site.phoneHref} variant="outline">
+            <IconPhone className="h-4 w-4" />
+            <span className="tabular-nums">{site.phone}</span>
+          </ButtonLink>
+        </div>
+      )}
+    </>
+  );
+
   return (
     <section className="relative overflow-hidden border-b border-line bg-gradient-to-b from-sky-50/80 to-white">
       <div
@@ -29,34 +67,27 @@ export function PageHero({
         className="dots absolute inset-y-0 right-0 w-1/3 [mask-image:linear-gradient(to_left,black,transparent)]"
       />
       <Container className="relative py-12 sm:py-18">
-        <div className="anim-up">
-          {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
-          {overline && (
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white px-3.5 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-sky-700">
-              {overline}
-            </p>
-          )}
-          <h1 className="max-w-4xl font-display text-[clamp(2.1rem,1.4rem+3vw,3.6rem)] font-extrabold leading-[1.05] tracking-tight text-navy-950">
-            {title}
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-navy-600 sm:text-lg">
-            {intro}
-          </p>
-        </div>
-        {withCta && (
-          <div
-            className="anim-up mt-9 flex flex-wrap items-center gap-4"
-            style={{ "--enter-delay": "0.12s" } as React.CSSProperties}
-          >
-            <ButtonLink href="/kontakt/">
-              Jetzt Angebot anfordern
-              <IconArrowRight className="h-4 w-4" />
-            </ButtonLink>
-            <ButtonLink href={site.phoneHref} variant="outline">
-              <IconPhone className="h-4 w-4" />
-              <span className="tabular-nums">{site.phone}</span>
-            </ButtonLink>
+        {image ? (
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>{text}</div>
+            <div
+              className="anim-up"
+              style={{ "--enter-delay": "0.2s" } as React.CSSProperties}
+            >
+              <div className="relative aspect-[16/11] overflow-hidden rounded-[1.75rem] border border-line shadow-2xl shadow-navy-950/10">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40rem"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
           </div>
+        ) : (
+          text
         )}
       </Container>
     </section>
