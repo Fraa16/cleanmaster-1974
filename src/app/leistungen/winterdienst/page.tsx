@@ -75,9 +75,14 @@ export default function WinterdienstPage() {
         overline="Leistung"
         title="Winterdienst Stuttgart"
         intro="Cleanmaster 1974 übernimmt den Winterdienst in Stuttgart und der Region: räumen, streuen und die Dokumentation jedes Einsatzes. Damit ist Ihre Räum- und Streupflicht als Eigentümer oder Verwalter erfüllt, auch bei Schneefall vor Sonnenaufgang. Abgerechnet wird über eine Saisonpauschale, die vor dem Winter verbindlich feststeht."
+        variant="dark"
+        icon="winter"
       />
 
-      <ContentSection title="Ihre Räum- und Streupflicht, unsere Verantwortung">
+      <ContentSection
+        title="Ihre Räum- und Streupflicht, unsere Verantwortung"
+        layout="centered"
+      >
         <p>
           Eigentümer haften, wenn auf ungeräumten Wegen jemand stürzt. Mit der
           Beauftragung von Cleanmaster 1974 übertragen Sie die Durchführung

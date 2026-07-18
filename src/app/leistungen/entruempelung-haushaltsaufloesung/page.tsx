@@ -39,7 +39,10 @@ export default function EntruempelungPage() {
         image={serviceBySlug("entruempelung-haushaltsaufloesung")?.image}
       />
 
-      <ContentSection title="Besenrein heißt bei uns: übergabefertig">
+      <ContentSection
+        title="Besenrein heißt bei uns: übergabefertig"
+        layout="centered"
+      >
         <p>
           Nach der Entrümpelung ist die Fläche leer, gefegt und bereit für
           Übergabe, Renovierung oder Verkauf. Zum Festpreis gehören Demontage
@@ -52,6 +55,7 @@ export default function EntruempelungPage() {
       <ContentSection
         title="Haushaltsauflösung im Nachlassfall"
         tinted
+        imageSide="left"
         image={{
           src: "/images/entruempelung-alt.jpg",
           alt: "Sorgfältiges Verpacken von Umzugskartons bei der Haushaltsauflösung",
@@ -66,7 +70,10 @@ export default function EntruempelungPage() {
       </ContentSection>
 
       <section className="py-12 sm:py-16">
-        <QuestionSection title="Was kostet eine Entrümpelung in Stuttgart?">
+        <QuestionSection
+          title="Was kostet eine Entrümpelung in Stuttgart?"
+          tone="dark"
+        >
           <p>
             Der Preis hängt von Volumen, Etage, Zugänglichkeit und
             Entsorgungsart ab: Eine Kellerecke kostet weniger als eine
@@ -79,7 +86,10 @@ export default function EntruempelungPage() {
       </section>
 
       <section className="pb-12 sm:pb-16">
-        <QuestionSection title="Ist eine Entrümpelung steuerlich absetzbar?">
+        <QuestionSection
+          title="Ist eine Entrümpelung steuerlich absetzbar?"
+          cta={{ href: "/kontakt/", label: "Kostenlose Besichtigung vereinbaren" }}
+        >
           <p>
             Ja, in vielen Fällen. Als haushaltsnahe Dienstleistung können
             Privathaushalte 20 Prozent der Arbeitskosten von der

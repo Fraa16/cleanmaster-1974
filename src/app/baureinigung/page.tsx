@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ContentSection, PageHero } from "@/components/page-blocks";
-import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
+import { CtaBanner, DarkFeatureSection, Faq, QuestionSection } from "@/components/sections";
 import { serviceBySlug } from "@/lib/services";
 
 export const metadata: Metadata = {
@@ -54,30 +54,13 @@ export default function BaureinigungPage() {
         image={serviceBySlug("baureinigung")?.image}
       />
 
-      <ContentSection title="Drei Stufen der Baureinigung">
-        <ol className="space-y-4">
-          {stages.map((stage, i) => (
-            <li
-              key={stage.title}
-              className="flex items-start gap-5 rounded-[1.5rem] border border-line bg-white p-6"
-            >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-sky-500 font-display text-sm font-extrabold text-sky-600">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h3 className="font-display text-base font-bold text-navy-950">
-                  {stage.title}
-                </h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-navy-600">
-                  {stage.text}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </ContentSection>
+      <DarkFeatureSection title="Drei Stufen der Baureinigung" items={stages} />
 
-      <ContentSection title="Termintreue auf der Baustelle" tinted>
+      <ContentSection
+        title="Termintreue auf der Baustelle"
+        tinted
+        layout="centered"
+      >
         <p>
           Bauzeitenpläne verschieben sich, das wissen wir. Cleanmaster 1974
           plant Baureinigungen mit Puffer und stimmt sich direkt mit Ihrer

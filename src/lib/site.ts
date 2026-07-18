@@ -10,6 +10,8 @@ export const site = {
   domain: "https://cleanmaster-1974.de",
   phone: "0176 7230 58 47",
   phoneHref: "tel:+4917672305847",
+  /** Gleiche Nummer wie phoneHref. */
+  whatsappHref: "https://wa.me/4917672305847",
   email: "info@cleanmaster-1974.de",
   emailHref: "mailto:info@cleanmaster-1974.de",
   address: {

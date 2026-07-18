@@ -37,10 +37,12 @@ export default function GlasreinigungPage() {
         title="Glas- und Fensterreinigung Stuttgart"
         intro="Cleanmaster 1974 reinigt Fenster, Schaufenster, Glastüren, Glasfassaden und Wintergärten in Stuttgart und der Region, streifenfrei und inklusive Rahmen und Falze. Schwer erreichbare Flächen erreichen wir mit Teleskopstangen und entmineralisiertem Wasser. Einzeltermin oder fester Turnus, beides zum verbindlichen Festpreis nach kostenloser Besichtigung."
         image={serviceBySlug("glasreinigung-fensterreinigung")?.image}
+        variant="banner"
       />
 
       <ContentSection
         title="Rahmen und Falze gehören dazu"
+        imageSide="right"
         image={{
           src: "/images/glas.jpg",
           alt: "Reinigung einer Glastrennwand mit Tuch und Sprühflasche",
@@ -58,6 +60,7 @@ export default function GlasreinigungPage() {
       <ContentSection
         title="Auch in großer Höhe"
         tinted
+        imageSide="left"
         image={{
           src: "/images/glas-detail.jpg",
           alt: "Nahaufnahme: streifenfreie Glasreinigung mit Mikrofasertuch",
@@ -71,7 +74,11 @@ export default function GlasreinigungPage() {
       </ContentSection>
 
       <section className="py-12 sm:py-16">
-        <QuestionSection title="Wie oft sollten Fenster gereinigt werden?">
+        <QuestionSection
+          title="Wie oft sollten Fenster gereinigt werden?"
+          tone="dark"
+          cta={{ href: "/kontakt/", label: "Besichtigung vereinbaren" }}
+        >
           <p>
             Als Richtwert: Büros und Praxen zwei- bis viermal pro Jahr,
             Schaufenster wöchentlich bis monatlich, Wohnanlagen ein- bis

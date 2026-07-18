@@ -3,6 +3,7 @@ import { Inter, Bricolage_Grotesque } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileActionBar } from "@/components/MobileActionBar";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -62,6 +63,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <MobileActionBar />
+        <WhatsAppButton />
       </body>
     </html>
   );

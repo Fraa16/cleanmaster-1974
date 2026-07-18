@@ -3,9 +3,9 @@ import Image from "next/image";
 import { ButtonLink, Container } from "@/components/ui";
 import { Breadcrumbs, type Crumb } from "@/components/Breadcrumbs";
 import { Reveal } from "@/components/Reveal";
-import { IconArrowRight, IconCheck, IconPhone } from "@/components/icons";
+import { IconArrowRight, IconCheck, IconPhone, serviceIcons } from "@/components/icons";
 import { site } from "@/lib/site";
-import type { ServiceImage } from "@/lib/services";
+import type { ServiceIcon, ServiceImage } from "@/lib/services";
 
 /* ------------------------------------------------------------------ */
 /* Unterseiten-Hero: typografisch, mit Breadcrumb                      */
@@ -18,6 +18,8 @@ export function PageHero({
   intro,
   withCta = true,
   image,
+  variant = "split",
+  icon,
 }: {
   crumbs?: Crumb[];
   overline?: string;
@@ -25,20 +27,39 @@ export function PageHero({
   intro: string;
   withCta?: boolean;
   image?: ServiceImage;
+  variant?: "split" | "banner" | "dark";
+  icon?: ServiceIcon;
 }) {
+  const onDark = variant === "banner" || variant === "dark";
+  const WatermarkIcon = icon ? serviceIcons[icon] : null;
+
   const text = (
     <>
       <div className="anim-up">
-        {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
+        {crumbs.length > 0 && <Breadcrumbs items={crumbs} onDark={onDark} />}
         {overline && (
-          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white px-3.5 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-sky-700">
+          <p
+            className={`mb-4 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.16em] ${
+              onDark
+                ? "border-white/20 bg-white/10 text-sky-200 backdrop-blur-sm"
+                : "border-sky-200 bg-white text-sky-700"
+            }`}
+          >
             {overline}
           </p>
         )}
-        <h1 className="max-w-4xl font-display text-[clamp(2.1rem,1.4rem+3vw,3.6rem)] font-extrabold leading-[1.05] tracking-tight text-navy-950">
+        <h1
+          className={`max-w-4xl font-display text-[clamp(2.1rem,1.4rem+3vw,3.6rem)] font-extrabold leading-[1.05] tracking-tight ${
+            onDark ? "text-white" : "text-navy-950"
+          }`}
+        >
           {title}
         </h1>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-navy-600 sm:text-lg">
+        <p
+          className={`mt-6 max-w-2xl text-base leading-relaxed sm:text-lg ${
+            onDark ? "text-navy-100" : "text-navy-600"
+          }`}
+        >
           {intro}
         </p>
       </div>
@@ -47,11 +68,14 @@ export function PageHero({
           className="anim-up mt-9 flex flex-wrap items-center gap-4"
           style={{ "--enter-delay": "0.12s" } as React.CSSProperties}
         >
-          <ButtonLink href="/kontakt/">
+          <ButtonLink href="/kontakt/" variant={onDark ? "light" : "primary"}>
             Jetzt Angebot anfordern
             <IconArrowRight className="h-4 w-4" />
           </ButtonLink>
-          <ButtonLink href={site.phoneHref} variant="outline">
+          <ButtonLink
+            href={site.phoneHref}
+            variant={onDark ? "outlineLight" : "outline"}
+          >
             <IconPhone className="h-4 w-4" />
             <span className="tabular-nums">{site.phone}</span>
           </ButtonLink>
@@ -60,12 +84,60 @@ export function PageHero({
     </>
   );
 
+  if (variant === "banner" && image) {
+    return (
+      <section className="relative overflow-hidden">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-navy-950/85 via-navy-950/55 to-navy-950/25"
+        />
+        <Container className="relative py-16 sm:py-24">
+          <div className="max-w-2xl">{text}</div>
+        </Container>
+      </section>
+    );
+  }
+
+  if (variant === "dark") {
+    return (
+      <section className="grain glow-sky relative overflow-hidden">
+        {WatermarkIcon && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 top-1/2 hidden -translate-y-1/2 text-white/[0.06] lg:block"
+          >
+            <WatermarkIcon className="h-[26rem] w-[26rem]" strokeWidth={0.75} />
+          </div>
+        )}
+        <Container className="relative py-16 sm:py-22">
+          <div className="max-w-2xl">{text}</div>
+        </Container>
+      </section>
+    );
+  }
+
   return (
     <section className="relative overflow-hidden border-b border-line bg-gradient-to-b from-sky-50/80 to-white">
       <div
         aria-hidden="true"
         className="dots absolute inset-y-0 right-0 w-1/3 [mask-image:linear-gradient(to_left,black,transparent)]"
       />
+      {!image && WatermarkIcon && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-10 top-1/2 hidden -translate-y-1/2 text-sky-100 lg:block"
+        >
+          <WatermarkIcon className="h-80 w-80" strokeWidth={0.75} />
+        </div>
+      )}
       <Container className="relative py-12 sm:py-18">
         {image ? (
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
@@ -103,27 +175,105 @@ export function ContentSection({
   children,
   tinted = false,
   image,
+  tone,
+  imageSide = "bottom",
+  layout = "split",
 }: {
   title: string;
   children: ReactNode;
   tinted?: boolean;
   image?: ServiceImage;
+  tone?: "white" | "cloud" | "dark";
+  imageSide?: "bottom" | "left" | "right";
+  layout?: "split" | "centered";
 }) {
-  return (
-    <section className={tinted ? "bg-cloud" : ""}>
-      <Container className="py-14 sm:py-18">
-        <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
-          <Reveal className="lg:col-span-5">
-            <h2 className="font-display text-[clamp(1.5rem,1.2rem+1.3vw,2.1rem)] font-extrabold leading-[1.12] tracking-tight text-navy-950 lg:sticky lg:top-32">
+  const resolvedTone = tone ?? (tinted ? "cloud" : "white");
+  const isDark = resolvedTone === "dark";
+  const sectionClass =
+    resolvedTone === "dark"
+      ? "grain glow-sky relative overflow-hidden"
+      : resolvedTone === "cloud"
+        ? "bg-cloud"
+        : "";
+  const titleClass = `font-display text-[clamp(1.5rem,1.2rem+1.3vw,2.1rem)] font-extrabold leading-[1.12] tracking-tight ${
+    isDark ? "text-white" : "text-navy-950"
+  }`;
+  const bodyClass = `space-y-5 text-[0.97rem] leading-relaxed ${
+    isDark ? "text-navy-200" : "text-navy-700"
+  }`;
+  const imageFrame = `relative overflow-hidden rounded-[1.5rem] border shadow-lg ${
+    isDark ? "border-white/10 shadow-navy-950/40" : "border-line shadow-navy-950/5"
+  }`;
+
+  if (image && (imageSide === "left" || imageSide === "right")) {
+    return (
+      <section className={sectionClass}>
+        <Container className="relative py-14 sm:py-18">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <Reveal
+              className={imageSide === "left" ? "lg:order-first" : "lg:order-last"}
+            >
+              <div className={`${imageFrame} aspect-[4/3]`}>
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 36rem"
+                  className="object-cover"
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <h2 className={titleClass}>{title}</h2>
+              <div className={`mt-6 ${bodyClass}`}>{children}</div>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+    );
+  }
+
+  if (layout === "centered") {
+    return (
+      <section className={sectionClass}>
+        <Container className="relative py-14 sm:py-18">
+          <Reveal>
+            <h2 className={`${titleClass} mx-auto max-w-3xl text-center`}>
               {title}
             </h2>
           </Reveal>
-          <Reveal delay={0.08} className="lg:col-span-7">
-            <div className="space-y-5 text-[0.97rem] leading-relaxed text-navy-700">
+          <Reveal delay={0.08}>
+            <div className={`mx-auto mt-8 max-w-4xl ${bodyClass}`}>
               {children}
             </div>
             {image && (
-              <div className="relative mt-8 aspect-[16/10] overflow-hidden rounded-[1.5rem] border border-line shadow-lg shadow-navy-950/5">
+              <div className={`${imageFrame} mx-auto mt-8 aspect-[16/10] max-w-4xl`}>
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 56rem"
+                  className="object-cover"
+                />
+              </div>
+            )}
+          </Reveal>
+        </Container>
+      </section>
+    );
+  }
+
+  return (
+    <section className={sectionClass}>
+      <Container className="relative py-14 sm:py-18">
+        <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
+          <Reveal className="lg:col-span-5">
+            <h2 className={`${titleClass} lg:sticky lg:top-32`}>{title}</h2>
+          </Reveal>
+          <Reveal delay={0.08} className="lg:col-span-7">
+            <div className={bodyClass}>{children}</div>
+            {image && (
+              <div className={`${imageFrame} mt-8 aspect-[16/10]`}>
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -140,17 +290,50 @@ export function ContentSection({
   );
 }
 
-export function CheckList({ items }: { items: string[] }) {
+export function CheckList({
+  items,
+  variant = "list",
+  onDark = false,
+}: {
+  items: string[];
+  variant?: "list" | "cards";
+  onDark?: boolean;
+}) {
+  const badgeClass = `flex shrink-0 items-center justify-center rounded-full ${
+    onDark ? "bg-mint-400/15 text-mint-400" : "bg-mint-100 text-mint-600"
+  }`;
+  const textClass = `text-[0.93rem] leading-relaxed ${
+    onDark ? "text-navy-100" : "text-navy-700"
+  }`;
+
+  if (variant === "cards") {
+    return (
+      <ul className="grid gap-3 sm:grid-cols-2">
+        {items.map((item) => (
+          <li
+            key={item}
+            className={`flex items-start gap-3 rounded-2xl border p-5 ${
+              onDark ? "border-white/10 bg-white/5" : "border-line bg-white"
+            }`}
+          >
+            <span className={`${badgeClass} mt-0.5 h-6 w-6`}>
+              <IconCheck className="h-3.5 w-3.5" strokeWidth={2.4} />
+            </span>
+            <span className={textClass}>{item}</span>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   return (
     <ul className="grid gap-3.5">
       {items.map((item) => (
         <li key={item} className="flex items-start gap-3">
-          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint-100 text-mint-600">
+          <span className={`${badgeClass} mt-0.5 h-6 w-6`}>
             <IconCheck className="h-3.5 w-3.5" strokeWidth={2.4} />
           </span>
-          <span className="text-[0.93rem] leading-relaxed text-navy-700">
-            {item}
-          </span>
+          <span className={textClass}>{item}</span>
         </li>
       ))}
     </ul>

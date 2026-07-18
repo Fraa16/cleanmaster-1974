@@ -62,9 +62,13 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
         title={`Gebäudereinigung ${city.name}`}
         intro={`Cleanmaster 1974 übernimmt die Gebäudereinigung in ${city.name}: Unterhaltsreinigung für Gewerbeflächen, Praxen, Wohnanlagen und öffentliche Bereiche, im festen Turnus nach Leistungsverzeichnis. Ein gleichbleibendes Team reinigt Ihr Objekt zum monatlichen Pauschalpreis. Die Besichtigung ist kostenlos, der angebotene Preis verbindlich, Ihr Ansprechpartner bleibt derselbe.`}
         image={cityHeroImage("gebaeudereinigung", city.name, cityIndex)}
+        variant="banner"
       />
 
-      <ContentSection title="Unterhaltsreinigung nach Leistungsverzeichnis">
+      <ContentSection
+        title="Unterhaltsreinigung nach Leistungsverzeichnis"
+        layout="centered"
+      >
         <p>
           Was, wie oft und in welcher Tiefe gereinigt wird, legen wir bei der
           Besichtigung gemeinsam fest. Typische Objekte in {city.name}:
@@ -75,12 +79,20 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
         </p>
       </ContentSection>
 
-      <ContentSection title={`Vor Ort in ${city.name}`} tinted>
+      <ContentSection
+        title={`Vor Ort in ${city.name}`}
+        tinted
+        imageSide={cityIndex % 2 ? "right" : "left"}
+        image={cityHeroImage("gebaeudereinigung", city.name, cityIndex + 1)}
+      >
         <p>{content.gebaeudereinigungLocal}</p>
       </ContentSection>
 
       <section className="py-12 sm:py-16">
-        <QuestionSection title={`Was kostet die Gebäudereinigung in ${city.name}?`}>
+        <QuestionSection
+          title={`Was kostet die Gebäudereinigung in ${city.name}?`}
+          cta={{ href: "/kontakt/", label: "Angebot anfordern" }}
+        >
           <p>
             Der Preis richtet sich nach Fläche, Leistungsumfang und Turnus.
             Für die regelmäßige Unterhaltsreinigung vereinbart Cleanmaster
@@ -99,18 +111,18 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
         />
       </section>
 
+      <NeighborLinks
+        basePath="/leistungen/gebaeudereinigung/"
+        citySlugs={content.neighbors}
+        cityNameBySlug={(slug) => cityBySlug(slug)?.name ?? slug}
+      />
+
       <section className="pb-12 sm:pb-16">
         <CtaBanner
           title={`Angebot für Ihre Gebäudereinigung in ${city.name}`}
           text="Kostenlose Besichtigung, verbindlicher Festpreis, fester Ansprechpartner. Schicken Sie uns die Eckdaten Ihres Objekts."
         />
       </section>
-
-      <NeighborLinks
-        basePath="/leistungen/gebaeudereinigung/"
-        citySlugs={content.neighbors}
-        cityNameBySlug={(slug) => cityBySlug(slug)?.name ?? slug}
-      />
     </>
   );
 }

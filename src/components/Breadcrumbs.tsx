@@ -7,7 +7,13 @@ export interface Crumb {
   href?: string;
 }
 
-export function Breadcrumbs({ items }: { items: Crumb[] }) {
+export function Breadcrumbs({
+  items,
+  onDark = false,
+}: {
+  items: Crumb[];
+  onDark?: boolean;
+}) {
   const all: Crumb[] = [{ label: "Startseite", href: "/" }, ...items];
   const schema = {
     "@context": "https://schema.org",
@@ -23,19 +29,28 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
     <nav aria-label="Brotkrumen" className="mb-6">
       <JsonLd data={schema} />
-      <ol className="flex flex-wrap items-center gap-1.5 text-xs font-medium text-navy-400">
+      <ol
+        className={`flex flex-wrap items-center gap-1.5 text-xs font-medium ${
+          onDark ? "text-navy-300" : "text-navy-400"
+        }`}
+      >
         {all.map((c, i) => (
           <li key={c.label} className="flex items-center gap-1.5">
             {i > 0 && <span aria-hidden="true">/</span>}
             {c.href && i < all.length - 1 ? (
               <Link
                 href={c.href}
-                className="transition-colors hover:text-sky-600"
+                className={`transition-colors ${
+                  onDark ? "hover:text-sky-300" : "hover:text-sky-600"
+                }`}
               >
                 {c.label}
               </Link>
             ) : (
-              <span aria-current="page" className="text-navy-600">
+              <span
+                aria-current="page"
+                className={onDark ? "text-white/80" : "text-navy-600"}
+              >
                 {c.label}
               </span>
             )}

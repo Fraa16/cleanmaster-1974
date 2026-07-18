@@ -71,8 +71,9 @@ export default async function TreppenhausreinigungStadtPage({ params }: Props) {
         image={cityHeroImage("treppenhausreinigung", city.name, cityIndex)}
       />
 
-      <ContentSection title="Was zur Treppenhausreinigung gehört">
+      <ContentSection title="Was zur Treppenhausreinigung gehört" tone="dark">
         <CheckList
+          onDark
           items={[
             "Treppen, Podeste und Flure: kehren und feucht wischen",
             "Handläufe und Geländer",
@@ -85,7 +86,12 @@ export default async function TreppenhausreinigungStadtPage({ params }: Props) {
         />
       </ContentSection>
 
-      <ContentSection title="Der Reinigungsplan hängt im Objekt" tinted>
+      <ContentSection
+        title="Der Reinigungsplan hängt im Objekt"
+        tinted
+        imageSide={cityIndex % 2 ? "left" : "right"}
+        image={cityHeroImage("treppenhausreinigung", city.name, cityIndex + 1)}
+      >
         <p>
           Nach jedem Termin wird der Reinigungsplan abgezeichnet.
           Hausverwaltungen haben damit einen Nachweis für Eigentümer und
@@ -95,13 +101,14 @@ export default async function TreppenhausreinigungStadtPage({ params }: Props) {
         </p>
       </ContentSection>
 
-      <ContentSection title={`Vor Ort in ${city.name}`}>
+      <ContentSection title={`Vor Ort in ${city.name}`} layout="centered">
         <p>{content.treppenhausreinigungLocal}</p>
       </ContentSection>
 
       <section className="py-12 sm:py-16">
         <QuestionSection
           title={`Was kostet die Treppenhausreinigung in ${city.name}?`}
+          cta={{ href: "/kontakt/", label: "Jetzt Angebot anfordern" }}
         >
           <p>
             Der Preis hängt von Stockwerken, Anzahl der Eingänge, Bodenbelag

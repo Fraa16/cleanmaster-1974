@@ -39,12 +39,13 @@ export default function BueroReinigungPage() {
         image={serviceBySlug("buero-reinigung")?.image}
       />
 
-      <ContentSection title="Was zur Büroreinigung gehört">
+      <ContentSection title="Was zur Büroreinigung gehört" layout="centered">
         <p>
           Das Leistungsverzeichnis legen wir gemeinsam bei der Besichtigung
           fest. Typische Bestandteile:
         </p>
         <CheckList
+          variant="cards"
           items={[
             "Arbeitsplätze und Schreibtische, frei geräumte Flächen feucht gewischt",
             "Böden: saugen, wischen, Pflege je nach Belag",
@@ -61,7 +62,15 @@ export default function BueroReinigungPage() {
         </p>
       </ContentSection>
 
-      <ContentSection title="Reinigung außerhalb Ihrer Geschäftszeiten" tinted>
+      <ContentSection
+        title="Reinigung außerhalb Ihrer Geschäftszeiten"
+        tone="dark"
+        imageSide="right"
+        image={{
+          src: "/images/schreibtisch.jpg",
+          alt: "Arbeitsplatz- und Schreibtischreinigung im Büro",
+        }}
+      >
         <p>
           Die Reinigung stört den Betrieb nicht. Unser Team kommt vor
           Arbeitsbeginn oder nach Feierabend, auf Wunsch auch tagsüber in
@@ -73,7 +82,10 @@ export default function BueroReinigungPage() {
       </ContentSection>
 
       <section className="py-12 sm:py-16">
-        <QuestionSection title="Was kostet eine Büroreinigung in Stuttgart?">
+        <QuestionSection
+          title="Was kostet eine Büroreinigung in Stuttgart?"
+          cta={{ href: "/kontakt/", label: "Kostenlose Besichtigung vereinbaren" }}
+        >
           <p>
             Der Preis hängt von Bürofläche, Reinigungsumfang und Turnus ab.
             Eine tägliche Reinigung kostet pro Termin weniger als eine

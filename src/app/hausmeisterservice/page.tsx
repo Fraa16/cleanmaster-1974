@@ -37,10 +37,16 @@ export default function HausmeisterservicePage() {
         overline="Leistung · Objektbetreuung"
         title="Hausmeisterservice Stuttgart"
         intro="Cleanmaster 1974 übernimmt den Hausmeisterservice für Wohnanlagen und Gewerbeobjekte in Stuttgart und der Region: regelmäßige Kontrollgänge, Kleinreparaturen, Grünpflege, Mülltonnendienst und Winterdienst. Umfang und Turnus regelt ein Leistungsverzeichnis, abgerechnet wird über eine monatliche Pauschale. Hausverwaltungen und Eigentümer erhalten einen festen Ansprechpartner für das gesamte Objekt."
+        variant="dark"
+        icon="hausmeister"
       />
 
-      <section className="pb-4">
-        <QuestionSection title="Was übernimmt ein Hausmeisterservice?">
+      {/* Frage-Karte überlappt die dunkle Hero-Kante */}
+      <section className="relative z-10 -mt-12 pb-4 sm:-mt-16">
+        <QuestionSection
+          title="Was übernimmt ein Hausmeisterservice?"
+          cta={{ href: "/kontakt/", label: "Angebot anfordern" }}
+        >
           <p>
             Ein Hausmeisterservice hält das Objekt in Ordnung, ohne dass
             Eigentümer oder Verwaltung jeden Handgriff einzeln beauftragen:
@@ -53,7 +59,14 @@ export default function HausmeisterservicePage() {
         </QuestionSection>
       </section>
 
-      <ContentSection title="Kontrollgang mit Mängelmeldung">
+      <ContentSection
+        title="Kontrollgang mit Mängelmeldung"
+        imageSide="right"
+        image={{
+          src: "/images/atmosphaere.jpg",
+          alt: "Reinigungsausrüstung von Cleanmaster 1974 in einem gepflegten Wohnraum",
+        }}
+      >
         <p>
           Beim regelmäßigen Kontrollgang prüfen wir Beleuchtung, Türen,
           Schließanlagen, Außenflächen und Technikräume nach Checkliste.

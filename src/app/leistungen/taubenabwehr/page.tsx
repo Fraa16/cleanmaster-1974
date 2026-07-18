@@ -35,9 +35,14 @@ export default function TaubenabwehrPage() {
         overline="Leistung"
         title="Taubenabwehr Stuttgart"
         intro="Cleanmaster 1974 schützt Gebäude in Stuttgart und der Region vor Taubenbefall: mit Spikes, Spannnetzen und Vergrämungssystemen an Fassaden, Balkonen, Simsen und Dächern. Zur Leistung gehört auch die Reinigung und Desinfektion befallener Flächen. Alle Maßnahmen sind tierschutzkonform, die Tiere werden vergrämt, nicht verletzt."
+        icon="tauben"
       />
 
-      <ContentSection title="Warum Taubenkot mehr als ein Schönheitsproblem ist">
+      <ContentSection
+        title="Warum Taubenkot mehr als ein Schönheitsproblem ist"
+        tone="dark"
+        layout="centered"
+      >
         <p>
           Taubenkot greift Putz, Naturstein und Metall an und kann
           Krankheitserreger enthalten. Befallene Balkone, Simse und
@@ -49,7 +54,10 @@ export default function TaubenabwehrPage() {
       </ContentSection>
 
       <section className="py-12 sm:py-16">
-        <QuestionSection title="Welche Taubenabwehr ist die richtige?">
+        <QuestionSection
+          title="Welche Taubenabwehr ist die richtige?"
+          cta={{ href: "/kontakt/", label: "Jetzt Angebot anfordern" }}
+        >
           <p>
             Das hängt vom Ort des Befalls ab. Spikes eignen sich für Simse,
             Vorsprünge und Schilder, Spannnetze für Balkone, Innenhöfe und

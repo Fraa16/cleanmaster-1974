@@ -276,33 +276,58 @@ export function QuestionSection({
   title,
   children,
   cta,
+  tone = "light",
 }: {
   title: string;
   children: ReactNode;
   cta?: { href: string; label: string };
+  tone?: "light" | "dark";
 }) {
+  const isDark = tone === "dark";
   return (
     <Container>
       <Reveal>
-        <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-cloud">
+        <div
+          className={`relative overflow-hidden rounded-[1.75rem] border ${
+            isDark
+              ? "glow-sky border-white/10 bg-navy-950"
+              : "border-line bg-cloud"
+          }`}
+        >
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute -right-7 top-7 hidden rotate-12 rounded-xl border-[3px] border-sky-200 px-5 py-2 font-display text-lg font-extrabold uppercase tracking-widest text-sky-300 opacity-70 sm:block"
+            className={`pointer-events-none absolute -right-7 top-7 hidden rotate-12 rounded-xl border-[3px] px-5 py-2 font-display text-lg font-extrabold uppercase tracking-widest opacity-70 sm:block ${
+              isDark
+                ? "border-sky-500/40 text-sky-500/50"
+                : "border-sky-200 text-sky-300"
+            }`}
           >
             Festpreis
           </span>
           <div className="grid gap-6 p-8 sm:p-12 lg:grid-cols-[1fr_1.25fr] lg:gap-14">
-            <h2 className="font-display text-[clamp(1.6rem,1.2rem+1.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight text-navy-950">
+            <h2
+              className={`font-display text-[clamp(1.6rem,1.2rem+1.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight ${
+                isDark ? "text-white" : "text-navy-950"
+              }`}
+            >
               {title}
             </h2>
             <div>
-              <div className="text-[0.97rem] leading-relaxed text-navy-700">
+              <div
+                className={`text-[0.97rem] leading-relaxed ${
+                  isDark ? "text-navy-200" : "text-navy-700"
+                }`}
+              >
                 {children}
               </div>
               {cta && (
                 <Link
                   href={cta.href}
-                  className="group mt-6 inline-flex items-center gap-2 text-sm font-bold text-sky-600 transition-colors hover:text-sky-700"
+                  className={`group mt-6 inline-flex items-center gap-2 text-sm font-bold transition-colors ${
+                    isDark
+                      ? "text-sky-300 hover:text-sky-200"
+                      : "text-sky-600 hover:text-sky-700"
+                  }`}
                 >
                   {cta.label}
                   <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
