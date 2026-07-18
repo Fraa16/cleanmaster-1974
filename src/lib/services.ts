@@ -127,3 +127,33 @@ export const services: Service[] = [
 
 export const serviceBySlug = (slug: string) =>
   services.find((s) => s.slug === slug);
+
+/**
+ * Bilder-Pools für die Stadtseiten: Jede Stadt bekommt deterministisch (per
+ * Index) ein Foto aus dem Pool, damit die 18 Stadtseiten je Leistung nicht
+ * alle dasselbe Motiv zeigen. Eintrag 0 ist jeweils das bisherige Motiv.
+ */
+export const cityHeroPool: Record<string, ServiceImage[]> = {
+  gebaeudereinigung: [
+    { src: "/images/gebaeude.jpg", alt: "Unterhaltsreinigung mit Bodenmaschine im Gewerbeobjekt" },
+    { src: "/images/boden-wischen.jpg", alt: "Bodenreinigung im Flur eines Gewerbeobjekts" },
+    { src: "/images/oberflaeche-putzen.jpg", alt: "Reinigung einer Arbeitsfläche im Objekt" },
+    { src: "/images/buero-alt.jpg", alt: "Reinigungsteam im Bürogebäude" },
+    { src: "/images/schreibtisch.jpg", alt: "Arbeitsplatz- und Schreibtischreinigung im Büro" },
+  ],
+  treppenhausreinigung: [
+    { src: "/images/treppenhaus.jpg", alt: "Treppenhausreinigung in einem Mehrfamilienhaus" },
+    { src: "/images/treppenhaus-alt.jpg", alt: "Reinigung von Glasgeländer und Handlauf im Treppenhaus" },
+  ],
+};
+
+/** Stabiles Stadtbild aus dem Pool; der Alt-Text nennt die Stadt (SEO). */
+export function cityHeroImage(
+  serviceSlug: string,
+  cityName: string,
+  index: number,
+): ServiceImage {
+  const pool = cityHeroPool[serviceSlug];
+  const base = pool[(index < 0 ? 0 : index) % pool.length];
+  return { src: base.src, alt: `${base.alt} in ${cityName}` };
+}

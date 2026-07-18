@@ -4,7 +4,7 @@ import { activeCities, cityBySlug } from "@/lib/cities";
 import { cityContent } from "@/lib/city-content";
 import { ContentSection, NeighborLinks, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
-import { serviceBySlug } from "@/lib/services";
+import { cityHeroImage } from "@/lib/services";
 
 interface Props {
   params: Promise<{ stadt: string }>;
@@ -33,6 +33,8 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
   const content = cityContent[stadt];
   if (!city || !content) notFound();
 
+  const cityIndex = activeCities.findIndex((c) => c.slug === stadt);
+
   const faqItems = [
     {
       q: `Welche Objekte reinigt Cleanmaster 1974 in ${city.name}?`,
@@ -59,7 +61,7 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
         overline="Leistung · Unterhaltsreinigung"
         title={`Gebäudereinigung ${city.name}`}
         intro={`Cleanmaster 1974 übernimmt die Gebäudereinigung in ${city.name}: Unterhaltsreinigung für Gewerbeflächen, Praxen, Wohnanlagen und öffentliche Bereiche, im festen Turnus nach Leistungsverzeichnis. Ein gleichbleibendes Team reinigt Ihr Objekt zum monatlichen Pauschalpreis. Die Besichtigung ist kostenlos, der angebotene Preis verbindlich, Ihr Ansprechpartner bleibt derselbe.`}
-        image={serviceBySlug("gebaeudereinigung")?.image}
+        image={cityHeroImage("gebaeudereinigung", city.name, cityIndex)}
       />
 
       <ContentSection title="Unterhaltsreinigung nach Leistungsverzeichnis">

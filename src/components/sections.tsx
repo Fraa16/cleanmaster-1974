@@ -10,7 +10,7 @@ import {
   IconPhone,
   serviceIcons,
 } from "@/components/icons";
-import { services, type Service } from "@/lib/services";
+import { services, type Service, type ServiceImage } from "@/lib/services";
 import { cities } from "@/lib/cities";
 import { site } from "@/lib/site";
 
@@ -140,11 +140,13 @@ export function DarkFeatureSection({
   title,
   lead,
   items,
+  image,
 }: {
   kicker?: string;
   title: string;
   lead?: string;
   items: { title: string; text: string }[];
+  image?: ServiceImage;
 }) {
   return (
     <section className="grain glow-sky relative overflow-hidden py-20 sm:py-28">
@@ -161,6 +163,19 @@ export function DarkFeatureSection({
                   <IconArrowRight className="h-4 w-4" />
                 </ButtonLink>
               </Reveal>
+              {image && (
+                <Reveal delay={0.16}>
+                  <div className="relative mt-10 aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-white/10 shadow-2xl shadow-navy-950/40">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 30rem"
+                      className="object-cover"
+                    />
+                  </div>
+                </Reveal>
+              )}
             </div>
           </div>
           <ol className="lg:col-span-7">

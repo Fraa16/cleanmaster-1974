@@ -39,7 +39,13 @@ export default function GlasreinigungPage() {
         image={serviceBySlug("glasreinigung-fensterreinigung")?.image}
       />
 
-      <ContentSection title="Rahmen und Falze gehören dazu">
+      <ContentSection
+        title="Rahmen und Falze gehören dazu"
+        image={{
+          src: "/images/glas.jpg",
+          alt: "Reinigung einer Glastrennwand mit Tuch und Sprühflasche",
+        }}
+      >
         <p>
           Eine Fensterreinigung ohne Rahmen ist keine. Bei Cleanmaster 1974
           sind Rahmen, Falze und Fensterbänke im Preis enthalten, nicht als
@@ -49,7 +55,14 @@ export default function GlasreinigungPage() {
         </p>
       </ContentSection>
 
-      <ContentSection title="Auch in großer Höhe" tinted>
+      <ContentSection
+        title="Auch in großer Höhe"
+        tinted
+        image={{
+          src: "/images/glas-detail.jpg",
+          alt: "Nahaufnahme: streifenfreie Glasreinigung mit Mikrofasertuch",
+        }}
+      >
         <p>
           Glasfassaden, Oberlichter und Fenster ab dem zweiten Obergeschoss
           reinigen wir mit Teleskoptechnik und entmineralisiertem Wasser. Das

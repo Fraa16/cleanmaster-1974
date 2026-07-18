@@ -102,10 +102,12 @@ export function ContentSection({
   title,
   children,
   tinted = false,
+  image,
 }: {
   title: string;
   children: ReactNode;
   tinted?: boolean;
+  image?: ServiceImage;
 }) {
   return (
     <section className={tinted ? "bg-cloud" : ""}>
@@ -120,6 +122,17 @@ export function ContentSection({
             <div className="space-y-5 text-[0.97rem] leading-relaxed text-navy-700">
               {children}
             </div>
+            {image && (
+              <div className="relative mt-8 aspect-[16/10] overflow-hidden rounded-[1.5rem] border border-line shadow-lg shadow-navy-950/5">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40rem"
+                  className="object-cover"
+                />
+              </div>
+            )}
           </Reveal>
         </div>
       </Container>

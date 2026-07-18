@@ -289,6 +289,10 @@ export default function HomePage() {
         kicker="Ihre Vorteile"
         title="Warum Cleanmaster 1974?"
         items={whyItems}
+        image={{
+          src: "/images/atmosphaere.jpg",
+          alt: "Reinigungsausrüstung von Cleanmaster 1974 in einem gepflegten Wohnraum",
+        }}
       />
 
       {/* Ablauf */}

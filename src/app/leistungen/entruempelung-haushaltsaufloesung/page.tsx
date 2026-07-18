@@ -49,7 +49,14 @@ export default function EntruempelungPage() {
         </p>
       </ContentSection>
 
-      <ContentSection title="Haushaltsauflösung im Nachlassfall" tinted>
+      <ContentSection
+        title="Haushaltsauflösung im Nachlassfall"
+        tinted
+        image={{
+          src: "/images/entruempelung-alt.jpg",
+          alt: "Sorgfältiges Verpacken von Umzugskartons bei der Haushaltsauflösung",
+        }}
+      >
         <p>
           Eine Haushaltsauflösung ist selten nur ein logistisches Thema. Wir
           arbeiten diskret, halten vereinbarte Termine exakt ein und legen

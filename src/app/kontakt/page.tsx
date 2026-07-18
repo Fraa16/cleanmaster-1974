@@ -43,6 +43,10 @@ export default function KontaktPage() {
         title="Kontakt zu Cleanmaster 1974"
         intro="So erreichen Sie uns: telefonisch, per E-Mail oder über das Formular. Beschreiben Sie kurz Ihr Objekt und die gewünschte Leistung. Wir melden uns, vereinbaren eine kostenlose Besichtigung und erstellen Ihr Festpreis-Angebot."
         withCta={false}
+        image={{
+          src: "/images/atmosphaere-detail.jpg",
+          alt: "Reinigungscaddy von Cleanmaster 1974 mit Mikrofasertüchern und Sprühflasche",
+        }}
       />
 
       <section className="py-14 sm:py-20">
