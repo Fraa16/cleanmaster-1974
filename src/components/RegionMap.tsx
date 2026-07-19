@@ -65,9 +65,10 @@ export function RegionMap() {
           })}
       </g>
 
-      {/* Städte */}
+      {/* Städte (ohne Kartenposition: still überspringen statt Crash) */}
       {cities.map((c) => {
         const p = positions[c.slug];
+        if (!p) return null;
         const isHub = c.slug === "stuttgart";
         const anchor = p.anchor ?? "start";
         const labelX = anchor === "start" ? p.x + 12 : p.x - 12;

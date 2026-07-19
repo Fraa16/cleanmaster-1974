@@ -41,8 +41,8 @@ export default function HausmeisterservicePage() {
         icon="hausmeister"
       />
 
-      {/* Frage-Karte überlappt die dunkle Hero-Kante */}
-      <section className="relative z-10 -mt-12 pb-4 sm:-mt-16">
+      {/* Frage-Karte überlappt die dunkle Hero-Kante (erst ab sm, mobil kein Überlapp) */}
+      <section className="relative z-10 pb-4 pt-6 sm:-mt-16 sm:pt-0">
         <QuestionSection
           title="Was übernimmt ein Hausmeisterservice?"
           cta={{ href: "/kontakt/", label: "Angebot anfordern" }}

@@ -363,7 +363,7 @@ export function RegionSection({ text }: { text: string }) {
                 <li key={city.slug}>
                   <Link
                     href={`/leistungen/gebaeudereinigung/${city.slug}/`}
-                    className="inline-flex rounded-full border border-line bg-white px-3.5 py-1.5 text-[0.8rem] font-semibold text-navy-700 transition-all duration-200 hover:-translate-y-px hover:border-sky-300 hover:text-sky-700"
+                    className="inline-flex min-h-11 items-center rounded-full border border-line bg-white px-4 py-2.5 text-[0.8rem] font-semibold text-navy-700 transition-all duration-200 hover:-translate-y-px hover:border-sky-300 hover:text-sky-700"
                   >
                     {city.name}
                   </Link>

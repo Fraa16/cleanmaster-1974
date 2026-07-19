@@ -8,7 +8,7 @@ import { IconArrowRight, IconMail, IconPhone, IconPin } from "@/components/icons
 
 /** Entity-Absatz von /ueber-uns/ (GEO-Anker, Copy-Vorgabe) */
 const entityText =
-  "Cleanmaster 1974 ist ein familiengeführtes Unternehmen für Gebäudereinigung und Facility Services mit Sitz in Stuttgart. Zu den Leistungen gehören Unterhaltsreinigung, Büroreinigung, Treppenhausreinigung, Glasreinigung, Winterdienst, Entrümpelung, Taubenabwehr, Baureinigung und Hausmeisterservice in Stuttgart und 18 umliegenden Städten.";
+  "Cleanmaster 1974 ist ein familiengeführtes Unternehmen für Gebäudereinigung und Facility Services mit Sitz in Stuttgart. Zu den Leistungen gehören Unterhaltsreinigung, Büroreinigung, Treppenhausreinigung, Glasreinigung, Winterdienst, Entrümpelung, Taubenabwehr, Baureinigung und Hausmeisterservice in Stuttgart und 17 umliegenden Städten.";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -54,12 +54,12 @@ export function Footer() {
             <h2 className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-navy-400">
               Leistungen
             </h2>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-1 text-sm">
               {services.map((s) => (
                 <li key={s.slug}>
                   <Link
                     href={s.href}
-                    className="text-navy-200 transition-colors hover:text-white"
+                    className="inline-block py-1.5 text-navy-200 transition-colors hover:text-white"
                   >
                     {s.title}
                   </Link>
@@ -72,7 +72,7 @@ export function Footer() {
             <h2 className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-navy-400">
               Unternehmen
             </h2>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-1 text-sm">
               {[
                 { href: "/leistungen/", label: "Alle Leistungen" },
                 { href: "/ueber-uns/", label: "Über uns" },
@@ -83,7 +83,7 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-navy-200 transition-colors hover:text-white"
+                    className="inline-block py-1.5 text-navy-200 transition-colors hover:text-white"
                   >
                     {l.label}
                   </Link>

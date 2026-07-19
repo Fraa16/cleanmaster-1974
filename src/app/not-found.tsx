@@ -34,7 +34,7 @@ export default function NotFound() {
             </ButtonLink>
           </div>
           <div className="mt-10 border-t border-line pt-6">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-navy-400">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-navy-500">
               Direkt zu unseren Leistungen
             </p>
             <ul className="mt-4 flex flex-wrap gap-2">

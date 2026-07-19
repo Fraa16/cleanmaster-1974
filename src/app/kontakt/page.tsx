@@ -108,7 +108,7 @@ export default function KontaktPage() {
 
               <div className="grain relative overflow-hidden rounded-[1.5rem] bg-navy-950 p-6">
                 <p className="text-sm font-semibold leading-relaxed text-white">
-                  Einsatzgebiet: Stuttgart und 18 Städte der Region, von
+                  Einsatzgebiet: Stuttgart und 17 Städte der Region, von
                   Leonberg bis Ludwigsburg.
                 </p>
               </div>

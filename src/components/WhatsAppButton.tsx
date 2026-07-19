@@ -9,7 +9,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp-Nachricht an Cleanmaster 1974 senden"
-      className="fixed bottom-24 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-navy-950/25 transition-transform duration-200 hover:scale-110 active:scale-95 lg:bottom-6 lg:right-6"
+      className="fixed bottom-24 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-navy-950/25 transition-transform duration-200 hover:scale-110 focus-visible:ring-offset-2 active:scale-95 lg:bottom-6 lg:right-6 [html[data-menu-open]_&]:hidden"
     >
       <IconWhatsApp className="h-7 w-7" />
     </a>

@@ -31,7 +31,7 @@ export function Breadcrumbs({
       <JsonLd data={schema} />
       <ol
         className={`flex flex-wrap items-center gap-1.5 text-xs font-medium ${
-          onDark ? "text-navy-300" : "text-navy-400"
+          onDark ? "text-navy-300" : "text-navy-500"
         }`}
       >
         {all.map((c, i) => (

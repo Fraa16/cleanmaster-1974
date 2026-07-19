@@ -52,18 +52,23 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Honeypot: unsichtbar für Menschen, Bots füllen es aus */}
+      <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden">
+        <label htmlFor="firma">Firma</label>
+        <input id="firma" name="firma" tabIndex={-1} autoComplete="off" />
+      </div>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className={labelCls}>
             Name *
           </label>
-          <input id="name" name="name" required autoComplete="name" className={inputCls} />
+          <input id="name" name="name" required maxLength={200} autoComplete="name" className={inputCls} />
         </div>
         <div>
           <label htmlFor="kontakt" className={labelCls}>
             Telefon oder E-Mail *
           </label>
-          <input id="kontakt" name="kontakt" required className={inputCls} />
+          <input id="kontakt" name="kontakt" required maxLength={200} className={inputCls} />
         </div>
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
@@ -71,7 +76,7 @@ export function ContactForm() {
           <label htmlFor="ort" className={labelCls}>
             Ort des Objekts
           </label>
-          <input id="ort" name="ort" autoComplete="address-level2" className={inputCls} />
+          <input id="ort" name="ort" maxLength={200} autoComplete="address-level2" className={inputCls} />
         </div>
         <div>
           <label htmlFor="leistung" className={labelCls}>
@@ -98,15 +103,24 @@ export function ContactForm() {
           id="nachricht"
           name="nachricht"
           required
+          maxLength={5000}
           rows={5}
           className={inputCls}
           placeholder="Art und Größe des Objekts, gewünschter Turnus, Terminwunsch …"
         />
       </div>
 
-      <p className="text-xs leading-relaxed text-navy-400">
+      <p className="text-xs leading-relaxed text-navy-500">
         Ihre Anfrage ist unverbindlich. Sie erhalten zuerst ein
-        Festpreis-Angebot, keinen Vertrag.
+        Festpreis-Angebot, keinen Vertrag. Mit dem Absenden erklären Sie sich
+        mit der Verarbeitung Ihrer Angaben gemäß der{" "}
+        <a
+          href="/datenschutz/"
+          className="font-semibold text-sky-600 underline-offset-2 hover:underline"
+        >
+          Datenschutzerklärung
+        </a>{" "}
+        einverstanden.
       </p>
 
       {status === "error" && (

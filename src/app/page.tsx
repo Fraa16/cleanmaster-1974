@@ -73,7 +73,7 @@ const faqItems = [
   },
   {
     q: "In welchen Städten ist Cleanmaster 1974 im Einsatz?",
-    a: "Cleanmaster 1974 arbeitet in Stuttgart und 18 Städten der Region, darunter Leonberg, Sindelfingen, Böblingen, Ludwigsburg, Fellbach, Waiblingen, Filderstadt und Ostfildern. Auch Vaihingen, Kirchheim, Echterdingen, Kornwestheim, Ditzingen, Rutesheim, Winnenden, Weinstadt und Gerlingen gehören zum Einzugsgebiet. Liegt Ihr Objekt knapp außerhalb, fragen Sie einfach kurz an.",
+    a: "Cleanmaster 1974 arbeitet in Stuttgart und 17 Städten der Region, darunter Leonberg, Sindelfingen, Böblingen, Ludwigsburg, Fellbach, Waiblingen, Filderstadt und Ostfildern. Auch Vaihingen, Kirchheim, Echterdingen, Kornwestheim, Ditzingen, Rutesheim, Winnenden, Weinstadt und Gerlingen gehören zum Einzugsgebiet. Liegt Ihr Objekt knapp außerhalb, fragen Sie einfach kurz an.",
   },
   {
     q: "Reinigt Cleanmaster 1974 auch für Privathaushalte?",
@@ -122,7 +122,7 @@ function HeroVisual() {
             <p className="font-display text-sm font-extrabold text-navy-950">
               Ihr Festpreis-Angebot
             </p>
-            <p className="text-[0.7rem] font-medium text-navy-400">
+            <p className="text-[0.7rem] font-medium text-navy-500">
               Nach kostenloser Objektbesichtigung
             </p>
           </div>

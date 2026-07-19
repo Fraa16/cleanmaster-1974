@@ -10,11 +10,13 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -22,13 +24,12 @@ export const metadata: Metadata = {
   title: "Gebäudereinigung Stuttgart & Region | Cleanmaster 1974",
   description:
     "Gebäudereinigung in Stuttgart vom Familienbetrieb ✓ Büroreinigung ✓ Treppenhausreinigung ✓ Winterdienst ✓ Festpreis-Garantie. Jetzt Angebot anfordern!",
+  // Kein openGraph.title/description hier: so übernehmen die Unterseiten
+  // automatisch ihren eigenen Titel/Beschreibungstext in die OG/Twitter-Tags.
   openGraph: {
     type: "website",
     locale: "de_DE",
     siteName: site.name,
-    title: "Gebäudereinigung Stuttgart & Region | Cleanmaster 1974",
-    description:
-      "Gebäudereinigung in Stuttgart vom Familienbetrieb ✓ Büroreinigung ✓ Treppenhausreinigung ✓ Winterdienst ✓ Festpreis-Garantie. Jetzt Angebot anfordern!",
   },
   twitter: {
     card: "summary_large_image",

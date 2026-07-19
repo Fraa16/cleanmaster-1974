@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner } from "@/components/sections";
+import { Container } from "@/components/ui";
+import { Stats } from "@/components/Stats";
 
 export const metadata: Metadata = {
   title: "Cleanmaster 1974 | Familienbetrieb für Gebäudereinigung",
   description:
-    "Cleanmaster 1974 ist ein familiengeführter Gebäudedienstleister aus Stuttgart ✓ Festpreis-Garantie ✓ feste Teams in 19 Städten. Lernen Sie uns kennen!",
+    "Cleanmaster 1974 ist ein familiengeführter Gebäudedienstleister aus Stuttgart ✓ Festpreis-Garantie ✓ feste Teams in 18 Städten. Lernen Sie uns kennen!",
   alternates: { canonical: "/ueber-uns/" },
 };
 
@@ -16,7 +18,7 @@ export default function UeberUnsPage() {
         crumbs={[{ label: "Über uns" }]}
         overline="Über uns"
         title="Über Cleanmaster 1974"
-        intro="Cleanmaster 1974 ist ein familiengeführtes Unternehmen für Gebäudereinigung und Facility Services mit Sitz in Stuttgart. Zu den Leistungen gehören Unterhaltsreinigung, Büroreinigung, Treppenhausreinigung, Glasreinigung, Winterdienst, Entrümpelung, Taubenabwehr, Baureinigung und Hausmeisterservice in Stuttgart und 18 umliegenden Städten."
+        intro="Cleanmaster 1974 ist ein familiengeführtes Unternehmen für Gebäudereinigung und Facility Services mit Sitz in Stuttgart. Zu den Leistungen gehören Unterhaltsreinigung, Büroreinigung, Treppenhausreinigung, Glasreinigung, Winterdienst, Entrümpelung, Taubenabwehr, Baureinigung und Hausmeisterservice in Stuttgart und 17 umliegenden Städten."
         image={{
           src: "/images/team.jpg",
           alt: "Reinigungsteam von Cleanmaster 1974 mit Reinigungsutensilien",
@@ -36,7 +38,21 @@ export default function UeberUnsPage() {
         </p>
       </ContentSection>
 
-      <ContentSection title="Warum wir mit Festpreisen arbeiten" tinted>
+      <section className="border-y border-line">
+        <Container className="py-10 sm:py-12">
+          <Stats />
+        </Container>
+      </section>
+
+      <ContentSection
+        title="Warum wir mit Festpreisen arbeiten"
+        tone="dark"
+        imageSide="right"
+        image={{
+          src: "/images/oberflaeche-putzen.jpg",
+          alt: "Reinigung einer Arbeitsfläche im Objekt",
+        }}
+      >
         <p>
           Stundenzettel kann niemand kontrollieren, Festpreise schon. Deshalb
           kalkuliert Cleanmaster 1974 jedes Angebot nach Besichtigung und
@@ -46,7 +62,7 @@ export default function UeberUnsPage() {
         </p>
       </ContentSection>
 
-      <ContentSection title="Feste Teams, bekannte Gesichter">
+      <ContentSection title="Feste Teams, bekannte Gesichter" layout="centered">
         <p>
           Objekte werden bei Cleanmaster 1974 festen Teams zugeteilt. Das Team
           kennt Haus, Schlüssel und Eigenheiten, die Bewohner und Mitarbeiter

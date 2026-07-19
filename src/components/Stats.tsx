@@ -14,16 +14,16 @@ function useCountUp(target: number, start: boolean, duration = 900) {
   const [value, setValue] = useState(0);
   useEffect(() => {
     if (!start) return;
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      setValue(target);
-      return;
-    }
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     let raf: number;
     const t0 = performance.now();
     const tick = (t: number) => {
+      if (reduceMotion) {
+        setValue(target);
+        return;
+      }
       const p = Math.min((t - t0) / duration, 1);
       setValue(Math.round(target * (1 - Math.pow(1 - p, 3))));
       if (p < 1) raf = requestAnimationFrame(tick);

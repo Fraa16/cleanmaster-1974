@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { ButtonLink, Container } from "@/components/ui";
 import { Breadcrumbs, type Crumb } from "@/components/Breadcrumbs";
@@ -99,6 +100,8 @@ export function PageHero({
           aria-hidden="true"
           className="absolute inset-0 bg-gradient-to-r from-navy-950/85 via-navy-950/55 to-navy-950/25"
         />
+        {/* Mobil läuft der Text über die helle Bildhälfte – zusätzlich abdunkeln */}
+        <div aria-hidden="true" className="absolute inset-0 bg-navy-950/35 lg:hidden" />
         <Container className="relative py-16 sm:py-24">
           <div className="max-w-2xl">{text}</div>
         </Container>
@@ -211,7 +214,9 @@ export function ContentSection({
         <Container className="relative py-14 sm:py-18">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <Reveal
-              className={imageSide === "left" ? "lg:order-first" : "lg:order-last"}
+              className={`order-last ${
+                imageSide === "left" ? "lg:order-first" : "lg:order-last"
+              }`}
             >
               <div className={`${imageFrame} aspect-[4/3]`}>
                 <Image
@@ -363,12 +368,12 @@ export function NeighborLinks({
           <ul className="mt-4 flex flex-wrap justify-center gap-2">
             {citySlugs.map((slug) => (
               <li key={slug}>
-                <a
+                <Link
                   href={`${basePath}${slug}/`}
-                  className="inline-flex rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-navy-700 transition-all duration-200 hover:-translate-y-px hover:border-sky-300 hover:text-sky-700"
+                  className="inline-flex min-h-11 items-center rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-navy-700 transition-all duration-200 hover:-translate-y-px hover:border-sky-300 hover:text-sky-700"
                 >
                   {cityNameBySlug(slug)}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

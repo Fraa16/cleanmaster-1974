@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/Logo";
 import { services } from "@/lib/services";
@@ -23,24 +23,27 @@ const navLinks = [
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const mobileNavRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
+  const closeMobile = useCallback(() => {
     setMobileOpen(false);
     setMobileServicesOpen(false);
-  }, [pathname]);
+  }, []);
 
   // Menü schließen, wenn das Fenster auf Desktop-Breite wächst —
   // sonst bleibt der Scroll-Lock aktiv, obwohl das Menü unsichtbar ist.
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 64rem)");
     const onChange = () => {
-      if (mq.matches) setMobileOpen(false);
+      if (mq.matches) closeMobile();
     };
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
-  }, []);
+  }, [closeMobile]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -49,12 +52,55 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Scroll-Lock + data-Attribut, über das FAB und MobileActionBar
+  // sich hinter dem offenen Menü verstecken.
   useEffect(() => {
     document.documentElement.style.overflow = mobileOpen ? "hidden" : "";
+    document.documentElement.toggleAttribute("data-menu-open", mobileOpen);
     return () => {
       document.documentElement.style.overflow = "";
+      document.documentElement.removeAttribute("data-menu-open");
     };
   }, [mobileOpen]);
+
+  // Fokus-Verhalten des Mobile-Menüs: Fokus hinein, Tab-Falle, Escape.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const nav = mobileNavRef.current;
+    if (!nav) return;
+
+    const focusables = () =>
+      Array.from(
+        nav.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+    focusables()[0]?.focus();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeMobile();
+        toggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = focusables();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      // Toggle-Button bleibt erreichbar; alles andere kreist im Menü.
+      if (e.shiftKey && (active === first || active === toggleRef.current)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [mobileOpen, closeMobile]);
 
   const isLeistungen =
     pathname.startsWith("/leistungen") ||
@@ -93,6 +139,7 @@ export function Header() {
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Hauptnavigation">
             <Link
               href="/"
+              aria-current={pathname === "/" ? "page" : undefined}
               className={`rounded-full px-4 py-2 text-[0.9rem] font-semibold transition-colors hover:text-sky-600 ${
                 pathname === "/" ? "text-sky-600" : "text-navy-800"
               }`}
@@ -101,9 +148,28 @@ export function Header() {
             </Link>
 
             {/* Leistungen: Mega-Menü */}
-            <div className="group relative">
+            <div
+              className="group relative"
+              onMouseEnter={() => setMegaOpen(true)}
+              onMouseLeave={() => setMegaOpen(false)}
+              onFocusCapture={() => setMegaOpen(true)}
+              onBlurCapture={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                  setMegaOpen(false);
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") {
+                  (document.activeElement as HTMLElement | null)?.blur();
+                  setMegaOpen(false);
+                }
+              }}
+            >
               <Link
                 href="/leistungen/"
+                aria-haspopup="true"
+                aria-expanded={megaOpen}
+                aria-current={isLeistungen ? "page" : undefined}
                 className={`flex items-center gap-1 rounded-full px-4 py-2 text-[0.9rem] font-semibold transition-colors hover:text-sky-600 ${
                   isLeistungen ? "text-sky-600" : "text-navy-800"
                 }`}
@@ -111,7 +177,7 @@ export function Header() {
                 Leistungen
                 <IconChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
               </Link>
-              <div className="invisible absolute left-1/2 top-full z-50 w-[38rem] -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+              <div className="invisible absolute left-1/2 top-full z-50 w-[38rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
                 <div className="max-h-[calc(100vh-9.5rem)] overflow-y-auto overscroll-contain rounded-3xl border border-line bg-white p-3 shadow-2xl shadow-navy-950/10">
                   <div className="grid grid-cols-2 gap-1">
                     {services.map((s) => {
@@ -154,6 +220,7 @@ export function Header() {
               <Link
                 key={l.href}
                 href={l.href}
+                aria-current={pathname === l.href ? "page" : undefined}
                 className={`rounded-full px-4 py-2 text-[0.9rem] font-semibold transition-colors hover:text-sky-600 ${
                   pathname === l.href ? "text-sky-600" : "text-navy-800"
                 }`}
@@ -182,10 +249,12 @@ export function Header() {
           </div>
 
           <button
+            ref={toggleRef}
             type="button"
-            onClick={() => setMobileOpen((v) => !v)}
+            onClick={() => (mobileOpen ? closeMobile() : setMobileOpen(true))}
             className="flex h-11 w-11 items-center justify-center rounded-full text-navy-950 hover:bg-sky-50 lg:hidden"
             aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
             aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
           >
             {mobileOpen ? (
@@ -200,11 +269,15 @@ export function Header() {
       {/* Mobile-Menü: Fullscreen-Overlay */}
       {mobileOpen && (
         <nav
+          ref={mobileNavRef}
+          id="mobile-menu"
           className="fixed inset-0 top-[70px] z-40 overflow-y-auto bg-white px-6 pb-28 pt-6 md:top-[106px] lg:hidden"
           aria-label="Mobile Navigation"
         >
           <Link
             href="/"
+            onClick={closeMobile}
+            aria-current={pathname === "/" ? "page" : undefined}
             className="block border-b border-line py-4 font-display text-2xl font-bold text-navy-950"
           >
             Startseite
@@ -214,6 +287,7 @@ export function Header() {
             onClick={() => setMobileServicesOpen((v) => !v)}
             className="flex w-full items-center justify-between border-b border-line py-4 font-display text-2xl font-bold text-navy-950"
             aria-expanded={mobileServicesOpen}
+            aria-controls="mobile-services"
           >
             Leistungen
             <IconChevronDown
@@ -223,13 +297,14 @@ export function Header() {
             />
           </button>
           {mobileServicesOpen && (
-            <div className="grid gap-0.5 border-b border-line py-3">
+            <div id="mobile-services" className="grid gap-0.5 border-b border-line py-3">
               {services.map((s) => {
                 const Icon = serviceIcons[s.icon];
                 return (
                   <Link
                     key={s.slug}
                     href={s.href}
+                    onClick={closeMobile}
                     className="flex items-center gap-3 rounded-2xl px-2 py-2.5 text-[0.95rem] font-semibold text-navy-800 active:bg-sky-50"
                   >
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-navy-50 text-navy-600">
@@ -241,6 +316,7 @@ export function Header() {
               })}
               <Link
                 href="/leistungen/"
+                onClick={closeMobile}
                 className="mt-1 flex items-center gap-2 px-2 py-2 text-sm font-bold text-sky-600"
               >
                 Alle Leistungen <IconArrowRight className="h-4 w-4" />
@@ -251,6 +327,8 @@ export function Header() {
             <Link
               key={l.href}
               href={l.href}
+              onClick={closeMobile}
+              aria-current={pathname === l.href ? "page" : undefined}
               className="block border-b border-line py-4 font-display text-2xl font-bold text-navy-950"
             >
               {l.label}

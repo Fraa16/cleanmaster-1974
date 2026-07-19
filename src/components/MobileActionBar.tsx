@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 /** Sticky Conversion-Leiste am unteren Rand, nur mobil. */
 export function MobileActionBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/90 px-4 pb-[max(env(safe-area-inset-bottom),0.75rem)] pt-3 backdrop-blur lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/90 px-4 pb-[max(env(safe-area-inset-bottom),0.75rem)] pt-3 backdrop-blur lg:hidden [html[data-menu-open]_&]:hidden">
       <div className="mx-auto flex max-w-md items-center gap-3">
         <a
           href={site.phoneHref}
