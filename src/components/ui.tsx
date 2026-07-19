@@ -69,7 +69,7 @@ export function SectionHeading({
         </div>
       )}
       <Tag
-        className={`font-display text-[clamp(1.9rem,1.4rem+2vw,3rem)] font-extrabold leading-[1.08] tracking-tight ${
+        className={`hyphens-auto break-words font-display text-[clamp(1.9rem,1.4rem+2vw,3rem)] font-extrabold leading-[1.08] tracking-tight ${
           onDark ? "text-white" : "text-navy-950"
         }`}
       >

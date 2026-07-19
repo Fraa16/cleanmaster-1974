@@ -50,7 +50,7 @@ export function PageHero({
           </p>
         )}
         <h1
-          className={`max-w-4xl font-display text-[clamp(2.1rem,1.4rem+3vw,3.6rem)] font-extrabold leading-[1.05] tracking-tight ${
+          className={`hyphens-auto break-words max-w-4xl font-display text-[clamp(2.1rem,1.4rem+3vw,3.6rem)] font-extrabold leading-[1.05] tracking-tight ${
             onDark ? "text-white" : "text-navy-950"
           }`}
         >
@@ -198,7 +198,7 @@ export function ContentSection({
       : resolvedTone === "cloud"
         ? "bg-cloud"
         : "";
-  const titleClass = `font-display text-[clamp(1.5rem,1.2rem+1.3vw,2.1rem)] font-extrabold leading-[1.12] tracking-tight ${
+  const titleClass = `hyphens-auto break-words font-display text-[clamp(1.5rem,1.2rem+1.3vw,2.1rem)] font-extrabold leading-[1.12] tracking-tight ${
     isDark ? "text-white" : "text-navy-950"
   }`;
   const bodyClass = `space-y-5 text-[0.97rem] leading-relaxed ${

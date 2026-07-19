@@ -168,7 +168,7 @@ export default function HomePage() {
                   <span className="text-sky-400">·</span>
                   <span>Großraum Stuttgart</span>
                 </p>
-                <h1 className="font-display text-[clamp(2.4rem,1.5rem+4vw,4.3rem)] font-extrabold leading-[1.02] tracking-tight text-navy-950">
+                <h1 className="hyphens-auto break-words font-display text-[clamp(2.4rem,1.5rem+4vw,4.3rem)] font-extrabold leading-[1.02] tracking-tight text-navy-950">
                   Gebäudereinigung in{" "}
                   <span className="relative isolate inline-block whitespace-nowrap">
                     Stuttgart

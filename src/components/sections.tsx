@@ -50,7 +50,7 @@ function FeaturedServiceCard({ service, delay }: { service: Service; delay: numb
             <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-950 text-white transition-colors duration-300 group-hover:bg-sky-500">
               <Icon className="h-6 w-6" />
             </span>
-            <h3 className="font-display text-2xl font-bold tracking-tight text-navy-950">
+            <h3 className="hyphens-auto break-words font-display text-2xl font-bold tracking-tight text-navy-950">
               {service.title}
             </h3>
             <p className="mt-3 max-w-md text-[0.95rem] leading-relaxed text-navy-600">
@@ -78,7 +78,7 @@ function CompactServiceCard({ service, delay }: { service: Service; delay: numbe
         <span className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy-700 transition-colors duration-300 group-hover:bg-sky-500 group-hover:text-white">
           <Icon className="h-5 w-5" />
         </span>
-        <h3 className="font-display text-[1.05rem] font-bold leading-snug text-navy-950">
+        <h3 className="hyphens-auto break-words font-display text-[1.05rem] font-bold leading-snug text-navy-950">
           {service.title}
         </h3>
         <p className="mt-2 flex-1 text-[0.83rem] leading-relaxed text-navy-500">
@@ -306,7 +306,7 @@ export function QuestionSection({
           </span>
           <div className="grid gap-6 p-8 sm:p-12 lg:grid-cols-[1fr_1.25fr] lg:gap-14">
             <h2
-              className={`font-display text-[clamp(1.6rem,1.2rem+1.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight ${
+              className={`hyphens-auto break-words font-display text-[clamp(1.6rem,1.2rem+1.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight ${
                 isDark ? "text-white" : "text-navy-950"
               }`}
             >
@@ -414,7 +414,7 @@ export function Faq({
     <Container>
       <JsonLd data={schema} />
       <div className="grid gap-10 lg:grid-cols-12">
-        <div className="lg:col-span-4">
+        <div className="lg:col-span-5">
           <Reveal>
             <SectionHeading kicker={kicker} title={title} />
           </Reveal>
@@ -430,7 +430,7 @@ export function Faq({
             </p>
           </Reveal>
         </div>
-        <div className="lg:col-span-8">
+        <div className="lg:col-span-7">
           <div className="border-t border-line">
             {items.map((item, i) => (
               <Reveal key={item.q} delay={0.04 * i}>
@@ -487,7 +487,7 @@ export function CtaBanner({
         <div className="max-w-3xl">
           <Reveal>
             <Kicker onDark>{kicker}</Kicker>
-            <h2 className="font-display text-[clamp(2rem,1.4rem+2.6vw,3.4rem)] font-extrabold leading-[1.06] tracking-tight text-white">
+            <h2 className="hyphens-auto break-words font-display text-[clamp(2rem,1.4rem+2.6vw,3.4rem)] font-extrabold leading-[1.06] tracking-tight text-white">
               {title}
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-navy-200 sm:text-lg">
