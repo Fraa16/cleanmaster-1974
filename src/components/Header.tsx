@@ -134,7 +134,7 @@ export function Header() {
         }`}
       >
         <div className="mx-auto flex h-[70px] w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-          <Logo />
+          <Logo className="h-11 w-auto sm:h-14" />
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Hauptnavigation">
             <Link
