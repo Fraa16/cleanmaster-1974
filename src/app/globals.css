@@ -69,7 +69,7 @@ html {
 
 /* Anker-Ziele nicht unter dem Sticky-Header verstecken */
 [id] {
-  scroll-margin-top: 8rem;
+  scroll-margin-top: 8.5rem;
 }
 
 /* Lange deutsche Komposita auf schmalen Screens trennen */

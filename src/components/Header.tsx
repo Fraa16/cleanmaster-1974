@@ -133,8 +133,8 @@ export function Header() {
             : "border-transparent"
         }`}
       >
-        <div className="mx-auto flex h-[72px] w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8 lg:h-[88px]">
-          <Logo className="h-12 w-auto lg:h-[4.25rem]" />
+        <div className="mx-auto flex h-[76px] w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8 lg:h-24">
+          <Logo className="h-[3.25rem] w-auto lg:h-[4.75rem]" />
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Hauptnavigation">
             <Link
@@ -178,7 +178,7 @@ export function Header() {
                 <IconChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
               </Link>
               <div className="invisible absolute left-1/2 top-full z-50 w-[38rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                <div className="max-h-[calc(100vh-11rem)] overflow-y-auto overscroll-contain rounded-3xl border border-line bg-white p-3 shadow-2xl shadow-navy-950/10">
+                <div className="max-h-[calc(100vh-12rem)] overflow-y-auto overscroll-contain rounded-3xl border border-line bg-white p-3 shadow-2xl shadow-navy-950/10">
                   <div className="grid grid-cols-2 gap-1">
                     {services.map((s) => {
                       const Icon = serviceIcons[s.icon];
@@ -271,7 +271,7 @@ export function Header() {
         <nav
           ref={mobileNavRef}
           id="mobile-menu"
-          className="fixed inset-0 top-[72px] z-40 overflow-y-auto bg-white px-6 pb-28 pt-6 md:top-[108px] lg:hidden"
+          className="fixed inset-0 top-[76px] z-40 overflow-y-auto bg-white px-6 pb-28 pt-6 md:top-[112px] lg:hidden"
           aria-label="Mobile Navigation"
         >
           <Link
