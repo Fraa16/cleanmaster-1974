@@ -44,7 +44,7 @@ export function Footer() {
       <div className="relative mx-auto w-full max-w-6xl px-5 pb-28 pt-16 sm:px-8 lg:pb-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_0.9fr_1.1fr]">
           <div>
-            <Logo variant="light" className="h-14 w-auto" />
+            <Logo variant="light" className="h-20 w-auto" />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-navy-300">
               {entityText}
             </p>
