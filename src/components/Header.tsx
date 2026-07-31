@@ -46,7 +46,7 @@ export function Header() {
   }, [closeMobile]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -133,8 +133,16 @@ export function Header() {
             : "border-transparent"
         }`}
       >
-        <div className="mx-auto flex h-[76px] w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8 lg:h-24">
-          <Logo className="h-[3.25rem] w-auto lg:h-[4.75rem]" />
+        <div
+          className={`mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 transition-[height] duration-300 ease-out sm:px-8 ${
+            scrolled ? "h-16 lg:h-[68px]" : "h-[76px] lg:h-24"
+          }`}
+        >
+          <Logo
+            className={`w-auto transition-[height] duration-300 ease-out ${
+              scrolled ? "h-11 lg:h-12" : "h-[3.25rem] lg:h-[4.75rem]"
+            }`}
+          />
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Hauptnavigation">
             <Link
@@ -271,7 +279,9 @@ export function Header() {
         <nav
           ref={mobileNavRef}
           id="mobile-menu"
-          className="fixed inset-0 top-[76px] z-40 overflow-y-auto bg-white px-6 pb-28 pt-6 md:top-[112px] lg:hidden"
+          className={`fixed inset-0 z-40 overflow-y-auto bg-white px-6 pb-28 pt-6 transition-[top] duration-300 ease-out lg:hidden ${
+            scrolled ? "top-16 md:top-[104px]" : "top-[76px] md:top-[112px]"
+          }`}
           aria-label="Mobile Navigation"
         >
           <Link

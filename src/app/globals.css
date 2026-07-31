@@ -68,8 +68,9 @@ html {
 }
 
 /* Anker-Ziele nicht unter dem Sticky-Header verstecken */
+/* Anker-Ziele nicht unter dem (nach Scroll kompakten) Sticky-Header verstecken */
 [id] {
-  scroll-margin-top: 8.5rem;
+  scroll-margin-top: 7rem;
 }
 
 /* Lange deutsche Komposita auf schmalen Screens trennen */
