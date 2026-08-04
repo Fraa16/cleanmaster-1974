@@ -63,11 +63,11 @@ p {
   color: var(--color-navy-950);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* Kein globales smooth-scroll: Next 16 respektiert scroll-behavior beim
+   Navigieren, wodurch der Seitenwechsel sonst animiert nach oben scrollt
+   (löst Reveals/Navbar ungewollt aus). Seitenwechsel springen daher hart
+   an den Anfang (siehe ScrollTopOnNav), Anker-Sprünge sind ebenfalls instant. */
 
-/* Anker-Ziele nicht unter dem Sticky-Header verstecken */
 /* Anker-Ziele nicht unter dem (nach Scroll kompakten) Sticky-Header verstecken */
 [id] {
   scroll-margin-top: 7rem;
