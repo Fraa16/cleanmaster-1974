@@ -29,12 +29,13 @@ export default function ImpressumPage() {
               <br />
               {site.address.zip} {site.address.city}
             </p>
-            <p className="mt-3">
-              {/* TODO: Vor Livegang ergänzen und juristisch prüfen lassen */}
-              Inhaber/in: [Vor- und Nachname des Inhabers]
-              <br />
-              Rechtsform: [z. B. Einzelunternehmen]
-            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-2 font-display text-lg font-bold text-navy-900">
+              Vertreten durch
+            </h2>
+            <p>Geschäftsführer: Ajub Akbari</p>
           </section>
 
           <section>
@@ -50,11 +51,12 @@ export default function ImpressumPage() {
 
           <section>
             <h2 className="mb-2 font-display text-lg font-bold text-navy-900">
-              Umsatzsteuer
+              Handelsregister
             </h2>
             <p>
-              Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:
-              [USt-IdNr. ergänzen oder Abschnitt entfernen]
+              Registergericht: Amtsgericht Stuttgart
+              <br />
+              Registernummer: HRB 670123133
             </p>
           </section>
 
@@ -68,12 +70,6 @@ export default function ImpressumPage() {
               Verbraucherschlichtungsstelle teilzunehmen.
             </p>
           </section>
-
-          <p className="rounded-2xl bg-sky-50 px-5 py-4 text-sm text-navy-600">
-            Hinweis: Dieses Impressum ist ein Gerüst. Die Angaben in eckigen
-            Klammern müssen vor dem Livegang ergänzt und rechtlich geprüft
-            werden.
-          </p>
         </div>
       </div>
     </Container>
