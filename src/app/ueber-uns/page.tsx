@@ -34,7 +34,8 @@ export default function UeberUnsPage() {
           einer Konzernabteilung. Reklamationen landen direkt bei den
           Inhabern, und genau deshalb kommen sie selten vor: Was wir zusagen,
           können wir auch halten, weil niemand zwischen Zusage und Ausführung
-          steht.
+          steht. In den 16 Jahren, die wir im Einsatz sind, hat sich dieser
+          direkte Weg bewährt.
         </p>
       </ContentSection>
 
