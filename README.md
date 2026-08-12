@@ -22,7 +22,7 @@ npm run build   # Produktions-Build
 | `src/lib/city-content.ts` | Individuelle Lokal-Absätze pro Stadtseite |
 | `src/components/` | Header, Footer, Sektions- und Seiten-Bausteine |
 | `src/app/` | Alle Routen (siehe Sitemap unten) |
-| `public/images/` | SVG-Visuals (können 1:1 durch Fotos ersetzt werden, Pfade bleiben gleich) |
+| `public/images/` | Foto-Assets (JPG). Ersatz-Fotos unter gleichem Dateipfad ablegen oder Pfad in `src/lib/services.ts` anpassen |
 
 ## Sitemap
 
@@ -30,8 +30,8 @@ npm run build   # Produktions-Build
 /                                            Startseite
 /leistungen/                                 Leistungs-Hub
 /leistungen/buero-reinigung/
-/leistungen/gebaeudereinigung/[stadt]/       Stadtseiten (5 aktiv)
-/leistungen/treppenhausreinigung/[stadt]/    Stadtseiten (5 aktiv)
+/leistungen/gebaeudereinigung/[stadt]/       Stadtseiten (18 aktiv)
+/leistungen/treppenhausreinigung/[stadt]/    Stadtseiten (18 aktiv)
 /leistungen/glasreinigung-fensterreinigung/
 /leistungen/winterdienst/
 /leistungen/entruempelung-haushaltsaufloesung/
@@ -40,7 +40,7 @@ npm run build   # Produktions-Build
 /hausmeisterservice/
 /ueber-uns/
 /kontakt/
-/impressum/  /datenschutz/                   (Gerüste, vor Livegang prüfen)
+/impressum/  /datenschutz/                   (vollständig; juristische Endabnahme empfohlen)
 ```
 
 ### Neue Stadtseite aktivieren
@@ -56,14 +56,38 @@ Städte-Chips, Sitemap und statische Generierung ziehen automatisch nach.
 
 | Variable | Bedeutung |
 | --- | --- |
-| `RESEND_API_KEY` | API-Key von resend.com. **Ohne Key läuft das Formular im Demo-Modus** (Erfolgsmeldung, kein Versand). |
+| `RESEND_API_KEY` | API-Key von resend.com |
 | `CONTACT_TO` | Empfängeradresse der Anfragen |
 | `CONTACT_FROM` | Bei Resend verifizierte Absenderadresse |
 
+Verhalten bei fehlender Konfiguration: In der **Entwicklung** läuft die Route im
+Demo-Modus (Anfrage wird geloggt, kein Versand, Erfolgsmeldung). In der
+**Produktion** ist eine fehlende `RESEND_API_KEY`/`CONTACT_FROM` ein harter
+Fehler (HTTP 500) – so gehen Leads bei Fehlkonfiguration nicht unbemerkt
+verloren. Ein Honeypot-Feld (`firma`) filtert Bots.
+
+## Analytics
+
+Reichweitenmessung über [Vercel Web Analytics](https://vercel.com/docs/analytics)
+via `@vercel/analytics` (`<Analytics />` in `src/app/layout.tsx`). Cookielos,
+ohne seitenübergreifendes Tracking – daher kein Consent-Banner nötig; in der
+Datenschutzerklärung offengelegt. Aktivierung zusätzlich im Vercel-Dashboard
+unter *Analytics*.
+
 ## Vor dem Livegang
 
-- [ ] Kontaktdaten in `src/lib/site.ts` vom Kunden bestätigen lassen (Telefon/Adresse stammen von der Altdomain)
-- [ ] Impressum und Datenschutzerklärung vervollständigen und juristisch prüfen
+Erledigt:
+
+- [x] Kontaktdaten in `src/lib/site.ts` vom Kunden bestätigt (Telefon/Adresse)
+- [x] Impressum und Datenschutzerklärung inhaltlich vollständig (Einzelunternehmen, Inhaber Ajub Akbari)
+- [x] Gründungsgeschichte geklärt: „1974" ist der Markenname, **nicht** das Gründungsjahr (Betrieb seit ~16 Jahren); im Text unter `src/app/ueber-uns/page.tsx` korrekt abgebildet
+- [x] Foto-Assets in `public/images/` eingesetzt (Stockfotos)
+- [x] Vercel Web Analytics aktiviert
+
+Noch offen:
+
+- [ ] USt-IdNr. im Impressum ergänzen, sobald vom Kunden geliefert (Kommentar-Platzhalter in `src/app/impressum/page.tsx`)
+- [ ] Juristische Endabnahme von Impressum & Datenschutzerklärung
 - [ ] Winterdienst-Räumzeiten auf stuttgart.de gegenprüfen
-- [ ] Offene Kundenfakten ergänzen (Erfahrungsjahre, Geschichte zu „1974", Startfristen, Mindestlaufzeit)
-- [ ] Optional: SVG-Visuals in `public/images/` durch echte Fotos ersetzen (gleiche Dateipfade oder Pfade in `services.ts` anpassen)
+- [ ] 3 neue Fotos (Winterdienst, Taubenabwehr, Hausmeisterservice) einbauen, sobald geliefert
+- [ ] Hinweis an den Kunden: Rechnungsvorlage nennt „Geschäftsführer" + „HRB" – passt nicht zum Einzelunternehmen und sollte dort korrigiert werden
