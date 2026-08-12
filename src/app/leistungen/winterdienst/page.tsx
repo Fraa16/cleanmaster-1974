@@ -82,6 +82,10 @@ export default function WinterdienstPage() {
       <ContentSection
         title="Ihre Räum- und Streupflicht, unsere Verantwortung"
         layout="centered"
+        image={{
+          src: "/images/Winterdienst.png",
+          alt: "Winterdienst von Cleanmaster 1974: Räumen eines verschneiten Gehwegs mit der Schneeschaufel",
+        }}
       >
         <p>
           Eigentümer haften, wenn auf ungeräumten Wegen jemand stürzt. Mit der

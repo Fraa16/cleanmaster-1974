@@ -82,6 +82,10 @@ export const services: Service[] = [
     teaser:
       "Wir räumen und streuen, bevor Mitarbeiter und Mieter aus dem Haus gehen. Ihre Räum- und Streupflicht ist damit erfüllt und jeder Einsatz dokumentiert.",
     icon: "winter",
+    image: {
+      src: "/images/Winterdienst.png",
+      alt: "Winterdienst von Cleanmaster 1974: Räumen eines verschneiten Gehwegs mit der Schneeschaufel",
+    },
   },
   {
     slug: "entruempelung-haushaltsaufloesung",
@@ -102,6 +106,10 @@ export const services: Service[] = [
     teaser:
       "Spikes, Netze und Vergrämung gegen Taubenbefall an Fassade, Balkon und Dach. Fachgerecht und tierschutzkonform.",
     icon: "tauben",
+    image: {
+      src: "/images/Taubenabwehr.png",
+      alt: "Taubenabwehr von Cleanmaster 1974: Edelstahl-Spikes gegen Tauben an einer Gebäudefassade",
+    },
   },
   {
     slug: "baureinigung",
@@ -122,6 +130,10 @@ export const services: Service[] = [
     teaser:
       "Laufende Objektbetreuung mit Kontrollgängen, Kleinreparaturen und Grünpflege. Ein Ansprechpartner für Ihr ganzes Objekt.",
     icon: "hausmeister",
+    image: {
+      src: "/images/Hausmeisterservice.png",
+      alt: "Gepflegter Eingangsbereich eines Gewerbeobjekts, betreut vom Hausmeisterservice von Cleanmaster 1974",
+    },
   },
 ];
 

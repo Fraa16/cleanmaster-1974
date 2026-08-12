@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
+import { serviceBySlug } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Taubenabwehr Stuttgart | Spikes & Netze | Cleanmaster 1974",
@@ -36,6 +37,7 @@ export default function TaubenabwehrPage() {
         title="Taubenabwehr Stuttgart"
         intro="Cleanmaster 1974 schützt Gebäude in Stuttgart und der Region vor Taubenbefall: mit Spikes, Spannnetzen und Vergrämungssystemen an Fassaden, Balkonen, Simsen und Dächern. Zur Leistung gehört auch die Reinigung und Desinfektion befallener Flächen. Alle Maßnahmen sind tierschutzkonform, die Tiere werden vergrämt, nicht verletzt."
         icon="tauben"
+        image={serviceBySlug("taubenabwehr")?.image}
       />
 
       <ContentSection

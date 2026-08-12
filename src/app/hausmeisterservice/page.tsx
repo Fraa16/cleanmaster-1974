@@ -63,8 +63,8 @@ export default function HausmeisterservicePage() {
         title="Kontrollgang mit Mängelmeldung"
         imageSide="right"
         image={{
-          src: "/images/atmosphaere.jpg",
-          alt: "Reinigungsausrüstung von Cleanmaster 1974 in einem gepflegten Wohnraum",
+          src: "/images/Hausmeisterservice.png",
+          alt: "Gepflegter Eingangsbereich eines Gewerbeobjekts, betreut vom Hausmeisterservice von Cleanmaster 1974",
         }}
       >
         <p>
