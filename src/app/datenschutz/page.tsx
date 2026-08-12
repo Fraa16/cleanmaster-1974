@@ -42,7 +42,7 @@ export default function DatenschutzPage() {
             <p className="mt-3">
               {site.legalName}
               <br />
-              Geschäftsführer: Ajub Akbari
+              Inhaber: Ajub Akbari
               <br />
               {site.address.street}
               <br />

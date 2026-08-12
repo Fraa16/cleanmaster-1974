@@ -3,13 +3,15 @@
  * Telefonnummer und Adresse sind vom Kunden bestätigt. Änderungen NUR hier
  * vornehmen, alle Seiten und Schema-Auszeichnungen lesen aus dieser Datei.
  *
- * TODO vor Livegang bestätigen: exakte Rechtsform/Firmierung. Laut Rechnung
- * des Kunden Kapitalgesellschaft (Geschäftsführer + HRB), Rechtsform-Zusatz
- * ("UG (haftungsbeschränkt)" vs. "GmbH") noch final beim Kunden abzuklären.
+ * Rechtsform vom Kunden bestätigt: Einzelunternehmen (Inhaber Ajub Akbari),
+ * kein Handelsregister-Eintrag. HINWEIS: Die Kundenrechnung weist abweichend
+ * "Geschäftsführer" + "HRB 670123133" aus (vermutlich veraltet) — das gehört
+ * beim Einzelunternehmen nicht ins Impressum und ist auf der Rechnung zu
+ * korrigieren.
  */
 export const site = {
   name: "Cleanmaster 1974",
-  legalName: "Cleanmaster 1974 UG (haftungsbeschränkt)",
+  legalName: "Cleanmaster 1974",
   domain: "https://cleanmaster-1974.de",
   phone: "0176 7230 58 47",
   phoneHref: "tel:+4917672305847",
