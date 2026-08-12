@@ -1,12 +1,15 @@
 /**
  * Zentrale Stammdaten der Website.
- * HINWEIS: Telefonnummer und Adresse stammen von der Altdomain und sind vom
- * Kunden noch nicht final bestätigt. Änderungen NUR hier vornehmen, alle
- * Seiten und Schema-Auszeichnungen lesen aus dieser Datei.
+ * Telefonnummer und Adresse sind vom Kunden bestätigt. Änderungen NUR hier
+ * vornehmen, alle Seiten und Schema-Auszeichnungen lesen aus dieser Datei.
+ *
+ * TODO vor Livegang bestätigen: exakte Rechtsform/Firmierung. Laut Rechnung
+ * des Kunden Kapitalgesellschaft (Geschäftsführer + HRB), Rechtsform-Zusatz
+ * ("UG (haftungsbeschränkt)" vs. "GmbH") noch final beim Kunden abzuklären.
  */
 export const site = {
   name: "Cleanmaster 1974",
-  legalName: "Cleanmaster 1974",
+  legalName: "Cleanmaster 1974 UG (haftungsbeschränkt)",
   domain: "https://cleanmaster-1974.de",
   phone: "0176 7230 58 47",
   phoneHref: "tel:+4917672305847",

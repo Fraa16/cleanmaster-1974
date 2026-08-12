@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { MobileActionBar } from "@/components/MobileActionBar";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { ScrollTopOnNav } from "@/components/ScrollTopOnNav";
+import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -67,6 +68,7 @@ export default function RootLayout({
         <Footer />
         <MobileActionBar />
         <WhatsAppButton />
+        <Analytics />
       </body>
     </html>
   );
