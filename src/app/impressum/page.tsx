@@ -25,17 +25,12 @@ export default function ImpressumPage() {
             <p>
               {site.legalName}
               <br />
+              Inhaber: Ajub Akbari
+              <br />
               {site.address.street}
               <br />
               {site.address.zip} {site.address.city}
             </p>
-          </section>
-
-          <section>
-            <h2 className="mb-2 font-display text-lg font-bold text-navy-900">
-              Vertreten durch
-            </h2>
-            <p>Geschäftsführer: Ajub Akbari</p>
           </section>
 
           <section>
@@ -46,17 +41,6 @@ export default function ImpressumPage() {
               Telefon: {site.phone}
               <br />
               E-Mail: {site.email}
-            </p>
-          </section>
-
-          <section>
-            <h2 className="mb-2 font-display text-lg font-bold text-navy-900">
-              Registereintrag
-            </h2>
-            <p>
-              Registergericht: Amtsgericht Stuttgart
-              <br />
-              Registernummer: HRB 670123133
             </p>
           </section>
 
