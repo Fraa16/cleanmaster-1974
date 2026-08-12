@@ -14,6 +14,7 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: site.name,
+  legalName: site.legalName,
   url: site.domain,
   description: entityText,
   telephone: "+4917672305847",

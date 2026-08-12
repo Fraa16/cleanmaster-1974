@@ -1,8 +1,13 @@
 /**
  * Zentrale Stammdaten der Website.
- * HINWEIS: Telefonnummer und Adresse stammen von der Altdomain und sind vom
- * Kunden noch nicht final bestätigt. Änderungen NUR hier vornehmen, alle
- * Seiten und Schema-Auszeichnungen lesen aus dieser Datei.
+ * Telefonnummer und Adresse sind vom Kunden bestätigt. Änderungen NUR hier
+ * vornehmen, alle Seiten und Schema-Auszeichnungen lesen aus dieser Datei.
+ *
+ * Rechtsform vom Kunden bestätigt: Einzelunternehmen (Inhaber Ajub Akbari),
+ * kein Handelsregister-Eintrag. HINWEIS: Die Kundenrechnung weist abweichend
+ * "Geschäftsführer" + "HRB 670123133" aus (vermutlich veraltet) — das gehört
+ * beim Einzelunternehmen nicht ins Impressum und ist auf der Rechnung zu
+ * korrigieren.
  */
 export const site = {
   name: "Cleanmaster 1974",
