@@ -86,6 +86,7 @@ Erledigt:
 - [x] Vercel Web Analytics aktiviert
 - [x] Logo in Organization-/LocalBusiness-Schema (Schema.org) ergänzt
 - [x] `lastModified` in der Sitemap ergänzt
+- [x] Bürozeiten (`openingHoursSpecification`), `geo`-Koordinaten, `hasMap` und `sameAs` (Google-Unternehmensprofil) im Schema ergänzt
 
 Noch offen:
 
@@ -93,3 +94,4 @@ Noch offen:
 - [ ] Juristische Endabnahme von Impressum & Datenschutzerklärung
 - [x] Winterdienst-Räumzeiten gegen Stuttgarter Gehwegsatzung geprüft: Fristen (werktags 7:00, Sa 8:00, So/Feiertag 9:00 Uhr) auf `winterdienst/page.tsx` korrekt. Optional offen: abendliches Ende der Pflicht (Quellen uneinheitlich 20/21/22 Uhr) exakt aus Stadtrecht 1/8 ergänzen.
 - [ ] Hinweis an den Kunden: Rechnungsvorlage nennt „Geschäftsführer" + „HRB" – passt nicht zum Einzelunternehmen und sollte dort korrigiert werden
+- [ ] `aggregateRating` bewusst offen: erst ab ~5–10 echten Google-Bewertungen sinnvoll (aktuell nur 1). Google zeigt für selbst ausgezeichnete LocalBusiness-Ratings ohnehin keine Sterne-Rich-Results. Kunde sollte aktiv Bewertungen einholen.
