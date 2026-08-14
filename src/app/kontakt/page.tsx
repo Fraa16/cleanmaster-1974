@@ -29,6 +29,8 @@ const localBusinessSchema = {
   "@id": `${site.domain}/#business`,
   name: site.name,
   url: site.domain,
+  logo: `${site.domain}${site.logo}`,
+  image: `${site.domain}${site.logo}`,
   telephone: "+4917672305847",
   email: site.email,
   address: {

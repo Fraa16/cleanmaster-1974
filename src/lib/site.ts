@@ -19,6 +19,8 @@ export const site = {
   whatsappHref: "https://wa.me/4917672305847",
   email: "info@cleanmaster-1974.de",
   emailHref: "mailto:info@cleanmaster-1974.de",
+  /** Logo für Schema.org (Organization/LocalBusiness); Datei in public/. */
+  logo: "/cleanmaster1974-logo.svg",
   address: {
     street: "Büsnauerstr. 73",
     zip: "70569",

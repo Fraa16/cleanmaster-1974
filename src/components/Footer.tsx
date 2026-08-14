@@ -16,6 +16,7 @@ const organizationSchema = {
   name: site.name,
   legalName: site.legalName,
   url: site.domain,
+  logo: `${site.domain}${site.logo}`,
   description: entityText,
   telephone: "+4917672305847",
   email: site.email,

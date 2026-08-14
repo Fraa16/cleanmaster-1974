@@ -22,8 +22,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     `/leistungen/treppenhausreinigung/${city.slug}/`,
   ]);
 
+  const lastModified = new Date();
+
   return [...staticPaths, ...cityPaths].map((path) => ({
     url: absoluteUrl(path),
+    lastModified,
     changeFrequency: "monthly",
     priority: path === "/" ? 1 : 0.8,
   }));

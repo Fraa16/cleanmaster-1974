@@ -82,12 +82,14 @@ Erledigt:
 - [x] Impressum und Datenschutzerklärung inhaltlich vollständig (Einzelunternehmen, Inhaber Ajub Akbari)
 - [x] Gründungsgeschichte geklärt: „1974" ist der Markenname, **nicht** das Gründungsjahr (Betrieb seit ~16 Jahren); im Text unter `src/app/ueber-uns/page.tsx` korrekt abgebildet
 - [x] Foto-Assets in `public/images/` eingesetzt (Stockfotos)
+- [x] Fotos für Winterdienst, Taubenabwehr, Hausmeisterservice eingebaut
 - [x] Vercel Web Analytics aktiviert
+- [x] Logo in Organization-/LocalBusiness-Schema (Schema.org) ergänzt
+- [x] `lastModified` in der Sitemap ergänzt
 
 Noch offen:
 
 - [ ] USt-IdNr. im Impressum ergänzen, sobald vom Kunden geliefert (Kommentar-Platzhalter in `src/app/impressum/page.tsx`)
 - [ ] Juristische Endabnahme von Impressum & Datenschutzerklärung
 - [ ] Winterdienst-Räumzeiten auf stuttgart.de gegenprüfen
-- [ ] 3 neue Fotos (Winterdienst, Taubenabwehr, Hausmeisterservice) einbauen, sobald geliefert
 - [ ] Hinweis an den Kunden: Rechnungsvorlage nennt „Geschäftsführer" + „HRB" – passt nicht zum Einzelunternehmen und sollte dort korrigiert werden
