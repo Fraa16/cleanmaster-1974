@@ -21,6 +21,10 @@ export const site = {
   emailHref: "mailto:info@cleanmaster-1974.de",
   /** Logo für Schema.org (Organization/LocalBusiness); Datei in public/. */
   logo: "/cleanmaster1974-logo.svg",
+  /** Google-Unternehmensprofil (stabile CID-URL) für sameAs/hasMap. */
+  googleBusinessUrl: "https://www.google.com/maps?cid=11928341507723991952",
+  /** Standort-Koordinaten (aus Google-Maps-Pin) für Schema.org geo. */
+  geo: { latitude: 48.737563, longitude: 9.095228 },
   address: {
     street: "Büsnauerstr. 73",
     zip: "70569",

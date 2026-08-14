@@ -28,6 +28,7 @@ const organizationSchema = {
     addressCountry: site.address.country,
   },
   areaServed: cityNames,
+  sameAs: [site.googleBusinessUrl],
 };
 
 export function Footer() {

@@ -42,6 +42,13 @@ const localBusinessSchema = {
   },
   areaServed: cityNames.map((name) => ({ "@type": "City", name })),
   priceRange: "Festpreis nach kostenloser Besichtigung",
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.geo.latitude,
+    longitude: site.geo.longitude,
+  },
+  hasMap: site.googleBusinessUrl,
+  sameAs: [site.googleBusinessUrl],
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
