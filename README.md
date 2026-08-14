@@ -91,5 +91,5 @@ Noch offen:
 
 - [ ] USt-IdNr. im Impressum ergänzen, sobald vom Kunden geliefert (Kommentar-Platzhalter in `src/app/impressum/page.tsx`)
 - [ ] Juristische Endabnahme von Impressum & Datenschutzerklärung
-- [ ] Winterdienst-Räumzeiten auf stuttgart.de gegenprüfen
+- [x] Winterdienst-Räumzeiten gegen Stuttgarter Gehwegsatzung geprüft: Fristen (werktags 7:00, Sa 8:00, So/Feiertag 9:00 Uhr) auf `winterdienst/page.tsx` korrekt. Optional offen: abendliches Ende der Pflicht (Quellen uneinheitlich 20/21/22 Uhr) exakt aus Stadtrecht 1/8 ergänzen.
 - [ ] Hinweis an den Kunden: Rechnungsvorlage nennt „Geschäftsführer" + „HRB" – passt nicht zum Einzelunternehmen und sollte dort korrigiert werden
