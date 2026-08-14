@@ -42,6 +42,21 @@ const localBusinessSchema = {
   },
   areaServed: cityNames.map((name) => ({ "@type": "City", name })),
   priceRange: "Festpreis nach kostenloser Besichtigung",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
+      opens: "08:00",
+      closes: "19:30",
+    },
+  ],
 };
 
 export default function KontaktPage() {
