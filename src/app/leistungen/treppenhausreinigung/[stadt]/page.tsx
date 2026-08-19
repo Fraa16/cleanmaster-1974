@@ -10,8 +10,9 @@ import {
   PageHero,
 } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
-import { Container } from "@/components/ui";
+import { Container, JsonLd } from "@/components/ui";
 import { cityHeroImage } from "@/lib/services";
+import { serviceSchema } from "@/lib/schema";
 
 interface Props {
   params: Promise<{ stadt: string }>;
@@ -42,6 +43,14 @@ export default async function TreppenhausreinigungStadtPage({ params }: Props) {
 
   const cityIndex = activeCities.findIndex((c) => c.slug === stadt);
 
+  const serviceLd = serviceSchema({
+    name: `Treppenhausreinigung ${city.name}`,
+    path: `/leistungen/treppenhausreinigung/${stadt}/`,
+    serviceType: "Treppenhausreinigung",
+    description: `Treppenhausreinigung im festen Turnus nach Reinigungsplan für Hausverwaltungen, WEG und Vermieter in ${city.name}, zum monatlichen Pauschalpreis nach kostenloser Besichtigung.`,
+    areaServedNames: [city.name],
+  });
+
   const faqItems = [
     {
       q: "In welchem Turnus wird das Treppenhaus gereinigt?",
@@ -59,6 +68,8 @@ export default async function TreppenhausreinigungStadtPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd data={serviceLd} />
+
       <PageHero
         crumbs={[
           { label: "Leistungen", href: "/leistungen/" },
@@ -144,6 +155,13 @@ export default async function TreppenhausreinigungStadtPage({ params }: Props) {
       <Container className="pb-16 sm:pb-24">
         <p className="mx-auto max-w-3xl text-center text-sm text-navy-600">
           Typische Kombination für Verwaltungen:{" "}
+          <Link
+            href={`/leistungen/gebaeudereinigung/${stadt}/`}
+            className="font-semibold text-sky-600 hover:underline"
+          >
+            Gebäudereinigung
+          </Link>
+          ,{" "}
           <Link
             href="/hausmeisterservice/"
             className="font-semibold text-sky-600 hover:underline"

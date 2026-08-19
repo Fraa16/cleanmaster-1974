@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: "Gebäudereinigung Stuttgart & Region | Cleanmaster 1974",
   description:
-    "Gebäudereinigung in Stuttgart vom Familienbetrieb ✓ Büroreinigung ✓ Treppenhausreinigung ✓ Winterdienst ✓ Festpreis-Garantie. Jetzt Angebot anfordern!",
+    "Gebäudereinigung Stuttgart vom Familienbetrieb ✓ Büroreinigung ✓ Treppenhaus ✓ Winterdienst ✓ Festpreis. Jetzt kostenloses Angebot anfordern!",
   // Kein openGraph.title/description hier: so übernehmen die Unterseiten
   // automatisch ihren eigenen Titel/Beschreibungstext in die OG/Twitter-Tags.
   openGraph: {

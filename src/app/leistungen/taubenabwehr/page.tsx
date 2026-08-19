@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
+import { JsonLd } from "@/components/ui";
+import { serviceBySlug } from "@/lib/services";
+import { serviceSchema } from "@/lib/schema";
+
+const serviceLd = serviceSchema({
+  name: "Taubenabwehr Stuttgart",
+  path: "/leistungen/taubenabwehr/",
+  serviceType: "Taubenabwehr",
+  description: serviceBySlug("taubenabwehr")?.teaser ?? "",
+});
 
 export const metadata: Metadata = {
   title: "Taubenabwehr Stuttgart | Spikes & Netze | Cleanmaster 1974",
@@ -27,6 +37,8 @@ const faqItems = [
 export default function TaubenabwehrPage() {
   return (
     <>
+      <JsonLd data={serviceLd} />
+
       <PageHero
         crumbs={[
           { label: "Leistungen", href: "/leistungen/" },

@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
+import { JsonLd } from "@/components/ui";
 import { serviceBySlug } from "@/lib/services";
+import { serviceSchema } from "@/lib/schema";
+
+const serviceLd = serviceSchema({
+  name: "Entrümpelung & Haushaltsauflösung Stuttgart",
+  path: "/leistungen/entruempelung-haushaltsaufloesung/",
+  serviceType: "Entrümpelung & Haushaltsauflösung",
+  description: serviceBySlug("entruempelung-haushaltsaufloesung")?.teaser ?? "",
+});
 
 export const metadata: Metadata = {
   title: "Entrümpelung Stuttgart zum Festpreis | Cleanmaster 1974",
@@ -28,6 +37,8 @@ const faqItems = [
 export default function EntruempelungPage() {
   return (
     <>
+      <JsonLd data={serviceLd} />
+
       <PageHero
         crumbs={[
           { label: "Leistungen", href: "/leistungen/" },

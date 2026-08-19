@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { activeCities, cityBySlug } from "@/lib/cities";
 import { cityContent } from "@/lib/city-content";
 import { ContentSection, NeighborLinks, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
+import { Container, JsonLd } from "@/components/ui";
 import { cityHeroImage } from "@/lib/services";
+import { serviceSchema } from "@/lib/schema";
 
 interface Props {
   params: Promise<{ stadt: string }>;
@@ -35,6 +38,14 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
 
   const cityIndex = activeCities.findIndex((c) => c.slug === stadt);
 
+  const serviceLd = serviceSchema({
+    name: `Gebäudereinigung ${city.name}`,
+    path: `/leistungen/gebaeudereinigung/${stadt}/`,
+    serviceType: "Gebäudereinigung",
+    description: `Unterhaltsreinigung nach Leistungsverzeichnis für Gewerbeflächen, Praxen und Wohnanlagen in ${city.name}, zum festen monatlichen Pauschalpreis nach kostenloser Besichtigung.`,
+    areaServedNames: [city.name],
+  });
+
   const faqItems = [
     {
       q: `Welche Objekte reinigt Cleanmaster 1974 in ${city.name}?`,
@@ -52,6 +63,8 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd data={serviceLd} />
+
       <PageHero
         crumbs={[
           { label: "Leistungen", href: "/leistungen/" },
@@ -123,6 +136,34 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
           text="Kostenlose Besichtigung, verbindlicher Festpreis, fester Ansprechpartner. Schicken Sie uns die Eckdaten Ihres Objekts."
         />
       </section>
+
+      <Container className="pb-16 sm:pb-24">
+        <p className="mx-auto max-w-3xl text-center text-sm text-navy-600">
+          Für Hausverwaltungen und Eigentümergemeinschaften in {city.name} bieten
+          wir auch{" "}
+          <Link
+            href={`/leistungen/treppenhausreinigung/${stadt}/`}
+            className="font-semibold text-sky-600 hover:underline"
+          >
+            Treppenhausreinigung
+          </Link>
+          ,{" "}
+          <Link
+            href="/hausmeisterservice/"
+            className="font-semibold text-sky-600 hover:underline"
+          >
+            Hausmeisterservice
+          </Link>{" "}
+          und{" "}
+          <Link
+            href="/leistungen/winterdienst/"
+            className="font-semibold text-sky-600 hover:underline"
+          >
+            Winterdienst
+          </Link>{" "}
+          aus einer Hand.
+        </p>
+      </Container>
     </>
   );
 }

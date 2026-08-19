@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, DarkFeatureSection, Faq, QuestionSection } from "@/components/sections";
+import { JsonLd } from "@/components/ui";
 import { serviceBySlug } from "@/lib/services";
+import { serviceSchema } from "@/lib/schema";
+
+const serviceLd = serviceSchema({
+  name: "Baureinigung Stuttgart",
+  path: "/baureinigung/",
+  serviceType: "Baureinigung",
+  description: serviceBySlug("baureinigung")?.teaser ?? "",
+});
 
 export const metadata: Metadata = {
   title: "Baureinigung Stuttgart | Bauendreinigung | Cleanmaster 1974",
@@ -43,6 +52,8 @@ const faqItems = [
 export default function BaureinigungPage() {
   return (
     <>
+      <JsonLd data={serviceLd} />
+
       <PageHero
         crumbs={[
           { label: "Leistungen", href: "/leistungen/" },

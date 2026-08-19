@@ -4,6 +4,15 @@ import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, ProcessSteps, QuestionSection } from "@/components/sections";
 import { Container, JsonLd } from "@/components/ui";
 import { absoluteUrl } from "@/lib/site";
+import { serviceBySlug } from "@/lib/services";
+import { serviceSchema } from "@/lib/schema";
+
+const serviceLd = serviceSchema({
+  name: "Winterdienst Stuttgart und Region",
+  path: "/leistungen/winterdienst/",
+  serviceType: "Winterdienst",
+  description: serviceBySlug("winterdienst")?.teaser ?? "",
+});
 
 export const metadata: Metadata = {
   title: "Winterdienst Stuttgart mit Festpreis | Cleanmaster 1974",
@@ -66,6 +75,7 @@ const faqItems = [
 export default function WinterdienstPage() {
   return (
     <>
+      <JsonLd data={serviceLd} />
       <JsonLd data={howToSchema} />
       <PageHero
         crumbs={[

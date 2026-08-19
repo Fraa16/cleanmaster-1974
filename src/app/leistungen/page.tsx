@@ -6,7 +6,7 @@ import { CtaBanner, QuestionSection, ServiceGrid } from "@/components/sections";
 export const metadata: Metadata = {
   title: "Gebäudedienste Stuttgart im Überblick | Cleanmaster 1974",
   description:
-    "Alle Leistungen von Cleanmaster 1974 im Überblick ✓ Reinigung ✓ Winterdienst ✓ Hausmeisterservice ✓ Entrümpelung. Für Stuttgart und die Region. Jetzt Angebot anfordern!",
+    "Alle Leistungen von Cleanmaster 1974 für Stuttgart und Region ✓ Reinigung ✓ Winterdienst ✓ Hausmeisterservice ✓ Entrümpelung. Jetzt Angebot anfordern!",
   alternates: { canonical: "/leistungen/" },
 };
 

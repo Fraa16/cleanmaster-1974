@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
+import { JsonLd } from "@/components/ui";
 import { serviceBySlug } from "@/lib/services";
+import { serviceSchema } from "@/lib/schema";
+
+const service = serviceBySlug("glasreinigung-fensterreinigung");
+const serviceLd = serviceSchema({
+  name: "Glas- und Fensterreinigung Stuttgart",
+  path: "/leistungen/glasreinigung-fensterreinigung/",
+  serviceType: "Glas- und Fensterreinigung",
+  description: service?.teaser ?? "",
+});
 
 export const metadata: Metadata = {
   title: "Glas- & Fensterreinigung Stuttgart | Cleanmaster 1974",
@@ -28,6 +38,8 @@ const faqItems = [
 export default function GlasreinigungPage() {
   return (
     <>
+      <JsonLd data={serviceLd} />
+
       <PageHero
         crumbs={[
           { label: "Leistungen", href: "/leistungen/" },

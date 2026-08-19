@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/page-blocks";
-import { Container, JsonLd } from "@/components/ui";
+import { Container } from "@/components/ui";
 import {
   IconCheckCircle,
   IconMail,
@@ -10,7 +10,6 @@ import {
   IconWhatsApp,
 } from "@/components/icons";
 import { site } from "@/lib/site";
-import { cityNames } from "@/lib/cities";
 
 const whatsappText =
   "Hallo Cleanmaster 1974, ich hätte gerne ein kostenloses Festpreis-Angebot. Mein Objekt: ";
@@ -23,30 +22,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/kontakt/" },
 };
 
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": `${site.domain}/#business`,
-  name: site.name,
-  url: site.domain,
-  telephone: "+4917672305847",
-  email: site.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    postalCode: site.address.zip,
-    addressLocality: site.address.city,
-    addressCountry: site.address.country,
-  },
-  areaServed: cityNames.map((name) => ({ "@type": "City", name })),
-  priceRange: "Festpreis nach kostenloser Besichtigung",
-};
-
 export default function KontaktPage() {
   return (
     <>
-      <JsonLd data={localBusinessSchema} />
-
       <PageHero
         crumbs={[{ label: "Kontakt" }]}
         overline="Kontakt"

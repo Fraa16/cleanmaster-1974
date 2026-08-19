@@ -2,7 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
-import { Container } from "@/components/ui";
+import { Container, JsonLd } from "@/components/ui";
+import { serviceBySlug } from "@/lib/services";
+import { serviceSchema } from "@/lib/schema";
+
+const serviceLd = serviceSchema({
+  name: "Hausmeisterservice Stuttgart und Region",
+  path: "/hausmeisterservice/",
+  serviceType: "Hausmeisterservice",
+  description: serviceBySlug("hausmeisterservice")?.teaser ?? "",
+});
 
 export const metadata: Metadata = {
   title: "Hausmeisterservice Stuttgart & Region | Cleanmaster 1974",
@@ -29,6 +38,8 @@ const faqItems = [
 export default function HausmeisterservicePage() {
   return (
     <>
+      <JsonLd data={serviceLd} />
+
       <PageHero
         crumbs={[
           { label: "Leistungen", href: "/leistungen/" },

@@ -3,36 +3,17 @@ import { Logo } from "@/components/Logo";
 import { JsonLd } from "@/components/ui";
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
-import { cityNames } from "@/lib/cities";
+import { businessSchema } from "@/lib/schema";
 import { IconArrowRight, IconMail, IconPhone, IconPin } from "@/components/icons";
 
 /** Entity-Absatz von /ueber-uns/ (GEO-Anker, Copy-Vorgabe) */
 const entityText =
   "Cleanmaster 1974 ist ein familiengeführtes Unternehmen für Gebäudereinigung und Facility Services mit Sitz in Stuttgart. Zu den Leistungen gehören Unterhaltsreinigung, Büroreinigung, Treppenhausreinigung, Glasreinigung, Winterdienst, Entrümpelung, Taubenabwehr, Baureinigung und Hausmeisterservice in Stuttgart und 17 umliegenden Städten.";
 
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: site.name,
-  legalName: site.legalName,
-  url: site.domain,
-  description: entityText,
-  telephone: "+4917672305847",
-  email: site.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    postalCode: site.address.zip,
-    addressLocality: site.address.city,
-    addressCountry: site.address.country,
-  },
-  areaServed: cityNames,
-};
-
 export function Footer() {
   return (
     <footer className="grain relative overflow-hidden bg-navy-950 text-navy-200">
-      <JsonLd data={organizationSchema} />
+      <JsonLd data={businessSchema} />
 
       {/* Wasserzeichen */}
       <span
