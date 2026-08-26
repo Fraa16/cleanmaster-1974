@@ -7,7 +7,8 @@ export type ServiceIcon =
   | "entruempelung"
   | "tauben"
   | "bau"
-  | "hausmeister";
+  | "hausmeister"
+  | "abbruch";
 
 /** Stockfoto zur Leistung. Pfade unter public/images/, Alt-Text auf Deutsch. */
 export interface ServiceImage {
@@ -122,6 +123,18 @@ export const services: Service[] = [
     teaser:
       "Laufende Objektbetreuung mit Kontrollgängen, Kleinreparaturen und Grünpflege. Ein Ansprechpartner für Ihr ganzes Objekt.",
     icon: "hausmeister",
+  },
+  {
+    slug: "abbrucharbeiten",
+    href: "/leistungen/abbrucharbeiten/",
+    title: "Abbrucharbeiten",
+    teaser:
+      "Entkernung, Teilabbruch und Demontage vor Sanierung oder Umbau. Bauschutt sortenrein getrennt, besenrein übergeben, zum Festpreis nach Besichtigung.",
+    icon: "abbruch",
+    image: {
+      src: "/images/abbrucharbeiten.png",
+      alt: "Abbrucharbeiten: Entkernung und Teilabbruch eines Innenraums bis auf den Rohbau",
+    },
   },
 ];
 

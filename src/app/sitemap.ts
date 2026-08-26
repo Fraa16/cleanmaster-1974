@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/leistungen/winterdienst/",
     "/leistungen/entruempelung-haushaltsaufloesung/",
     "/leistungen/taubenabwehr/",
+    "/leistungen/abbrucharbeiten/",
     "/baureinigung/",
     "/hausmeisterservice/",
     "/ueber-uns/",

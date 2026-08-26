@@ -113,6 +113,19 @@ export function IconHausmeister(props: IconProps) {
   );
 }
 
+export function IconAbbruch(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M4 21h16" />
+      <path d="M6 21v-7h12v7" />
+      <path d="M6 17.5h12" />
+      <path d="M10.5 21v-3.5M14 17.5V14" />
+      <path d="M12 14l-1.4 3 2.2-.4-1.1 2.9" />
+      <path d="M15.8 11l3-1 .7 2.1-3 1z" />
+    </Base>
+  );
+}
+
 export const serviceIcons: Record<
   ServiceIcon,
   (props: IconProps) => ReactNode
@@ -126,6 +139,7 @@ export const serviceIcons: Record<
   tauben: IconTauben,
   bau: IconBau,
   hausmeister: IconHausmeister,
+  abbruch: IconAbbruch,
 };
 
 /* ---------- UI-Icons ---------- */
