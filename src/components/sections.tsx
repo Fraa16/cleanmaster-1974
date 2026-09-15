@@ -277,11 +277,14 @@ export function QuestionSection({
   children,
   cta,
   tone = "light",
+  bodyId,
 }: {
   title: string;
   children: ReactNode;
   cta?: { href: string; label: string };
   tone?: "light" | "dark";
+  /** Anker für SpeakableSpecification — macht die Antwort für Sprachassistenten adressierbar. */
+  bodyId?: string;
 }) {
   const isDark = tone === "dark";
   return (
@@ -314,6 +317,7 @@ export function QuestionSection({
             </h2>
             <div>
               <div
+                id={bodyId}
                 className={`text-[0.97rem] leading-relaxed ${
                   isDark ? "text-navy-200" : "text-navy-700"
                 }`}

@@ -20,6 +20,8 @@ import {
   IconPhone,
 } from "@/components/icons";
 import { site } from "@/lib/site";
+import { webPageSchema } from "@/lib/schema";
+import { JsonLd } from "@/components/ui";
 
 export const metadata = pageMeta({
   title: "Gebäudereinigung Stuttgart & Region | Cleanmaster 1974",
@@ -89,6 +91,21 @@ const faqItems = [
   },
 ];
 
+/**
+ * Seitentyp-Knoten der Startseite. Sie war neben dem Leistungs-Hub die
+ * einzige Seite ohne eigenen WebPage-Knoten. Die Kosten-Antwort ist als
+ * speakable ausgezeichnet: "Was kostet eine Gebäudereinigung in Stuttgart?"
+ * ist die häufigste Einstiegsfrage und eignet sich zum Vorlesen.
+ */
+const pageLd = webPageSchema({
+  type: "WebPage",
+  name: "Gebäudereinigung Stuttgart & Region — Cleanmaster 1974",
+  description:
+    "Familiengeführter Gebäudedienstleister für Stuttgart und 17 Städte der Region. Reinigung, Winterdienst, Hausmeisterservice und Entrümpelung zum Festpreis nach kostenloser Besichtigung.",
+  path: "/",
+  speakable: ["#kosten-antwort"],
+});
+
 /** Hero-Visual: echtes Foto des Teams, kombiniert mit den Festpreis-Signalen. */
 function HeroVisual() {
   return (
@@ -155,6 +172,8 @@ function HeroVisual() {
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={pageLd} />
+
       {/* 1. Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-sky-50/90 via-sky-50/40 to-white">
         <div
@@ -272,6 +291,7 @@ export default function HomePage() {
       <section className="pb-20 sm:pb-28">
         <QuestionSection
           title="Was kostet eine Gebäudereinigung in Stuttgart?"
+          bodyId="kosten-antwort"
           cta={{
             href: "/kontakt/",
             label: "Kostenlose Besichtigung vereinbaren",

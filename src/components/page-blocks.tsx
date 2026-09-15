@@ -389,3 +389,69 @@ export function NeighborLinks({
     </Container>
   );
 }
+
+/* ------------------------------------------------------------------ */
+/* Faktentabelle                                                       */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Schlichte Datentabelle. Vor der Einführung gab es auf der gesamten Website
+ * keine einzige Tabelle — damit war der Auftritt für Tabellen-Snippets in den
+ * Suchergebnissen grundsätzlich nicht infrage gekommen.
+ *
+ * Auf schmalen Displays scrollt die Tabelle horizontal in ihrem eigenen
+ * Container, statt das Seiten-Layout zu sprengen.
+ */
+export function FactTable({
+  caption,
+  columns,
+  rows,
+}: {
+  caption?: string;
+  columns: string[];
+  rows: string[][];
+}) {
+  return (
+    <div className="overflow-x-auto rounded-[1.25rem] border border-line bg-white">
+      <table className="w-full min-w-[34rem] border-collapse text-left">
+        {caption && (
+          <caption className="border-b border-line px-6 py-4 text-left text-sm font-semibold text-navy-600">
+            {caption}
+          </caption>
+        )}
+        <thead>
+          <tr className="bg-navy-950">
+            {columns.map((c) => (
+              <th
+                key={c}
+                scope="col"
+                className="px-6 py-3.5 text-[0.72rem] font-bold uppercase tracking-[0.1em] text-white"
+              >
+                {c}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r, i) => (
+            <tr
+              key={r[0]}
+              className={`border-t border-line ${i % 2 ? "bg-cloud" : "bg-white"}`}
+            >
+              {r.map((cell, j) => (
+                <td
+                  key={j}
+                  className={`px-6 py-3.5 align-top text-[0.88rem] leading-relaxed ${
+                    j === 0 ? "font-bold text-navy-950" : "text-navy-700"
+                  }`}
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

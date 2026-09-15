@@ -16,6 +16,7 @@ import { services } from "@/lib/services";
 /** Stabile IDs der Entitäten; als @id referenzierbar. */
 export const businessId = `${site.domain}/#business`;
 export const websiteId = `${site.domain}/#website`;
+export const personId = `${site.domain}/#inhaber`;
 
 const entityDescription =
   "Cleanmaster 1974 ist ein familiengeführtes Unternehmen für Gebäudereinigung und Facility Services mit Sitz in Stuttgart. Zu den Leistungen gehören Unterhaltsreinigung, Büroreinigung, Treppenhausreinigung, Glasreinigung, Winterdienst, Entrümpelung, Taubenabwehr, Baureinigung und Hausmeisterservice in Stuttgart und 17 umliegenden Städten.";
@@ -97,6 +98,25 @@ export const websiteSchema = {
   publisher: { "@id": businessId },
 };
 
+/**
+ * Der Inhaber als eigene Entität. Er wird auf /ueber-uns/ und im Impressum
+ * namentlich genannt, war bisher aber nirgends ausgezeichnet. Für E-E-A-T
+ * zählt, dass hinter dem Betrieb eine benennbare Person steht.
+ *
+ * Bewusst ohne Gründungsangabe: "1974" ist laut Kunde der Markenname, nicht
+ * das Gründungsjahr — founder/foundingDate würde hier etwas behaupten, was
+ * nicht belegt ist.
+ */
+export const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": personId,
+  name: "Ajub Akbari",
+  jobTitle: "Inhaber",
+  worksFor: { "@id": businessId },
+  url: absoluteUrl("/ueber-uns/"),
+};
+
 interface ServiceSchemaInput {
   /** Anzeigename der Leistung, z. B. "Büroreinigung Stuttgart". */
   name: string;
@@ -148,11 +168,21 @@ export function webPageSchema({
   name,
   description,
   path,
+  speakable,
+  mentions,
 }: {
   type: "ContactPage" | "AboutPage" | "CollectionPage" | "WebPage";
   name: string;
   description: string;
   path: string;
+  /**
+   * CSS-Selektoren der Abschnitte, die sich zum Vorlesen eignen.
+   * Sprachassistenten greifen darauf zu; kein Ranking-Faktor, aber ohne
+   * die Auszeichnung wird gar nichts vorgelesen.
+   */
+  speakable?: string[];
+  /** Weitere Entitäten, auf die sich die Seite bezieht (z. B. der Inhaber). */
+  mentions?: { "@id": string }[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -164,5 +194,14 @@ export function webPageSchema({
     inLanguage: "de-DE",
     isPartOf: { "@id": websiteId },
     about: { "@id": businessId },
+    ...(speakable
+      ? {
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: speakable,
+          },
+        }
+      : {}),
+    ...(mentions ? { mentions } : {}),
   };
 }

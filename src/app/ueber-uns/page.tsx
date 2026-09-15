@@ -2,7 +2,7 @@ import { pageMeta } from "@/lib/seo";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner } from "@/components/sections";
 import { Container, JsonLd } from "@/components/ui";
-import { webPageSchema } from "@/lib/schema";
+import { personId, personSchema, webPageSchema } from "@/lib/schema";
 import { Stats } from "@/components/Stats";
 
 export const metadata = pageMeta({
@@ -22,12 +22,14 @@ const aboutLd = webPageSchema({
   description:
     "Cleanmaster 1974 ist ein familiengeführtes Unternehmen für Gebäudereinigung und Facility Services mit Sitz in Stuttgart.",
   path: "/ueber-uns/",
+  mentions: [{ "@id": personId }],
 });
 
 export default function UeberUnsPage() {
   return (
     <>
       <JsonLd data={aboutLd} />
+      <JsonLd data={personSchema} />
       <PageHero
         crumbs={[{ label: "Über uns" }]}
         overline="Über uns"

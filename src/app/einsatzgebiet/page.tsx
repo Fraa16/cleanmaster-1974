@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container, JsonLd } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 import { PageHero } from "@/components/page-blocks";
-import { CtaBanner, QuestionSection } from "@/components/sections";
+import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { RegionMap } from "@/components/RegionMap";
 import { IconArrowRight } from "@/components/icons";
 import { activeCities } from "@/lib/cities";
@@ -43,7 +43,31 @@ const collectionLd = webPageSchema({
   description:
     "Alle Städte, in denen Cleanmaster 1974 Gebäudereinigung und Treppenhausreinigung anbietet: Stuttgart und 17 Städte der Region.",
   path: PATH,
+  speakable: ["#ausserhalb-antwort"],
 });
+
+/**
+ * Fragen rund um das Einsatzgebiet. Bewusst andere Blickwinkel als die
+ * Städte-Frage auf der Startseite, damit sich die FAQ-Blöcke nicht doppeln.
+ */
+const faqItems = [
+  {
+    q: "Fallen für Objekte außerhalb von Stuttgart Anfahrtskosten an?",
+    a: "Nein. Der Preis richtet sich nach Fläche, Leistungsumfang und Turnus, nicht nach der Entfernung. Für ein Objekt in Ludwigsburg gelten dieselben Sätze wie für eines in Stuttgart. Nachberechnungen für Anfahrt, Material oder Mehraufwand gibt es bei Cleanmaster 1974 grundsätzlich nicht.",
+  },
+  {
+    q: "Betreut Cleanmaster 1974 Objekte in mehreren Städten mit einem Vertrag?",
+    a: "Ja. Hausverwaltungen und Eigentümer mit verteiltem Bestand erhalten einen Vertrag und eine Rechnung für alle Objekte, unabhängig davon, in welcher Stadt sie liegen. Abgerechnet wird pro Objekt, ausgewiesen auf einer gemeinsamen Rechnung. Das vereinfacht die Betriebskostenabrechnung spürbar, weil Sie die Positionen je Haus direkt übernehmen können.",
+  },
+  {
+    q: "Wer ist bei Objekten in mehreren Städten mein Ansprechpartner?",
+    a: "Einer, für den gesamten Bestand. Sie koordinieren nicht mehrere Standortleitungen, sondern sprechen vom Angebot bis zur Rechnung mit derselben Person. Vor Ort arbeitet je Revier ein festes Team, sodass die Reinigungskräfte in Ihrem Objekt gleich bleiben und das Haus kennen.",
+  },
+  {
+    q: "Wie schnell ist ein Team vor Ort, wenn kurzfristig etwas anfällt?",
+    a: "Das Einsatzgebiet ist in feste Reviere geteilt, die Anfahrten bleiben dadurch kurz. Kommt eine Sonder- oder Grundreinigung kurzfristig dazu, stimmen wir den Termin nach Auslastung ab und sagen verbindlich zu oder ab. Eine Zusage von uns gilt dann auch, selbst wenn vor Ort mehr Aufwand anfällt als besprochen.",
+  },
+];
 
 const itemListLd = {
   "@context": "https://schema.org",
@@ -177,9 +201,14 @@ export default function EinsatzgebietPage() {
         </Container>
       </section>
 
-      <section className="py-14 sm:py-18">
+      <section className="pb-14 sm:pb-18">
+        <Faq title="Häufige Fragen zum Einsatzgebiet" items={faqItems} />
+      </section>
+
+      <section className="pb-14 sm:pb-18">
         <QuestionSection
           title="Reinigt Cleanmaster 1974 auch außerhalb dieser 18 Städte?"
+          bodyId="ausserhalb-antwort"
           cta={{ href: "/kontakt/", label: "Objekt anfragen" }}
         >
           <p>
