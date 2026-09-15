@@ -38,3 +38,13 @@ export const cityBySlug = (slug: string) =>
   cities.find((c) => c.slug === slug);
 
 export const cityNames = cities.map((c) => c.name);
+
+/** Aufzählung in deutscher Schreibweise: "A, B und C". */
+export const formatCityList = (names: string[]) =>
+  names.length <= 1
+    ? (names[0] ?? "")
+    : `${names.slice(0, -1).join(", ")} und ${names[names.length - 1]}`;
+
+/** Namen der Nachbarstädte zu den Slugs aus city-content.ts. */
+export const neighborNames = (slugs: string[]) =>
+  slugs.map((slug) => cityBySlug(slug)?.name).filter((n): n is string => Boolean(n));

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { JsonLd } from "@/components/ui";
@@ -13,25 +13,29 @@ const serviceLd = serviceSchema({
   description: service?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Glas- & Fensterreinigung Stuttgart | Cleanmaster 1974",
   description:
     "Glas- und Fensterreinigung in Stuttgart ✓ Rahmen und Falze inklusive ✓ auch Schaufenster und Glasfassaden ✓ Festpreis nach Besichtigung. Jetzt anfragen!",
-  alternates: { canonical: "/leistungen/glasreinigung-fensterreinigung/" },
-};
+  path: "/leistungen/glasreinigung-fensterreinigung/",
+  image: {
+    src: "/images/fenster.jpg",
+    alt: "Fensterreinigung einer Glasfassade mit Einwascher am Teleskopstiel",
+  },
+});
 
 const faqItems = [
   {
     q: "Reinigt Cleanmaster 1974 auch für Privathaushalte?",
-    a: "Ja. Fensterreinigung bieten wir auch für Wohnungen und Häuser an, als Einzeltermin oder im festen Turnus. Der Preis steht nach kurzer Besichtigung oder Fotoeinschätzung fest. Privathaushalte können die Arbeitskosten zudem als haushaltsnahe Dienstleistung steuerlich geltend machen.",
+    a: "Ja. Fensterreinigung bieten wir auch für Wohnungen und Häuser an, als Einzeltermin oder im festen Turnus. Der Preis steht nach kurzer Besichtigung oder Fotoeinschätzung fest. Privathaushalte können die Arbeitskosten zudem als haushaltsnahe Dienstleistung steuerlich geltend machen. Dafür verlangt das Finanzamt eine Rechnung mit getrennt ausgewiesenem Arbeitsanteil und Zahlung per Überweisung.",
   },
   {
     q: "Was passiert bei Regen am Reinigungstag?",
-    a: "Leichter Regen ist kein Problem, das Ergebnis bleibt streifenfrei. Bei starkem Regen oder Sturm verschieben wir den Termin in Absprache mit Ihnen, ohne Zusatzkosten.",
+    a: "Leichter Regen ist kein Problem, das Ergebnis bleibt streifenfrei. Bei starkem Regen oder Sturm verschieben wir den Termin in Absprache mit Ihnen, ohne Zusatzkosten. Dass sich Fensterreinigung bei Regenwetter grundsätzlich nicht lohnt, ist ein Irrtum: Sauberes Glas bleibt auch nach einem Schauer klar, Schlieren entstehen erst durch Staub und Pollen.",
   },
   {
     q: "Sind Sonderflächen wie Wintergärten oder Glasdächer möglich?",
-    a: "Ja. Wintergärten, Glasdächer, Lichtkuppeln und Trennwände aus Glas nehmen wir nach Besichtigung ins Angebot auf. Auch hier gilt der Festpreis, unabhängig davon, wie lange die Reinigung tatsächlich dauert.",
+    a: "Ja. Wintergärten, Glasdächer, Lichtkuppeln und Trennwände aus Glas nehmen wir nach Besichtigung ins Angebot auf. Auch hier gilt der Festpreis, unabhängig davon, wie lange die Reinigung tatsächlich dauert. Bei schwer zugänglichen Flächen arbeiten wir mit Teleskop- und Osmosetechnik, sodass in vielen Fällen weder Gerüst noch Hebebühne nötig sind.",
   },
 ];
 

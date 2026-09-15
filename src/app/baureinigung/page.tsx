@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, DarkFeatureSection, Faq, QuestionSection } from "@/components/sections";
 import { JsonLd } from "@/components/ui";
@@ -12,12 +12,16 @@ const serviceLd = serviceSchema({
   description: serviceBySlug("baureinigung")?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Baureinigung Stuttgart | Bauendreinigung | Cleanmaster 1974",
   description:
     "Baureinigung in Stuttgart ✓ Baugrob-, Bauzwischen- und Bauendreinigung ✓ abgestimmt auf Ihren Bauzeitenplan ✓ Festpreis. Jetzt Angebot anfordern!",
-  alternates: { canonical: "/baureinigung/" },
-};
+  path: "/baureinigung/",
+  image: {
+    src: "/images/baureinigung.jpg",
+    alt: "Baureinigung: Entfernen von Bauschutt und Mörtelresten nach dem Innenausbau",
+  },
+});
 
 const stages = [
   {
@@ -37,15 +41,15 @@ const stages = [
 const faqItems = [
   {
     q: "Für wen arbeitet Cleanmaster 1974 auf der Baustelle?",
-    a: "Für Bauunternehmen, Bauträger, Handwerksbetriebe, Hausverwaltungen und private Bauherren. Ob einzelne Wohnung nach Sanierung oder kompletter Neubau mit mehreren Einheiten: Der Ablauf ist derselbe, Besichtigung oder Planunterlagen, Festpreis, fester Termin.",
+    a: "Für Bauunternehmen, Bauträger, Handwerksbetriebe, Hausverwaltungen und private Bauherren. Ob einzelne Wohnung nach Sanierung oder kompletter Neubau mit mehreren Einheiten: Der Ablauf ist derselbe, Besichtigung oder Planunterlagen, Festpreis, fester Termin. Auch Gewerbeflächen vor der Erstvermietung gehören dazu. Ihr Ansprechpartner bleibt vom Angebot bis zur Abnahme derselbe.",
   },
   {
     q: "Wie schnell kann eine Bauendreinigung stattfinden?",
-    a: "Nennen Sie uns Ihren Übergabetermin, wir sagen verbindlich zu oder ab. Kurzfristige Einsätze sind je nach Auslastung möglich.",
+    a: "Nennen Sie uns Ihren Übergabetermin, wir sagen verbindlich zu oder ab. Kurzfristige Einsätze sind je nach Auslastung möglich. Melden Sie sich am besten, sobald der Übergabetermin steht: Dann reservieren wir das Team fest für Ihr Objekt und die Abnahme gerät nicht in Verzug. Eine Zusage von uns gilt, auch wenn der Aufwand größer ausfällt als erwartet.",
   },
   {
     q: "Ist die Entsorgung von Bauschutt enthalten?",
-    a: "Die Entsorgung von Kleinmengen und Verpackungsmaterial nehmen wir ins Angebot auf. Den genauen Umfang der Entsorgung legen wir im Angebot fest.",
+    a: "Die Entsorgung von Kleinmengen und Verpackungsmaterial nehmen wir ins Angebot auf. Den genauen Umfang der Entsorgung legen wir im Angebot fest. Fällt auf Ihrer Baustelle mehr an, etwa nach einer Entkernung, besprechen wir das bei der Besichtigung und halten Container und Entsorgung ebenfalls schriftlich fest. So steht vor Beginn fest, was enthalten ist.",
   },
 ];
 

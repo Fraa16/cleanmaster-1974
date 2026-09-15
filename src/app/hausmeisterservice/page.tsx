@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
@@ -13,12 +13,16 @@ const serviceLd = serviceSchema({
   description: serviceBySlug("hausmeisterservice")?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Hausmeisterservice Stuttgart & Region | Cleanmaster 1974",
   description:
     "Hausmeisterservice in Stuttgart ✓ Kontrollgänge, Kleinreparaturen, Grünpflege, Winterdienst ✓ ein Ansprechpartner fürs ganze Objekt. Jetzt Angebot anfordern!",
-  alternates: { canonical: "/hausmeisterservice/" },
-};
+  path: "/hausmeisterservice/",
+  image: {
+    src: "/images/hausmeisterservice.jpg",
+    alt: "Hausmeisterservice: gepflegter Eingangsbereich eines Gewerbeobjekts",
+  },
+});
 
 const faqItems = [
   {
@@ -27,11 +31,11 @@ const faqItems = [
   },
   {
     q: "Wie oft kommt der Hausmeister ins Objekt?",
-    a: "So oft, wie es das Leistungsverzeichnis vorsieht: von einem wöchentlichen Kontrollgang bis zur täglichen Präsenz in großen Anlagen. Den passenden Turnus empfehlen wir nach der kostenlosen Objektbesichtigung.",
+    a: "So oft, wie es das Leistungsverzeichnis vorsieht: von einem wöchentlichen Kontrollgang bis zur täglichen Präsenz in großen Anlagen. Den passenden Turnus empfehlen wir nach der kostenlosen Objektbesichtigung. Grünpflege und Winterdienst laufen saisonal in eigenem Rhythmus. Ändert sich der Bedarf, passen wir den Turnus zum Folgemonat an, der Preis wird dann neu vereinbart.",
   },
   {
     q: "Was passiert bei Notfällen im Objekt?",
-    a: "Mieter und Verwaltung erreichen ihren festen Ansprechpartner direkt, nicht eine anonyme Hotline. Wie die Erreichbarkeit für Ihr Objekt geregelt wird, legen wir gemeinsam im Leistungsverzeichnis fest.",
+    a: "Mieter und Verwaltung erreichen ihren festen Ansprechpartner direkt, nicht eine anonyme Hotline. Wie die Erreichbarkeit für Ihr Objekt geregelt wird, legen wir gemeinsam im Leistungsverzeichnis fest. Bei Wasserschäden, ausgefallener Beleuchtung oder blockierten Zugängen kümmern wir uns um die Sofortmaßnahme und informieren die Verwaltung. Arbeiten, die ein Fachbetrieb übernehmen muss, koordinieren wir auf Wunsch.",
   },
 ];
 
@@ -48,8 +52,11 @@ export default function HausmeisterservicePage() {
         overline="Leistung · Objektbetreuung"
         title="Hausmeisterservice Stuttgart"
         intro="Cleanmaster 1974 übernimmt den Hausmeisterservice für Wohnanlagen und Gewerbeobjekte in Stuttgart und der Region: regelmäßige Kontrollgänge, Kleinreparaturen, Grünpflege, Mülltonnendienst und Winterdienst. Umfang und Turnus regelt ein Leistungsverzeichnis, abgerechnet wird über eine monatliche Pauschale. Hausverwaltungen und Eigentümer erhalten einen festen Ansprechpartner für das gesamte Objekt."
-        variant="dark"
-        icon="hausmeister"
+        variant="banner"
+        image={{
+          src: "/images/hausmeisterservice.jpg",
+          alt: "Hausmeisterservice: gepflegter Eingangsbereich eines Gewerbeobjekts",
+        }}
       />
 
       {/* Frage-Karte überlappt die dunkle Hero-Kante (erst ab sm, mobil kein Überlapp) */}

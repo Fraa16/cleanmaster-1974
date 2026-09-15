@@ -3,7 +3,7 @@ import { Logo } from "@/components/Logo";
 import { JsonLd } from "@/components/ui";
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
-import { businessSchema } from "@/lib/schema";
+import { businessSchema, websiteSchema } from "@/lib/schema";
 import { IconArrowRight, IconMail, IconPhone, IconPin } from "@/components/icons";
 
 /** Entity-Absatz von /ueber-uns/ (GEO-Anker, Copy-Vorgabe) */
@@ -14,6 +14,7 @@ export function Footer() {
   return (
     <footer className="grain relative overflow-hidden bg-navy-950 text-navy-200">
       <JsonLd data={businessSchema} />
+      <JsonLd data={websiteSchema} />
 
       {/* Wasserzeichen */}
       <span
@@ -33,9 +34,9 @@ export function Footer() {
           </div>
 
           <nav aria-label="Leistungen">
-            <h2 className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-navy-400">
+            <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-navy-400">
               Leistungen
-            </h2>
+            </p>
             <ul className="space-y-1 text-sm">
               {services.map((s) => (
                 <li key={s.slug}>
@@ -51,12 +52,13 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Unternehmen">
-            <h2 className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-navy-400">
+            <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-navy-400">
               Unternehmen
-            </h2>
+            </p>
             <ul className="space-y-1 text-sm">
               {[
                 { href: "/leistungen/", label: "Alle Leistungen" },
+                { href: "/einsatzgebiet/", label: "Einsatzgebiet" },
                 { href: "/ueber-uns/", label: "Über uns" },
                 { href: "/kontakt/", label: "Kontakt" },
                 { href: "/impressum/", label: "Impressum" },
@@ -75,9 +77,9 @@ export function Footer() {
           </nav>
 
           <div>
-            <h2 className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-navy-400">
+            <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-navy-400">
               Kontakt
-            </h2>
+            </p>
             <ul className="space-y-3.5 text-sm">
               <li>
                 <a

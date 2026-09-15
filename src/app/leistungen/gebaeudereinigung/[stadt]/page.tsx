@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { activeCities, cityBySlug } from "@/lib/cities";
+import {
+  activeCities,
+  cityBySlug,
+  formatCityList,
+  neighborNames,
+} from "@/lib/cities";
 import { cityContent } from "@/lib/city-content";
 import { ContentSection, NeighborLinks, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { Container, JsonLd } from "@/components/ui";
 import { cityHeroImage } from "@/lib/services";
 import { serviceSchema } from "@/lib/schema";
+import { pageMeta } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ stadt: string }>;
@@ -23,11 +29,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { stadt } = await params;
   const city = cityBySlug(stadt);
   if (!city) return {};
-  return {
+  const cityIndex = activeCities.findIndex((c) => c.slug === stadt);
+  return pageMeta({
     title: `Gebäudereinigung ${city.name} | Festpreis | Cleanmaster 1974`,
     description: `Gebäudereinigung in ${city.name} vom Familienbetrieb ✓ Unterhaltsreinigung ✓ Gewerbe & Wohnanlagen ✓ Festpreis-Garantie. Jetzt kostenloses Angebot anfordern!`,
-    alternates: { canonical: `/leistungen/gebaeudereinigung/${stadt}/` },
-  };
+    path: `/leistungen/gebaeudereinigung/${stadt}/`,
+    image: cityHeroImage("gebaeudereinigung", city.name, cityIndex),
+  });
 }
 
 export default async function GebaeudereinigungStadtPage({ params }: Props) {
@@ -37,27 +45,29 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
   if (!city || !content) notFound();
 
   const cityIndex = activeCities.findIndex((c) => c.slug === stadt);
+  const nearby = formatCityList(neighborNames(content.neighbors));
 
   const serviceLd = serviceSchema({
     name: `Gebäudereinigung ${city.name}`,
     path: `/leistungen/gebaeudereinigung/${stadt}/`,
     serviceType: "Gebäudereinigung",
     description: `Unterhaltsreinigung nach Leistungsverzeichnis für Gewerbeflächen, Praxen und Wohnanlagen in ${city.name}, zum festen monatlichen Pauschalpreis nach kostenloser Besichtigung.`,
-    areaServedNames: [city.name],
+    areaServedNames: [city.name, ...neighborNames(content.neighbors)],
+    image: cityHeroImage("gebaeudereinigung", city.name, cityIndex).src,
   });
 
   const faqItems = [
     {
       q: `Welche Objekte reinigt Cleanmaster 1974 in ${city.name}?`,
-      a: "Bürogebäude, Praxen, Ladenflächen, Wohnanlagen und Gewerbeobjekte. Auch gemischt genutzte Häuser mit Gewerbe im Erdgeschoss und Wohnungen darüber betreuen wir mit einem Vertrag. Für reine Treppenhausreinigung gibt es ein eigenes Angebot.",
+      a: `In ${city.name} reinigen wir Bürogebäude, Praxen, Ladenflächen, Wohnanlagen und Gewerbeobjekte. Auch gemischt genutzte Häuser mit Gewerbe im Erdgeschoss und Wohnungen darüber betreuen wir mit einem Vertrag. Für reine Treppenhausreinigung in ${city.name} gibt es ein eigenes Angebot. Was genau gereinigt wird, hält das Leistungsverzeichnis fest.`,
     },
     {
-      q: "Wie oft wird gereinigt?",
-      a: "Den Turnus legen Sie fest: täglich, mehrmals pro Woche, wöchentlich oder vierzehntägig. Bei der Besichtigung empfehlen wir einen Turnus, der zu Nutzung und Publikumsverkehr des Objekts passt. Der Turnus lässt sich später anpassen, der Preis wird dann neu vereinbart.",
+      q: `Wie oft wird in ${city.name} gereinigt?`,
+      a: `Den Turnus legen Sie fest: täglich, mehrmals pro Woche, wöchentlich oder vierzehntägig. Bei der Besichtigung in ${city.name} empfehlen wir einen Turnus, der zu Nutzung und Publikumsverkehr des Objekts passt. Der Turnus lässt sich später anpassen, der Preis wird dann neu vereinbart.`,
     },
     {
-      q: "Übernimmt Cleanmaster 1974 auch mehrere Objekte gleichzeitig?",
-      a: `Ja. Hausverwaltungen und Eigentümer mit mehreren Objekten in ${city.name} und der Region erhalten einen Vertrag, eine Rechnung und einen Ansprechpartner für den gesamten Bestand.`,
+      q: `Übernimmt Cleanmaster 1974 auch mehrere Objekte in ${city.name} gleichzeitig?`,
+      a: `Ja. Hausverwaltungen und Eigentümer mit mehreren Objekten in ${city.name} und der Region erhalten einen Vertrag, eine Rechnung und einen Ansprechpartner für den gesamten Bestand. Das gilt auch, wenn weitere Häuser in ${nearby} liegen. Abgerechnet wird pro Objekt, ausgewiesen auf einer gemeinsamen Rechnung.`,
     },
   ];
 
@@ -113,6 +123,8 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
             oder Sonderreinigungen einen Festpreis nach kostenloser
             Besichtigung. Nachberechnungen für Anfahrt, Material oder
             Mehraufwand gibt es nicht, der Angebotspreis ist verbindlich.
+            Für Objekte in {city.name} rechnen wir dieselben Sätze wie in{" "}
+            {nearby}, die Anfahrt schlägt sich nicht im Preis nieder.
           </p>
         </QuestionSection>
       </section>

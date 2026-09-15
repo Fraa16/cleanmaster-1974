@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { JsonLd } from "@/components/ui";
@@ -12,25 +12,29 @@ const serviceLd = serviceSchema({
   description: serviceBySlug("taubenabwehr")?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Taubenabwehr Stuttgart | Spikes & Netze | Cleanmaster 1974",
   description:
     "Taubenabwehr in Stuttgart ✓ Spikes, Netze, Vergrämung ✓ inkl. Reinigung und Desinfektion ✓ tierschutzkonform. Jetzt kostenlose Objektbesichtigung anfragen!",
-  alternates: { canonical: "/leistungen/taubenabwehr/" },
-};
+  path: "/leistungen/taubenabwehr/",
+  image: {
+    src: "/images/taubenabwehr.jpg",
+    alt: "Taubenabwehr: montierte Taubenspikes auf den Fenstersimsen einer Bürofassade",
+  },
+});
 
 const faqItems = [
   {
     q: "Ist die Taubenabwehr tierschutzkonform?",
-    a: "Ja. Alle eingesetzten Systeme vergrämen die Tiere, ohne sie zu verletzen. Spikes und Netze verhindern das Landen und Nisten, mehr nicht. Maßnahmen, die Tiere verletzen oder einsperren, führt Cleanmaster 1974 nicht aus.",
+    a: "Ja. Alle eingesetzten Systeme vergrämen die Tiere, ohne sie zu verletzen. Spikes und Netze verhindern das Landen und Nisten, mehr nicht. Maßnahmen, die Tiere verletzen oder einsperren, führt Cleanmaster 1974 nicht aus. Tauben stehen in Deutschland unter dem Schutz des Tierschutzgesetzes: Vergrämung ist der zulässige Weg, Verletzen oder Töten nicht.",
   },
   {
     q: "Wie lange hält die Taubenabwehr?",
-    a: "Fachgerecht montierte Spikes und Edelstahl-Systeme halten viele Jahre, Netze ebenso, sofern sie korrekt gespannt sind. Bei der Montage achten wir auf geprüfte Materialqualität und dokumentieren die verbauten Systeme im Angebot.",
+    a: "Fachgerecht montierte Spikes und Edelstahl-Systeme halten viele Jahre, Netze ebenso, sofern sie korrekt gespannt sind. Bei der Montage achten wir auf geprüfte Materialqualität und dokumentieren die verbauten Systeme im Angebot. Entscheidend ist eine lückenlose Montage: Bleibt ein Sims frei, weichen die Tauben dorthin aus. Deshalb nehmen wir bei der Besichtigung die ganze Fassade auf.",
   },
   {
     q: "Übernimmt Cleanmaster 1974 auch die Reinigung nach Befall?",
-    a: "Ja, das ist der Regelfall. Vor der Montage werden befallene Flächen gereinigt und desinfiziert, sonst kehren die Tauben an den vertrauten Geruch zurück. Reinigung und Schutzmaßnahme stehen zusammen im Festpreis-Angebot.",
+    a: "Ja, das ist der Regelfall. Vor der Montage werden befallene Flächen gereinigt und desinfiziert, sonst kehren die Tauben an den vertrauten Geruch zurück. Reinigung und Schutzmaßnahme stehen zusammen im Festpreis-Angebot. Taubenkot ist gesundheitlich nicht harmlos, deshalb arbeiten unsere Mitarbeiter dabei mit Schutzausrüstung. Die Flächen werden erst nach der Desinfektion wieder freigegeben.",
   },
 ];
 
@@ -47,7 +51,11 @@ export default function TaubenabwehrPage() {
         overline="Leistung"
         title="Taubenabwehr Stuttgart"
         intro="Cleanmaster 1974 schützt Gebäude in Stuttgart und der Region vor Taubenbefall: mit Spikes, Spannnetzen und Vergrämungssystemen an Fassaden, Balkonen, Simsen und Dächern. Zur Leistung gehört auch die Reinigung und Desinfektion befallener Flächen. Alle Maßnahmen sind tierschutzkonform, die Tiere werden vergrämt, nicht verletzt."
-        icon="tauben"
+        variant="banner"
+        image={{
+          src: "/images/taubenabwehr.jpg",
+          alt: "Taubenabwehr: montierte Taubenspikes auf den Fenstersimsen einer Bürofassade",
+        }}
       />
 
       <ContentSection

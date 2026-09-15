@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { Container } from "@/components/ui";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Impressum | Cleanmaster 1974",
-  description: "Impressum von Cleanmaster 1974, Gebäudereinigung Stuttgart.",
-  robots: { index: false },
-  alternates: { canonical: "/impressum/" },
-};
+  description:
+    "Impressum von Cleanmaster 1974, Gebäudereinigung Stuttgart.",
+  path: "/impressum/",
+  noindex: true,
+});
 
 export default function ImpressumPage() {
   return (

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { JsonLd } from "@/components/ui";
@@ -12,25 +12,29 @@ const serviceLd = serviceSchema({
   description: serviceBySlug("entruempelung-haushaltsaufloesung")?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Entrümpelung Stuttgart zum Festpreis | Cleanmaster 1974",
   description:
     "Entrümpelung & Haushaltsauflösung in Stuttgart ✓ besenreine Übergabe ✓ verbindlicher Festpreis nach Besichtigung ✓ diskret. Jetzt kostenlos anfragen!",
-  alternates: { canonical: "/leistungen/entruempelung-haushaltsaufloesung/" },
-};
+  path: "/leistungen/entruempelung-haushaltsaufloesung/",
+  image: {
+    src: "/images/entruempelung.jpg",
+    alt: "Entrümpelung: Team von Cleanmaster 1974 trägt Umzugskartons aus einem Objekt",
+  },
+});
 
 const faqItems = [
   {
     q: "Wie schnell kann entrümpelt werden?",
-    a: "Nach der Besichtigung nennen wir Ihnen den nächstmöglichen Termin. Bei dringenden Fällen, etwa einer anstehenden Wohnungsübergabe, sagen Sie uns die Frist, wir sagen Ihnen verbindlich, ob wir sie halten.",
+    a: "Nach der Besichtigung nennen wir Ihnen den nächstmöglichen Termin. Bei dringenden Fällen, etwa einer anstehenden Wohnungsübergabe, sagen Sie uns die Frist, wir sagen Ihnen verbindlich, ob wir sie halten. Ein zugesagter Termin steht dann auch, selbst wenn vor Ort mehr Aufwand anfällt als geplant. Umgekehrt sagen wir lieber ab, als eine Frist zuzusagen, die wir nicht halten können.",
   },
   {
     q: "Was passiert mit noch brauchbaren Gegenständen?",
-    a: "Verwertbares trennen wir von Entsorgungsware und entsorgen fachgerecht nach Material. Dokumente, Fotos oder Wertgegenstände, die beim Räumen auftauchen, legen wir für Sie beiseite.",
+    a: "Verwertbares trennen wir von Entsorgungsware und entsorgen fachgerecht nach Material. Dokumente, Fotos oder Wertgegenstände, die beim Räumen auftauchen, legen wir für Sie beiseite. Gerade bei Haushaltsauflösungen nach einem Todesfall ist das wichtig: Was persönlich aussieht, wandert nicht in den Container, sondern in eine Kiste, die Sie in Ruhe durchsehen können.",
   },
   {
     q: "Entrümpelt Cleanmaster 1974 auch Gewerbeflächen?",
-    a: "Ja. Büros, Lager, Ladenflächen und Praxen räumen wir ebenso wie Privathaushalte, auf Wunsch außerhalb der Geschäftszeiten. Auch hier gilt: Festpreis nach Besichtigung, besenreine Übergabe zum vereinbarten Termin.",
+    a: "Ja. Büros, Lager, Ladenflächen und Praxen räumen wir ebenso wie Privathaushalte, auf Wunsch außerhalb der Geschäftszeiten. Auch hier gilt: Festpreis nach Besichtigung, besenreine Übergabe zum vereinbarten Termin. Bei Betriebsauflösungen und Mieterwechseln übernehmen wir auf Wunsch auch die Demontage von Einbauten und die anschließende Reinigung, damit die Fläche übergabefertig ist.",
   },
 ];
 

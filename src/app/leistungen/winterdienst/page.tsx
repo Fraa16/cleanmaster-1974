@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, ProcessSteps, QuestionSection } from "@/components/sections";
@@ -14,12 +14,16 @@ const serviceLd = serviceSchema({
   description: serviceBySlug("winterdienst")?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Winterdienst Stuttgart mit Festpreis | Cleanmaster 1974",
   description:
     "Winterdienst in Stuttgart und Region ✓ Räum- und Streupflicht erfüllt ✓ jeder Einsatz dokumentiert ✓ Saisonpauschale. Jetzt rechtzeitig Angebot sichern!",
-  alternates: { canonical: "/leistungen/winterdienst/" },
-};
+  path: "/leistungen/winterdienst/",
+  image: {
+    src: "/images/winterdienst.jpg",
+    alt: "Winterdienst: Räumen eines schneebedeckten Gehwegs vor einem Wohnhaus",
+  },
+});
 
 const steps = [
   {
@@ -56,19 +60,19 @@ const howToSchema = {
 const faqItems = [
   {
     q: "Was kostet der Winterdienst bei Cleanmaster 1974?",
-    a: "Der Preis richtet sich nach Fläche, Priorität und Erreichbarkeit des Objekts. Sie zahlen eine feste Saisonpauschale, unabhängig davon, wie oft geräumt werden muss. Damit bleibt der Winter kalkulierbar, auch in schneereichen Jahren. Das Angebot erstellen wir nach kostenloser Besichtigung.",
+    a: "Der Preis richtet sich nach Fläche, Priorität und Erreichbarkeit des Objekts. Sie zahlen eine feste Saisonpauschale, unabhängig davon, wie oft geräumt werden muss. Damit bleibt der Winter kalkulierbar, auch in schneereichen Jahren. Das Angebot erstellen wir nach kostenloser Besichtigung. Vereinbart wird die Saison, nicht der einzelne Einsatz.",
   },
   {
     q: "Muss ich anrufen, wenn es schneit?",
-    a: "Nein. Cleanmaster 1974 beobachtet die Wetterlage und fährt die vereinbarten Objekte automatisch an. Sie merken vom Winterdienst im Idealfall nur eines: Der Weg ist frei, bevor die ersten Mieter oder Mitarbeiter das Haus verlassen.",
+    a: "Nein. Cleanmaster 1974 beobachtet die Wetterlage und fährt die vereinbarten Objekte automatisch an. Sie merken vom Winterdienst im Idealfall nur eines: Der Weg ist frei, bevor die ersten Mieter oder Mitarbeiter das Haus verlassen. Jeder Einsatz wird dokumentiert, sodass Sie im Streitfall nachweisen können, wann geräumt und gestreut wurde.",
   },
   {
     q: "Was wird gestreut?",
-    a: "Abstumpfende Streumittel wie Splitt, wo es die kommunale Satzung verlangt. Die Frühjahrs-Beseitigung des Streuguts nehmen wir auf Wunsch mit ins Angebot. So bleibt nach dem Winter kein Splitt auf Ihren Wegen liegen.",
+    a: "Abstumpfende Streumittel wie Splitt, wo es die kommunale Satzung verlangt. Die Frühjahrs-Beseitigung des Streuguts nehmen wir auf Wunsch mit ins Angebot. So bleibt nach dem Winter kein Splitt auf Ihren Wegen liegen. Welches Streumittel auf welcher Fläche zulässig ist, richtet sich nach der Satzung der jeweiligen Kommune. Wir halten uns daran und vermerken es im Saisonvertrag.",
   },
   {
     q: "Übernimmt Cleanmaster 1974 auch Parkplätze und Zufahrten?",
-    a: "Ja. Neben Gehwegen räumen wir Zufahrten, Parkplätze, Eingangsbereiche und Rampen. Welche Flächen mit welcher Priorität bedient werden, legt der Saisonvertrag fest.",
+    a: "Ja. Neben Gehwegen räumen wir Zufahrten, Parkplätze, Eingangsbereiche und Rampen. Welche Flächen mit welcher Priorität bedient werden, legt der Saisonvertrag fest. Größere Flächen räumen wir maschinell, enge Wege und Treppen von Hand. Wo der Schnee abgelagert wird, klären wir vorher, damit weder Stellplätze noch Fluchtwege blockiert werden.",
   },
 ];
 
@@ -85,8 +89,11 @@ export default function WinterdienstPage() {
         overline="Leistung"
         title="Winterdienst Stuttgart"
         intro="Cleanmaster 1974 übernimmt den Winterdienst in Stuttgart und der Region: räumen, streuen und die Dokumentation jedes Einsatzes. Damit ist Ihre Räum- und Streupflicht als Eigentümer oder Verwalter erfüllt, auch bei Schneefall vor Sonnenaufgang. Abgerechnet wird über eine Saisonpauschale, die vor dem Winter verbindlich feststeht."
-        variant="dark"
-        icon="winter"
+        variant="banner"
+        image={{
+          src: "/images/winterdienst.jpg",
+          alt: "Winterdienst: Räumen eines schneebedeckten Gehwegs vor einem Wohnhaus",
+        }}
       />
 
       <ContentSection

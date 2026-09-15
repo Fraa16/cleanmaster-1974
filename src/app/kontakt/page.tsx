@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/page-blocks";
-import { Container } from "@/components/ui";
+import { Container, JsonLd } from "@/components/ui";
+import { webPageSchema } from "@/lib/schema";
 import {
   IconCheckCircle,
   IconMail,
@@ -15,16 +16,29 @@ const whatsappText =
   "Hallo Cleanmaster 1974, ich hätte gerne ein kostenloses Festpreis-Angebot. Mein Objekt: ";
 const whatsappHref = `${site.whatsappHref}?text=${encodeURIComponent(whatsappText)}`;
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Kontakt | Cleanmaster 1974 Gebäudereinigung Stuttgart",
   description:
     "Kontakt zu Cleanmaster 1974 ✓ kostenlose Objektbesichtigung ✓ verbindliches Festpreis-Angebot für Stuttgart und Region. Jetzt anrufen oder anfragen!",
-  alternates: { canonical: "/kontakt/" },
-};
+  path: "/kontakt/",
+  image: {
+    src: "/images/atmosphaere-detail.jpg",
+    alt: "Reinigungscaddy von Cleanmaster 1974 mit Mikrofasertüchern und Sprühflasche",
+  },
+});
+
+const contactLd = webPageSchema({
+  type: "ContactPage",
+  name: "Kontakt zu Cleanmaster 1974",
+  description:
+    "Kontaktwege zu Cleanmaster 1974: Telefon, WhatsApp, E-Mail und Anfrageformular für eine kostenlose Objektbesichtigung in Stuttgart und Region.",
+  path: "/kontakt/",
+});
 
 export default function KontaktPage() {
   return (
     <>
+      <JsonLd data={contactLd} />
       <PageHero
         crumbs={[{ label: "Kontakt" }]}
         overline="Kontakt"

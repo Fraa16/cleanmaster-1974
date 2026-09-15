@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { CheckList, ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { JsonLd } from "@/components/ui";
@@ -13,25 +13,29 @@ const serviceLd = serviceSchema({
   description: service?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Büroreinigung Stuttgart & Region | Cleanmaster 1974",
   description:
     "Büroreinigung in Stuttgart vom Familienbetrieb ✓ täglich oder wöchentlich ✓ festes Team ✓ monatlicher Pauschalpreis. Jetzt kostenlose Besichtigung vereinbaren!",
-  alternates: { canonical: "/leistungen/buero-reinigung/" },
-};
+  path: "/leistungen/buero-reinigung/",
+  image: {
+    src: "/images/buero.jpg",
+    alt: "Reinigungskraft von Cleanmaster 1974 wischt einen Tisch im Büro",
+  },
+});
 
 const faqItems = [
   {
     q: "Wie kurzfristig kann die Büroreinigung starten?",
-    a: "Nach der kostenlosen Besichtigung erhalten Sie das Angebot mit Festpreis. Sobald Sie freigeben, stimmen wir den Starttermin mit Ihnen ab.",
+    a: "Nach der kostenlosen Besichtigung erhalten Sie das Angebot mit Festpreis. Sobald Sie freigeben, stimmen wir den Starttermin mit Ihnen ab. Wie schnell es losgeht, hängt vor allem davon ab, wie schnell Zugang und Schlüsselübergabe geregelt sind. Diesen Vorlauf planen wir mit ein und nennen Ihnen den ersten Reinigungstermin verbindlich.",
   },
   {
     q: "Bringt Cleanmaster 1974 Reinigungsmittel und Geräte mit?",
-    a: "Ja. Reinigungsmittel, Maschinen und Verbrauchsmaterial sind im Pauschalpreis enthalten. Sie stellen nichts bereit und lagern nichts. Auf Wunsch füllen wir auch Seife, Handtuchpapier und Toilettenpapier auf und übernehmen die Nachbestellung.",
+    a: "Ja. Reinigungsmittel, Maschinen und Verbrauchsmaterial sind im Pauschalpreis enthalten. Sie stellen nichts bereit und lagern nichts. Auf Wunsch füllen wir auch Seife, Handtuchpapier und Toilettenpapier auf und übernehmen die Nachbestellung. Wünschen Sie bestimmte Produkte, etwa für empfindliche Böden, halten wir das im Leistungsverzeichnis fest.",
   },
   {
     q: "Was passiert bei Urlaub oder Krankheit des Reinigungsteams?",
-    a: "Cleanmaster 1974 stellt eine eingearbeitete Vertretung. Der Reinigungstermin fällt nicht aus, das Leistungsverzeichnis bleibt dasselbe. Ihr Ansprechpartner informiert Sie, wenn eine Vertretung im Einsatz ist.",
+    a: "Cleanmaster 1974 stellt eine eingearbeitete Vertretung. Der Reinigungstermin fällt nicht aus, das Leistungsverzeichnis bleibt dasselbe. Ihr Ansprechpartner informiert Sie, wenn eine Vertretung im Einsatz ist. Weil Leistungsverzeichnis und Objektplan schriftlich vorliegen, weiß auch die Vertretung, was in Ihrem Haus wann zu tun ist. An Umfang und Qualität ändert sich dadurch nichts.",
   },
 ];
 

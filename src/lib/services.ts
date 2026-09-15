@@ -83,6 +83,10 @@ export const services: Service[] = [
     teaser:
       "Wir räumen und streuen, bevor Mitarbeiter und Mieter aus dem Haus gehen. Ihre Räum- und Streupflicht ist damit erfüllt und jeder Einsatz dokumentiert.",
     icon: "winter",
+    image: {
+      src: "/images/winterdienst.jpg",
+      alt: "Winterdienst: Räumen eines schneebedeckten Gehwegs vor einem Wohnhaus",
+    },
   },
   {
     slug: "entruempelung-haushaltsaufloesung",
@@ -103,6 +107,10 @@ export const services: Service[] = [
     teaser:
       "Spikes, Netze und Vergrämung gegen Taubenbefall an Fassade, Balkon und Dach. Fachgerecht und tierschutzkonform.",
     icon: "tauben",
+    image: {
+      src: "/images/taubenabwehr.jpg",
+      alt: "Taubenabwehr: montierte Taubenspikes auf den Fenstersimsen einer Bürofassade",
+    },
   },
   {
     slug: "baureinigung",
@@ -123,6 +131,10 @@ export const services: Service[] = [
     teaser:
       "Laufende Objektbetreuung mit Kontrollgängen, Kleinreparaturen und Grünpflege. Ein Ansprechpartner für Ihr ganzes Objekt.",
     icon: "hausmeister",
+    image: {
+      src: "/images/hausmeisterservice.jpg",
+      alt: "Hausmeisterservice: gepflegter Eingangsbereich eines Gewerbeobjekts",
+    },
   },
   {
     slug: "abbrucharbeiten",
@@ -132,7 +144,7 @@ export const services: Service[] = [
       "Entkernung, Teilabbruch und Demontage vor Sanierung oder Umbau. Bauschutt sortenrein getrennt, besenrein übergeben, zum Festpreis nach Besichtigung.",
     icon: "abbruch",
     image: {
-      src: "/images/abbrucharbeiten.png",
+      src: "/images/abbrucharbeiten.jpg",
       alt: "Abbrucharbeiten: Entkernung und Teilabbruch eines Innenraums bis auf den Rohbau",
     },
   },

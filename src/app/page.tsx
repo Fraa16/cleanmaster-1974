@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { ButtonLink, Container, SectionHeading } from "@/components/ui";
@@ -21,12 +21,16 @@ import {
 } from "@/components/icons";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Gebäudereinigung Stuttgart & Region | Cleanmaster 1974",
   description:
     "Gebäudereinigung in Stuttgart vom Familienbetrieb ✓ Büroreinigung ✓ Treppenhausreinigung ✓ Winterdienst ✓ Festpreis-Garantie. Jetzt Angebot anfordern!",
-  alternates: { canonical: "/" },
-};
+  path: "/",
+  image: {
+    src: "/images/homepage-hero.jpg",
+    alt: "Reinigungskräfte von Cleanmaster 1974 bei der Arbeit in einem Büro in Stuttgart",
+  },
+});
 
 const whyItems = [
   {
@@ -77,7 +81,7 @@ const faqItems = [
   },
   {
     q: "Reinigt Cleanmaster 1974 auch für Privathaushalte?",
-    a: "Ja. Neben Gewerbe und Hausverwaltungen betreuen wir auch Privatkunden. Am häufigsten angefragt sind Entrümpelung, Haushaltsauflösung, Fensterreinigung und Winterdienst. Der Ablauf ist derselbe: kostenlose Besichtigung, schriftliches Festpreis-Angebot, fester Termin. Einzelne Leistungen können Privathaushalte zudem als haushaltsnahe Dienstleistungen steuerlich geltend machen.",
+    a: "Ja. Neben Gewerbe und Hausverwaltungen betreuen wir auch Privatkunden. Am häufigsten angefragt sind Entrümpelung, Haushaltsauflösung, Fensterreinigung und Winterdienst. Der Ablauf ist derselbe: kostenlose Besichtigung, schriftliches Festpreis-Angebot, fester Termin. Einzelne Leistungen können Privathaushalte zudem als haushaltsnahe Dienstleistungen steuerlich geltend machen. Voraussetzung ist eine Rechnung, die per Überweisung bezahlt wird.",
   },
   {
     q: "Übernimmt Cleanmaster 1974 auch die laufende Objektbetreuung?",

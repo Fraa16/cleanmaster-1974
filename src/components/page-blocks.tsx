@@ -377,6 +377,13 @@ export function NeighborLinks({
               </li>
             ))}
           </ul>
+          <Link
+            href="/einsatzgebiet/"
+            className="group mt-6 inline-flex items-center gap-2 text-sm font-bold text-sky-600 transition-colors hover:text-sky-700"
+          >
+            Alle 18 Städte im Einsatzgebiet
+            <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
         </div>
       </Reveal>
     </Container>
