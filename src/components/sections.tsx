@@ -345,13 +345,55 @@ export function QuestionSection({
 /* Regionale Abdeckung: Karte + Chips                                  */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Städte-Chips pro Leistung.
+ *
+ * Hintergrund (Search Console, Stand 12.09.2026): Von den 18 Stadtseiten zur
+ * Treppenhausreinigung standen 15 auf "Gefunden – zurzeit nicht indexiert",
+ * Google hatte sie also nie abgerufen. Die 18 Gebäudereinigungs-Stadtseiten
+ * waren ausnahmslos indexiert — der einzige strukturelle Unterschied war ein
+ * Link von der Startseite. Deshalb bekommt jede Leistung hier ihren eigenen
+ * Chip-Block.
+ */
+interface CityChipGroup {
+  label: string;
+  basePath: string;
+}
+
+const DEFAULT_GROUPS: CityChipGroup[] = [
+  { label: "Gebäudereinigung", basePath: "/leistungen/gebaeudereinigung/" },
+  { label: "Treppenhausreinigung", basePath: "/leistungen/treppenhausreinigung/" },
+];
+
+function CityChips({ label, basePath }: CityChipGroup) {
+  return (
+    <div>
+      <p className="mb-3 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-navy-500">
+        {label}
+      </p>
+      <ul className="flex flex-wrap gap-2">
+        {cities.map((city) => (
+          <li key={city.slug}>
+            <Link
+              href={`${basePath}${city.slug}/`}
+              className="inline-flex min-h-11 items-center rounded-full border border-line bg-white px-4 py-2.5 text-[0.8rem] font-semibold text-navy-700 transition-all duration-200 hover:-translate-y-px hover:border-sky-300 hover:text-sky-700"
+            >
+              {city.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function RegionSection({
   text,
-  basePath = "/leistungen/gebaeudereinigung/",
+  groups = DEFAULT_GROUPS,
 }: {
   text: string;
-  /** Ziel der Städte-Chips. Auf Treppenhaus-Seiten auf die passende Leistung umstellen. */
-  basePath?: string;
+  /** Je Leistung ein Chip-Block. Default: Gebäude- und Treppenhausreinigung. */
+  groups?: CityChipGroup[];
 }) {
   return (
     <Container>
@@ -365,18 +407,11 @@ export function RegionSection({
             />
           </Reveal>
           <Reveal delay={0.1}>
-            <ul className="flex flex-wrap gap-2">
-              {cities.map((city) => (
-                <li key={city.slug}>
-                  <Link
-                    href={`${basePath}${city.slug}/`}
-                    className="inline-flex min-h-11 items-center rounded-full border border-line bg-white px-4 py-2.5 text-[0.8rem] font-semibold text-navy-700 transition-all duration-200 hover:-translate-y-px hover:border-sky-300 hover:text-sky-700"
-                  >
-                    {city.name}
-                  </Link>
-                </li>
+            <div className="space-y-6">
+              {groups.map((g) => (
+                <CityChips key={g.basePath} {...g} />
               ))}
-            </ul>
+            </div>
             <Link
               href="/einsatzgebiet/"
               className="group mt-6 inline-flex items-center gap-2 text-sm font-bold text-sky-600 transition-colors hover:text-sky-700"
