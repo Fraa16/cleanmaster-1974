@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
@@ -13,12 +13,16 @@ const serviceLd = serviceSchema({
   description: serviceBySlug("hausmeisterservice")?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Hausmeisterservice Stuttgart & Region | Cleanmaster 1974",
   description:
     "Hausmeisterservice in Stuttgart ✓ Kontrollgänge, Kleinreparaturen, Grünpflege, Winterdienst ✓ ein Ansprechpartner fürs ganze Objekt. Jetzt Angebot anfordern!",
-  alternates: { canonical: "/hausmeisterservice/" },
-};
+  path: "/hausmeisterservice/",
+  image: {
+    src: "/images/hausmeisterservice.jpg",
+    alt: "Hausmeisterservice: gepflegter Eingangsbereich eines Gewerbeobjekts",
+  },
+});
 
 const faqItems = [
   {
@@ -48,8 +52,11 @@ export default function HausmeisterservicePage() {
         overline="Leistung · Objektbetreuung"
         title="Hausmeisterservice Stuttgart"
         intro="Cleanmaster 1974 übernimmt den Hausmeisterservice für Wohnanlagen und Gewerbeobjekte in Stuttgart und der Region: regelmäßige Kontrollgänge, Kleinreparaturen, Grünpflege, Mülltonnendienst und Winterdienst. Umfang und Turnus regelt ein Leistungsverzeichnis, abgerechnet wird über eine monatliche Pauschale. Hausverwaltungen und Eigentümer erhalten einen festen Ansprechpartner für das gesamte Objekt."
-        variant="dark"
-        icon="hausmeister"
+        variant="banner"
+        image={{
+          src: "/images/hausmeisterservice.jpg",
+          alt: "Hausmeisterservice: gepflegter Eingangsbereich eines Gewerbeobjekts",
+        }}
       />
 
       {/* Frage-Karte überlappt die dunkle Hero-Kante (erst ab sm, mobil kein Überlapp) */}

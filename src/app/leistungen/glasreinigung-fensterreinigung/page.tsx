@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { JsonLd } from "@/components/ui";
@@ -13,12 +13,16 @@ const serviceLd = serviceSchema({
   description: service?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Glas- & Fensterreinigung Stuttgart | Cleanmaster 1974",
   description:
     "Glas- und Fensterreinigung in Stuttgart ✓ Rahmen und Falze inklusive ✓ auch Schaufenster und Glasfassaden ✓ Festpreis nach Besichtigung. Jetzt anfragen!",
-  alternates: { canonical: "/leistungen/glasreinigung-fensterreinigung/" },
-};
+  path: "/leistungen/glasreinigung-fensterreinigung/",
+  image: {
+    src: "/images/fenster.jpg",
+    alt: "Fensterreinigung einer Glasfassade mit Einwascher am Teleskopstiel",
+  },
+});
 
 const faqItems = [
   {

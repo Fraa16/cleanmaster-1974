@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { JsonLd } from "@/components/ui";
@@ -12,12 +12,16 @@ const serviceLd = serviceSchema({
   description: serviceBySlug("entruempelung-haushaltsaufloesung")?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Entrümpelung Stuttgart zum Festpreis | Cleanmaster 1974",
   description:
     "Entrümpelung & Haushaltsauflösung in Stuttgart ✓ besenreine Übergabe ✓ verbindlicher Festpreis nach Besichtigung ✓ diskret. Jetzt kostenlos anfragen!",
-  alternates: { canonical: "/leistungen/entruempelung-haushaltsaufloesung/" },
-};
+  path: "/leistungen/entruempelung-haushaltsaufloesung/",
+  image: {
+    src: "/images/entruempelung.jpg",
+    alt: "Entrümpelung: Team von Cleanmaster 1974 trägt Umzugskartons aus einem Objekt",
+  },
+});
 
 const faqItems = [
   {

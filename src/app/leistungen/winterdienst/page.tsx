@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, ProcessSteps, QuestionSection } from "@/components/sections";
@@ -14,12 +14,16 @@ const serviceLd = serviceSchema({
   description: serviceBySlug("winterdienst")?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Winterdienst Stuttgart mit Festpreis | Cleanmaster 1974",
   description:
     "Winterdienst in Stuttgart und Region ✓ Räum- und Streupflicht erfüllt ✓ jeder Einsatz dokumentiert ✓ Saisonpauschale. Jetzt rechtzeitig Angebot sichern!",
-  alternates: { canonical: "/leistungen/winterdienst/" },
-};
+  path: "/leistungen/winterdienst/",
+  image: {
+    src: "/images/winterdienst.jpg",
+    alt: "Winterdienst: Räumen eines schneebedeckten Gehwegs vor einem Wohnhaus",
+  },
+});
 
 const steps = [
   {
@@ -85,8 +89,11 @@ export default function WinterdienstPage() {
         overline="Leistung"
         title="Winterdienst Stuttgart"
         intro="Cleanmaster 1974 übernimmt den Winterdienst in Stuttgart und der Region: räumen, streuen und die Dokumentation jedes Einsatzes. Damit ist Ihre Räum- und Streupflicht als Eigentümer oder Verwalter erfüllt, auch bei Schneefall vor Sonnenaufgang. Abgerechnet wird über eine Saisonpauschale, die vor dem Winter verbindlich feststeht."
-        variant="dark"
-        icon="winter"
+        variant="banner"
+        image={{
+          src: "/images/winterdienst.jpg",
+          alt: "Winterdienst: Räumen eines schneebedeckten Gehwegs vor einem Wohnhaus",
+        }}
       />
 
       <ContentSection

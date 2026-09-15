@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { activeCities, cityBySlug } from "@/lib/cities";
+import {
+  activeCities,
+  cityBySlug,
+  formatCityList,
+  neighborNames,
+} from "@/lib/cities";
 import { cityContent } from "@/lib/city-content";
 import {
   CheckList,
@@ -13,6 +18,7 @@ import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { Container, JsonLd } from "@/components/ui";
 import { cityHeroImage } from "@/lib/services";
 import { serviceSchema } from "@/lib/schema";
+import { pageMeta } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ stadt: string }>;
@@ -28,11 +34,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { stadt } = await params;
   const city = cityBySlug(stadt);
   if (!city) return {};
-  return {
+  const cityIndex = activeCities.findIndex((c) => c.slug === stadt);
+  return pageMeta({
     title: `Treppenhausreinigung ${city.name} | Cleanmaster 1974`,
     description: `Treppenhausreinigung in ${city.name} für Hausverwaltungen & WEG ✓ fester Turnus ✓ Reinigungsplan im Objekt ✓ Pauschalpreis. Jetzt kostenloses Angebot anfordern!`,
-    alternates: { canonical: `/leistungen/treppenhausreinigung/${stadt}/` },
-  };
+    path: `/leistungen/treppenhausreinigung/${stadt}/`,
+    image: cityHeroImage("treppenhausreinigung", city.name, cityIndex),
+  });
 }
 
 export default async function TreppenhausreinigungStadtPage({ params }: Props) {
@@ -42,27 +50,29 @@ export default async function TreppenhausreinigungStadtPage({ params }: Props) {
   if (!city || !content) notFound();
 
   const cityIndex = activeCities.findIndex((c) => c.slug === stadt);
+  const nearby = formatCityList(neighborNames(content.neighbors));
 
   const serviceLd = serviceSchema({
     name: `Treppenhausreinigung ${city.name}`,
     path: `/leistungen/treppenhausreinigung/${stadt}/`,
     serviceType: "Treppenhausreinigung",
     description: `Treppenhausreinigung im festen Turnus nach Reinigungsplan für Hausverwaltungen, WEG und Vermieter in ${city.name}, zum monatlichen Pauschalpreis nach kostenloser Besichtigung.`,
-    areaServedNames: [city.name],
+    areaServedNames: [city.name, ...neighborNames(content.neighbors)],
+    image: cityHeroImage("treppenhausreinigung", city.name, cityIndex).src,
   });
 
   const faqItems = [
     {
-      q: "In welchem Turnus wird das Treppenhaus gereinigt?",
-      a: "Üblich ist wöchentlich oder vierzehntägig, bei Objekten mit viel Publikumsverkehr auch zweimal pro Woche. Den Turnus legen Sie fest, wir empfehlen bei der Besichtigung einen passenden Rhythmus. Eine Anpassung ist jederzeit zum Folgemonat möglich.",
+      q: `In welchem Turnus wird das Treppenhaus in ${city.name} gereinigt?`,
+      a: `Üblich ist wöchentlich oder vierzehntägig, bei Objekten mit viel Publikumsverkehr auch zweimal pro Woche. Den Turnus legen Sie fest, wir empfehlen bei der Besichtigung in ${city.name} einen passenden Rhythmus. Eine Anpassung ist jederzeit zum Folgemonat möglich.`,
     },
     {
-      q: "Sind die Kosten auf die Mieter umlegbar?",
+      q: `Sind die Kosten der Treppenhausreinigung in ${city.name} auf die Mieter umlegbar?`,
       a: "In der Regel ja. Gebäudereinigung zählt zu den umlagefähigen Betriebskosten, sofern der Mietvertrag die Umlage vorsieht. Die monatliche Pauschale von Cleanmaster 1974 lässt sich dafür direkt in die Betriebskostenabrechnung übernehmen. Im Zweifel prüft das Ihre Hausverwaltung oder Ihr Rechtsbeistand.",
     },
     {
-      q: "Betreut Cleanmaster 1974 auch mehrere Häuser einer Verwaltung?",
-      a: `Ja. Für Hausverwaltungen mit Bestand in ${city.name} und der Region bündeln wir alle Objekte in einem Vertrag mit einer Rechnung. Reklamationen laufen über einen festen Ansprechpartner, nicht über eine Hotline.`,
+      q: `Betreut Cleanmaster 1974 auch mehrere Häuser einer Verwaltung in ${city.name}?`,
+      a: `Ja. Für Hausverwaltungen mit Bestand in ${city.name} und der Region bündeln wir alle Objekte in einem Vertrag mit einer Rechnung. Häuser in ${nearby} laufen über denselben Vertrag. Reklamationen gehen an einen festen Ansprechpartner, nicht an eine Hotline.`,
     },
   ];
 
@@ -127,7 +137,9 @@ export default async function TreppenhausreinigungStadtPage({ params }: Props) {
             Besichtigung einen monatlichen Pauschalpreis pro Objekt. Für
             Vermieter wichtig: Die Kosten der Treppenhausreinigung sind in der
             Regel als Betriebskosten auf die Mieter umlagefähig, wenn der
-            Mietvertrag das vorsieht.
+            Mietvertrag das vorsieht. Verwaltungen, die neben {city.name} auch
+            in {nearby} Häuser betreuen, erhalten alle Objekte in einem
+            Angebot.
           </p>
         </QuestionSection>
       </section>

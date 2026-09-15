@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { CheckList, ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
@@ -14,12 +14,16 @@ const serviceLd = serviceSchema({
   description: service?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Abbrucharbeiten Stuttgart | Rückbau & Entkernung | Cleanmaster 1974",
   description:
     "Abbrucharbeiten in Stuttgart ✓ Entkernung ✓ Teilabbruch ✓ Demontage ✓ Entsorgung inklusive ✓ Festpreis nach Besichtigung. Jetzt Angebot anfordern!",
-  alternates: { canonical: "/leistungen/abbrucharbeiten/" },
-};
+  path: "/leistungen/abbrucharbeiten/",
+  image: {
+    src: "/images/abbrucharbeiten.jpg",
+    alt: "Abbrucharbeiten: Entkernung und Teilabbruch eines Innenraums bis auf den Rohbau",
+  },
+});
 
 const faqItems = [
   {

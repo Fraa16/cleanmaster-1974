@@ -1,14 +1,18 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { Container } from "@/components/ui";
 import { PageHero } from "@/components/page-blocks";
 import { CtaBanner, QuestionSection, ServiceGrid } from "@/components/sections";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Gebäudedienste Stuttgart im Überblick | Cleanmaster 1974",
   description:
     "Alle Leistungen von Cleanmaster 1974 für Stuttgart und Region ✓ Reinigung ✓ Winterdienst ✓ Hausmeisterservice ✓ Entrümpelung. Jetzt Angebot anfordern!",
-  alternates: { canonical: "/leistungen/" },
-};
+  path: "/leistungen/",
+  image: {
+    src: "/images/gebaeude.jpg",
+    alt: "Unterhaltsreinigung: maschinelle Bodenreinigung in einem Gewerbeobjekt",
+  },
+});
 
 export default function LeistungenPage() {
   return (

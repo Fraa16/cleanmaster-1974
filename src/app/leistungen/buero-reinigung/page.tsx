@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { CheckList, ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { JsonLd } from "@/components/ui";
@@ -13,12 +13,16 @@ const serviceLd = serviceSchema({
   description: service?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Büroreinigung Stuttgart & Region | Cleanmaster 1974",
   description:
     "Büroreinigung in Stuttgart vom Familienbetrieb ✓ täglich oder wöchentlich ✓ festes Team ✓ monatlicher Pauschalpreis. Jetzt kostenlose Besichtigung vereinbaren!",
-  alternates: { canonical: "/leistungen/buero-reinigung/" },
-};
+  path: "/leistungen/buero-reinigung/",
+  image: {
+    src: "/images/buero.jpg",
+    alt: "Reinigungskraft von Cleanmaster 1974 wischt einen Tisch im Büro",
+  },
+});
 
 const faqItems = [
   {

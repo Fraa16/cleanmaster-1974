@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, Faq, QuestionSection } from "@/components/sections";
 import { JsonLd } from "@/components/ui";
@@ -12,12 +12,16 @@ const serviceLd = serviceSchema({
   description: serviceBySlug("taubenabwehr")?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Taubenabwehr Stuttgart | Spikes & Netze | Cleanmaster 1974",
   description:
     "Taubenabwehr in Stuttgart ✓ Spikes, Netze, Vergrämung ✓ inkl. Reinigung und Desinfektion ✓ tierschutzkonform. Jetzt kostenlose Objektbesichtigung anfragen!",
-  alternates: { canonical: "/leistungen/taubenabwehr/" },
-};
+  path: "/leistungen/taubenabwehr/",
+  image: {
+    src: "/images/taubenabwehr.jpg",
+    alt: "Taubenabwehr: montierte Taubenspikes auf den Fenstersimsen einer Bürofassade",
+  },
+});
 
 const faqItems = [
   {
@@ -47,7 +51,11 @@ export default function TaubenabwehrPage() {
         overline="Leistung"
         title="Taubenabwehr Stuttgart"
         intro="Cleanmaster 1974 schützt Gebäude in Stuttgart und der Region vor Taubenbefall: mit Spikes, Spannnetzen und Vergrämungssystemen an Fassaden, Balkonen, Simsen und Dächern. Zur Leistung gehört auch die Reinigung und Desinfektion befallener Flächen. Alle Maßnahmen sind tierschutzkonform, die Tiere werden vergrämt, nicht verletzt."
-        icon="tauben"
+        variant="banner"
+        image={{
+          src: "/images/taubenabwehr.jpg",
+          alt: "Taubenabwehr: montierte Taubenspikes auf den Fenstersimsen einer Bürofassade",
+        }}
       />
 
       <ContentSection

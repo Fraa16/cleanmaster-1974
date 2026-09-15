@@ -2,8 +2,8 @@
  * Zentrale JSON-LD-Bausteine. Eine einzige Quelle für die Geschäfts-Entität,
  * damit Schema nicht über Footer/Kontakt/Startseite auseinanderläuft.
  *
- * Alle Werte stammen aus site.ts / cities.ts (keine Hardcodes). Bewusst NICHT
- * enthalten (bis belegbar):
+ * Alle Werte stammen aus site.ts / cities.ts / services.ts (keine Hardcodes).
+ * Bewusst NICHT enthalten (bis belegbar):
  *   - aggregateRating / review  → erst mit echten Google-Bewertungen
  *   - sameAs                    → erst wenn Social-Profile existieren
  *   - geo (lat/lng)             → exakte Koordinaten aus dem Google-Business-
@@ -11,12 +11,33 @@
  */
 import { site, absoluteUrl } from "@/lib/site";
 import { cityNames } from "@/lib/cities";
+import { services } from "@/lib/services";
 
-/** Stabile ID der Entität; als @id referenzierbar (z. B. als Service.provider). */
+/** Stabile IDs der Entitäten; als @id referenzierbar. */
 export const businessId = `${site.domain}/#business`;
+export const websiteId = `${site.domain}/#website`;
 
 const entityDescription =
   "Cleanmaster 1974 ist ein familiengeführtes Unternehmen für Gebäudereinigung und Facility Services mit Sitz in Stuttgart. Zu den Leistungen gehören Unterhaltsreinigung, Büroreinigung, Treppenhausreinigung, Glasreinigung, Winterdienst, Entrümpelung, Taubenabwehr, Baureinigung und Hausmeisterservice in Stuttgart und 17 umliegenden Städten.";
+
+/**
+ * Leistungskatalog: bindet die 10 Leistungsseiten als Offer-Knoten an die
+ * Geschäfts-Entität. Gibt Suchmaschinen und Antwortmaschinen eine maschinen-
+ * lesbare Antwort auf "Was bietet Cleanmaster 1974 an?".
+ */
+const offerCatalog = {
+  "@type": "OfferCatalog",
+  name: "Gebäudedienste in Stuttgart und Region",
+  itemListElement: services.map((s) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: s.title,
+      description: s.teaser,
+      url: absoluteUrl(s.href),
+    },
+  })),
+};
 
 /** Kanonische Geschäfts-Entität (LocalBusiness). Sitewide über den Footer gerendert. */
 export const businessSchema = {
@@ -31,11 +52,14 @@ export const businessSchema = {
   logo: `${site.domain}/cleanmaster1974-logo.svg`,
   image: `${site.domain}/opengraph-image.jpg`,
   priceRange: "$$",
+  currenciesAccepted: "EUR",
+  knowsLanguage: ["de"],
   address: {
     "@type": "PostalAddress",
     streetAddress: site.address.street,
     postalCode: site.address.zip,
     addressLocality: site.address.city,
+    addressRegion: "Baden-Württemberg",
     addressCountry: site.address.country,
   },
   // Öffnungs-/Erreichbarkeitszeiten (mit dem Google-Business-Profil identisch halten)
@@ -55,6 +79,22 @@ export const businessSchema = {
     },
   ],
   areaServed: cityNames.map((name) => ({ "@type": "City", name })),
+  hasOfferCatalog: offerCatalog,
+};
+
+/**
+ * WebSite-Knoten. Macht die Website selbst als Entität adressierbar und
+ * verknüpft sie mit dem Betrieb (publisher). Ohne diesen Knoten steht die
+ * Domain in den Rich Results ohne Herausgeber da.
+ */
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": websiteId,
+  url: site.domain,
+  name: site.name,
+  inLanguage: "de-DE",
+  publisher: { "@id": businessId },
 };
 
 interface ServiceSchemaInput {
@@ -68,6 +108,8 @@ interface ServiceSchemaInput {
   description: string;
   /** Bediente Orte; Default: gesamtes Einzugsgebiet. */
   areaServedNames?: string[];
+  /** Bild der Leistungsseite (Pfad unter /public). */
+  image?: string;
 }
 
 /**
@@ -80,15 +122,47 @@ export function serviceSchema({
   serviceType,
   description,
   areaServedNames = cityNames,
+  image,
 }: ServiceSchemaInput) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${absoluteUrl(path)}#service`,
     name,
     serviceType,
     description,
     url: absoluteUrl(path),
+    ...(image ? { image: absoluteUrl(image) } : {}),
     provider: { "@id": businessId },
     areaServed: areaServedNames.map((n) => ({ "@type": "City", name: n })),
+  };
+}
+
+/**
+ * Typisierter Seiten-Knoten (ContactPage / AboutPage / CollectionPage …).
+ * Sagt Suchmaschinen, welche Funktion die Seite im Auftritt hat — die
+ * Kontaktseite ist damit als Kontaktpunkt des Betriebs erkennbar.
+ */
+export function webPageSchema({
+  type,
+  name,
+  description,
+  path,
+}: {
+  type: "ContactPage" | "AboutPage" | "CollectionPage" | "WebPage";
+  name: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": type,
+    "@id": `${absoluteUrl(path)}#webpage`,
+    url: absoluteUrl(path),
+    name,
+    description,
+    inLanguage: "de-DE",
+    isPartOf: { "@id": websiteId },
+    about: { "@id": businessId },
   };
 }

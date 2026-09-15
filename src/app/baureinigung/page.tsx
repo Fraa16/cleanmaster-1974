@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner, DarkFeatureSection, Faq, QuestionSection } from "@/components/sections";
 import { JsonLd } from "@/components/ui";
@@ -12,12 +12,16 @@ const serviceLd = serviceSchema({
   description: serviceBySlug("baureinigung")?.teaser ?? "",
 });
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Baureinigung Stuttgart | Bauendreinigung | Cleanmaster 1974",
   description:
     "Baureinigung in Stuttgart ✓ Baugrob-, Bauzwischen- und Bauendreinigung ✓ abgestimmt auf Ihren Bauzeitenplan ✓ Festpreis. Jetzt Angebot anfordern!",
-  alternates: { canonical: "/baureinigung/" },
-};
+  path: "/baureinigung/",
+  image: {
+    src: "/images/baureinigung.jpg",
+    alt: "Baureinigung: Entfernen von Bauschutt und Mörtelresten nach dem Innenausbau",
+  },
+});
 
 const stages = [
   {

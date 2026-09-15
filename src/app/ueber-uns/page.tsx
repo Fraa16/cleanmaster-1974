@@ -1,19 +1,33 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { ContentSection, PageHero } from "@/components/page-blocks";
 import { CtaBanner } from "@/components/sections";
-import { Container } from "@/components/ui";
+import { Container, JsonLd } from "@/components/ui";
+import { webPageSchema } from "@/lib/schema";
 import { Stats } from "@/components/Stats";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Cleanmaster 1974 | Familienbetrieb für Gebäudereinigung",
   description:
     "Cleanmaster 1974 ist ein familiengeführter Gebäudedienstleister aus Stuttgart ✓ Festpreis-Garantie ✓ feste Teams in 18 Städten. Lernen Sie uns kennen!",
-  alternates: { canonical: "/ueber-uns/" },
-};
+  path: "/ueber-uns/",
+  image: {
+    src: "/images/team.jpg",
+    alt: "Das Team von Cleanmaster 1974 aus Stuttgart",
+  },
+});
+
+const aboutLd = webPageSchema({
+  type: "AboutPage",
+  name: "Über Cleanmaster 1974",
+  description:
+    "Cleanmaster 1974 ist ein familiengeführtes Unternehmen für Gebäudereinigung und Facility Services mit Sitz in Stuttgart.",
+  path: "/ueber-uns/",
+});
 
 export default function UeberUnsPage() {
   return (
     <>
+      <JsonLd data={aboutLd} />
       <PageHero
         crumbs={[{ label: "Über uns" }]}
         overline="Über uns"

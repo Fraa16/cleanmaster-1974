@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { ButtonLink, Container, SectionHeading } from "@/components/ui";
@@ -21,12 +21,16 @@ import {
 } from "@/components/icons";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Gebäudereinigung Stuttgart & Region | Cleanmaster 1974",
   description:
     "Gebäudereinigung in Stuttgart vom Familienbetrieb ✓ Büroreinigung ✓ Treppenhausreinigung ✓ Winterdienst ✓ Festpreis-Garantie. Jetzt Angebot anfordern!",
-  alternates: { canonical: "/" },
-};
+  path: "/",
+  image: {
+    src: "/images/homepage-hero.jpg",
+    alt: "Reinigungskräfte von Cleanmaster 1974 bei der Arbeit in einem Büro in Stuttgart",
+  },
+});
 
 const whyItems = [
   {
