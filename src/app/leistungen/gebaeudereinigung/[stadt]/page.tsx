@@ -59,7 +59,7 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
   const faqItems = [
     {
       q: `Welche Objekte reinigt Cleanmaster 1974 in ${city.name}?`,
-      a: `In ${city.name} reinigen wir Bürogebäude, Praxen, Ladenflächen, Wohnanlagen und Gewerbeobjekte. Auch gemischt genutzte Häuser mit Gewerbe im Erdgeschoss und Wohnungen darüber betreuen wir mit einem Vertrag. Für reine Treppenhausreinigung in ${city.name} gibt es ein eigenes Angebot.`,
+      a: `In ${city.name} reinigen wir Bürogebäude, Praxen, Ladenflächen, Wohnanlagen und Gewerbeobjekte. Auch gemischt genutzte Häuser mit Gewerbe im Erdgeschoss und Wohnungen darüber betreuen wir mit einem Vertrag. Für reine Treppenhausreinigung in ${city.name} gibt es ein eigenes Angebot. Was genau gereinigt wird, hält das Leistungsverzeichnis fest.`,
     },
     {
       q: `Wie oft wird in ${city.name} gereinigt?`,
@@ -67,7 +67,7 @@ export default async function GebaeudereinigungStadtPage({ params }: Props) {
     },
     {
       q: `Übernimmt Cleanmaster 1974 auch mehrere Objekte in ${city.name} gleichzeitig?`,
-      a: `Ja. Hausverwaltungen und Eigentümer mit mehreren Objekten in ${city.name} und der Region erhalten einen Vertrag, eine Rechnung und einen Ansprechpartner für den gesamten Bestand. Das gilt auch, wenn weitere Häuser in ${nearby} liegen.`,
+      a: `Ja. Hausverwaltungen und Eigentümer mit mehreren Objekten in ${city.name} und der Region erhalten einen Vertrag, eine Rechnung und einen Ansprechpartner für den gesamten Bestand. Das gilt auch, wenn weitere Häuser in ${nearby} liegen. Abgerechnet wird pro Objekt, ausgewiesen auf einer gemeinsamen Rechnung.`,
     },
   ];
 

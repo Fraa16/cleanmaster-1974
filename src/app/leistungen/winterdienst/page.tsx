@@ -60,19 +60,19 @@ const howToSchema = {
 const faqItems = [
   {
     q: "Was kostet der Winterdienst bei Cleanmaster 1974?",
-    a: "Der Preis richtet sich nach Fläche, Priorität und Erreichbarkeit des Objekts. Sie zahlen eine feste Saisonpauschale, unabhängig davon, wie oft geräumt werden muss. Damit bleibt der Winter kalkulierbar, auch in schneereichen Jahren. Das Angebot erstellen wir nach kostenloser Besichtigung.",
+    a: "Der Preis richtet sich nach Fläche, Priorität und Erreichbarkeit des Objekts. Sie zahlen eine feste Saisonpauschale, unabhängig davon, wie oft geräumt werden muss. Damit bleibt der Winter kalkulierbar, auch in schneereichen Jahren. Das Angebot erstellen wir nach kostenloser Besichtigung. Vereinbart wird die Saison, nicht der einzelne Einsatz.",
   },
   {
     q: "Muss ich anrufen, wenn es schneit?",
-    a: "Nein. Cleanmaster 1974 beobachtet die Wetterlage und fährt die vereinbarten Objekte automatisch an. Sie merken vom Winterdienst im Idealfall nur eines: Der Weg ist frei, bevor die ersten Mieter oder Mitarbeiter das Haus verlassen.",
+    a: "Nein. Cleanmaster 1974 beobachtet die Wetterlage und fährt die vereinbarten Objekte automatisch an. Sie merken vom Winterdienst im Idealfall nur eines: Der Weg ist frei, bevor die ersten Mieter oder Mitarbeiter das Haus verlassen. Jeder Einsatz wird dokumentiert, sodass Sie im Streitfall nachweisen können, wann geräumt und gestreut wurde.",
   },
   {
     q: "Was wird gestreut?",
-    a: "Abstumpfende Streumittel wie Splitt, wo es die kommunale Satzung verlangt. Die Frühjahrs-Beseitigung des Streuguts nehmen wir auf Wunsch mit ins Angebot. So bleibt nach dem Winter kein Splitt auf Ihren Wegen liegen.",
+    a: "Abstumpfende Streumittel wie Splitt, wo es die kommunale Satzung verlangt. Die Frühjahrs-Beseitigung des Streuguts nehmen wir auf Wunsch mit ins Angebot. So bleibt nach dem Winter kein Splitt auf Ihren Wegen liegen. Welches Streumittel auf welcher Fläche zulässig ist, richtet sich nach der Satzung der jeweiligen Kommune. Wir halten uns daran und vermerken es im Saisonvertrag.",
   },
   {
     q: "Übernimmt Cleanmaster 1974 auch Parkplätze und Zufahrten?",
-    a: "Ja. Neben Gehwegen räumen wir Zufahrten, Parkplätze, Eingangsbereiche und Rampen. Welche Flächen mit welcher Priorität bedient werden, legt der Saisonvertrag fest.",
+    a: "Ja. Neben Gehwegen räumen wir Zufahrten, Parkplätze, Eingangsbereiche und Rampen. Welche Flächen mit welcher Priorität bedient werden, legt der Saisonvertrag fest. Größere Flächen räumen wir maschinell, enge Wege und Treppen von Hand. Wo der Schnee abgelagert wird, klären wir vorher, damit weder Stellplätze noch Fluchtwege blockiert werden.",
   },
 ];
 

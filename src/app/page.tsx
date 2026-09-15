@@ -81,7 +81,7 @@ const faqItems = [
   },
   {
     q: "Reinigt Cleanmaster 1974 auch für Privathaushalte?",
-    a: "Ja. Neben Gewerbe und Hausverwaltungen betreuen wir auch Privatkunden. Am häufigsten angefragt sind Entrümpelung, Haushaltsauflösung, Fensterreinigung und Winterdienst. Der Ablauf ist derselbe: kostenlose Besichtigung, schriftliches Festpreis-Angebot, fester Termin. Einzelne Leistungen können Privathaushalte zudem als haushaltsnahe Dienstleistungen steuerlich geltend machen.",
+    a: "Ja. Neben Gewerbe und Hausverwaltungen betreuen wir auch Privatkunden. Am häufigsten angefragt sind Entrümpelung, Haushaltsauflösung, Fensterreinigung und Winterdienst. Der Ablauf ist derselbe: kostenlose Besichtigung, schriftliches Festpreis-Angebot, fester Termin. Einzelne Leistungen können Privathaushalte zudem als haushaltsnahe Dienstleistungen steuerlich geltend machen. Voraussetzung ist eine Rechnung, die per Überweisung bezahlt wird.",
   },
   {
     q: "Übernimmt Cleanmaster 1974 auch die laufende Objektbetreuung?",

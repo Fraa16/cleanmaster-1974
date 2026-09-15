@@ -27,15 +27,15 @@ export const metadata = pageMeta({
 const faqItems = [
   {
     q: "Reinigt Cleanmaster 1974 auch für Privathaushalte?",
-    a: "Ja. Fensterreinigung bieten wir auch für Wohnungen und Häuser an, als Einzeltermin oder im festen Turnus. Der Preis steht nach kurzer Besichtigung oder Fotoeinschätzung fest. Privathaushalte können die Arbeitskosten zudem als haushaltsnahe Dienstleistung steuerlich geltend machen.",
+    a: "Ja. Fensterreinigung bieten wir auch für Wohnungen und Häuser an, als Einzeltermin oder im festen Turnus. Der Preis steht nach kurzer Besichtigung oder Fotoeinschätzung fest. Privathaushalte können die Arbeitskosten zudem als haushaltsnahe Dienstleistung steuerlich geltend machen. Dafür verlangt das Finanzamt eine Rechnung mit getrennt ausgewiesenem Arbeitsanteil und Zahlung per Überweisung.",
   },
   {
     q: "Was passiert bei Regen am Reinigungstag?",
-    a: "Leichter Regen ist kein Problem, das Ergebnis bleibt streifenfrei. Bei starkem Regen oder Sturm verschieben wir den Termin in Absprache mit Ihnen, ohne Zusatzkosten.",
+    a: "Leichter Regen ist kein Problem, das Ergebnis bleibt streifenfrei. Bei starkem Regen oder Sturm verschieben wir den Termin in Absprache mit Ihnen, ohne Zusatzkosten. Dass sich Fensterreinigung bei Regenwetter grundsätzlich nicht lohnt, ist ein Irrtum: Sauberes Glas bleibt auch nach einem Schauer klar, Schlieren entstehen erst durch Staub und Pollen.",
   },
   {
     q: "Sind Sonderflächen wie Wintergärten oder Glasdächer möglich?",
-    a: "Ja. Wintergärten, Glasdächer, Lichtkuppeln und Trennwände aus Glas nehmen wir nach Besichtigung ins Angebot auf. Auch hier gilt der Festpreis, unabhängig davon, wie lange die Reinigung tatsächlich dauert.",
+    a: "Ja. Wintergärten, Glasdächer, Lichtkuppeln und Trennwände aus Glas nehmen wir nach Besichtigung ins Angebot auf. Auch hier gilt der Festpreis, unabhängig davon, wie lange die Reinigung tatsächlich dauert. Bei schwer zugänglichen Flächen arbeiten wir mit Teleskop- und Osmosetechnik, sodass in vielen Fällen weder Gerüst noch Hebebühne nötig sind.",
   },
 ];
 

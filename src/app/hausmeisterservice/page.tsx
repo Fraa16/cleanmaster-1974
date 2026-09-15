@@ -31,11 +31,11 @@ const faqItems = [
   },
   {
     q: "Wie oft kommt der Hausmeister ins Objekt?",
-    a: "So oft, wie es das Leistungsverzeichnis vorsieht: von einem wöchentlichen Kontrollgang bis zur täglichen Präsenz in großen Anlagen. Den passenden Turnus empfehlen wir nach der kostenlosen Objektbesichtigung.",
+    a: "So oft, wie es das Leistungsverzeichnis vorsieht: von einem wöchentlichen Kontrollgang bis zur täglichen Präsenz in großen Anlagen. Den passenden Turnus empfehlen wir nach der kostenlosen Objektbesichtigung. Grünpflege und Winterdienst laufen saisonal in eigenem Rhythmus. Ändert sich der Bedarf, passen wir den Turnus zum Folgemonat an, der Preis wird dann neu vereinbart.",
   },
   {
     q: "Was passiert bei Notfällen im Objekt?",
-    a: "Mieter und Verwaltung erreichen ihren festen Ansprechpartner direkt, nicht eine anonyme Hotline. Wie die Erreichbarkeit für Ihr Objekt geregelt wird, legen wir gemeinsam im Leistungsverzeichnis fest.",
+    a: "Mieter und Verwaltung erreichen ihren festen Ansprechpartner direkt, nicht eine anonyme Hotline. Wie die Erreichbarkeit für Ihr Objekt geregelt wird, legen wir gemeinsam im Leistungsverzeichnis fest. Bei Wasserschäden, ausgefallener Beleuchtung oder blockierten Zugängen kümmern wir uns um die Sofortmaßnahme und informieren die Verwaltung. Arbeiten, die ein Fachbetrieb übernehmen muss, koordinieren wir auf Wunsch.",
   },
 ];
 

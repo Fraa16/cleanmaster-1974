@@ -27,15 +27,15 @@ export const metadata = pageMeta({
 const faqItems = [
   {
     q: "Wie kurzfristig kann die Büroreinigung starten?",
-    a: "Nach der kostenlosen Besichtigung erhalten Sie das Angebot mit Festpreis. Sobald Sie freigeben, stimmen wir den Starttermin mit Ihnen ab.",
+    a: "Nach der kostenlosen Besichtigung erhalten Sie das Angebot mit Festpreis. Sobald Sie freigeben, stimmen wir den Starttermin mit Ihnen ab. Wie schnell es losgeht, hängt vor allem davon ab, wie schnell Zugang und Schlüsselübergabe geregelt sind. Diesen Vorlauf planen wir mit ein und nennen Ihnen den ersten Reinigungstermin verbindlich.",
   },
   {
     q: "Bringt Cleanmaster 1974 Reinigungsmittel und Geräte mit?",
-    a: "Ja. Reinigungsmittel, Maschinen und Verbrauchsmaterial sind im Pauschalpreis enthalten. Sie stellen nichts bereit und lagern nichts. Auf Wunsch füllen wir auch Seife, Handtuchpapier und Toilettenpapier auf und übernehmen die Nachbestellung.",
+    a: "Ja. Reinigungsmittel, Maschinen und Verbrauchsmaterial sind im Pauschalpreis enthalten. Sie stellen nichts bereit und lagern nichts. Auf Wunsch füllen wir auch Seife, Handtuchpapier und Toilettenpapier auf und übernehmen die Nachbestellung. Wünschen Sie bestimmte Produkte, etwa für empfindliche Böden, halten wir das im Leistungsverzeichnis fest.",
   },
   {
     q: "Was passiert bei Urlaub oder Krankheit des Reinigungsteams?",
-    a: "Cleanmaster 1974 stellt eine eingearbeitete Vertretung. Der Reinigungstermin fällt nicht aus, das Leistungsverzeichnis bleibt dasselbe. Ihr Ansprechpartner informiert Sie, wenn eine Vertretung im Einsatz ist.",
+    a: "Cleanmaster 1974 stellt eine eingearbeitete Vertretung. Der Reinigungstermin fällt nicht aus, das Leistungsverzeichnis bleibt dasselbe. Ihr Ansprechpartner informiert Sie, wenn eine Vertretung im Einsatz ist. Weil Leistungsverzeichnis und Objektplan schriftlich vorliegen, weiß auch die Vertretung, was in Ihrem Haus wann zu tun ist. An Umfang und Qualität ändert sich dadurch nichts.",
   },
 ];
 

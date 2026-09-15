@@ -15,7 +15,7 @@ const serviceLd = serviceSchema({
 });
 
 export const metadata = pageMeta({
-  title: "Abbrucharbeiten Stuttgart | Rückbau & Entkernung | Cleanmaster 1974",
+  title: "Abbrucharbeiten Stuttgart | Entkernung | Cleanmaster 1974",
   description:
     "Abbrucharbeiten in Stuttgart ✓ Entkernung ✓ Teilabbruch ✓ Demontage ✓ Entsorgung inklusive ✓ Festpreis nach Besichtigung. Jetzt Angebot anfordern!",
   path: "/leistungen/abbrucharbeiten/",
@@ -28,7 +28,7 @@ export const metadata = pageMeta({
 const faqItems = [
   {
     q: "Kümmert sich Cleanmaster 1974 auch um die Entsorgung?",
-    a: "Ja. Wir stellen die passenden Container, trennen den Bauschutt sortenrein und entsorgen ihn fachgerecht über zugelassene Betriebe. Die Entsorgungskosten sind im Festpreis enthalten, sodass Sie nach der Besichtigung mit einem Betrag rechnen und sich um nichts weiter kümmern müssen.",
+    a: "Ja. Wir stellen die passenden Container, trennen den Bauschutt sortenrein und entsorgen ihn fachgerecht über zugelassene Betriebe. Die Entsorgungskosten sind im Festpreis enthalten, sodass Sie nach der Besichtigung mit einem Betrag rechnen und sich um nichts weiter kümmern müssen. Nachweise über den Verbleib des Materials erhalten Sie auf Wunsch.",
   },
   {
     q: "Was ist mit Asbest oder anderen Schadstoffen?",

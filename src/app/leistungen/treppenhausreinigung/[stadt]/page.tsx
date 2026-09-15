@@ -64,11 +64,11 @@ export default async function TreppenhausreinigungStadtPage({ params }: Props) {
   const faqItems = [
     {
       q: `In welchem Turnus wird das Treppenhaus in ${city.name} gereinigt?`,
-      a: `Üblich ist wöchentlich oder vierzehntägig, bei Objekten mit viel Publikumsverkehr auch zweimal pro Woche. Den Turnus legen Sie fest, wir empfehlen bei der Besichtigung in ${city.name} einen passenden Rhythmus. Eine Anpassung ist jederzeit zum Folgemonat möglich.`,
+      a: `Üblich ist wöchentlich oder vierzehntägig, bei Objekten mit viel Publikumsverkehr auch zweimal pro Woche. Den Turnus legen Sie fest, wir empfehlen bei der Besichtigung in ${city.name} einen passenden Rhythmus. Eine Anpassung ist jederzeit zum Folgemonat möglich, der Preis wird dann neu vereinbart.`,
     },
     {
       q: `Sind die Kosten der Treppenhausreinigung in ${city.name} auf die Mieter umlegbar?`,
-      a: "In der Regel ja. Gebäudereinigung zählt zu den umlagefähigen Betriebskosten, sofern der Mietvertrag die Umlage vorsieht. Die monatliche Pauschale von Cleanmaster 1974 lässt sich dafür direkt in die Betriebskostenabrechnung übernehmen. Im Zweifel prüft das Ihre Hausverwaltung oder Ihr Rechtsbeistand.",
+      a: "In der Regel ja. Gebäudereinigung zählt nach § 2 Nummer 9 der Betriebskostenverordnung zu den umlagefähigen Betriebskosten, sofern der Mietvertrag die Umlage vorsieht. Die monatliche Pauschale von Cleanmaster 1974 lässt sich dafür direkt in die Betriebskostenabrechnung übernehmen. Im Zweifel prüft das Ihre Hausverwaltung oder Ihr Rechtsbeistand.",
     },
     {
       q: `Betreut Cleanmaster 1974 auch mehrere Häuser einer Verwaltung in ${city.name}?`,
