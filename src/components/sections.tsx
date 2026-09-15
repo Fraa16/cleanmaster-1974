@@ -346,43 +346,57 @@ export function QuestionSection({
 /* ------------------------------------------------------------------ */
 
 /**
- * Städte-Chips pro Leistung.
+ * Städte-Verzeichnis der Startseite.
  *
  * Hintergrund (Search Console, Stand 12.09.2026): Von den 18 Stadtseiten zur
  * Treppenhausreinigung standen 15 auf "Gefunden – zurzeit nicht indexiert",
  * Google hatte sie also nie abgerufen. Die 18 Gebäudereinigungs-Stadtseiten
  * waren ausnahmslos indexiert — der einzige strukturelle Unterschied war ein
- * Link von der Startseite. Deshalb bekommt jede Leistung hier ihren eigenen
- * Chip-Block.
+ * Link von der Startseite. Deshalb führt das Verzeichnis jede Stadt mit
+ * beiden Leistungen.
+ *
+ * Bewusst eine Zeile pro Stadt statt 36 Chips: kompakter, die Ankertexte
+ * nennen die Leistung, und alle Links stehen ohne JavaScript im HTML.
  */
-interface CityChipGroup {
+interface CityLinkGroup {
   label: string;
   basePath: string;
 }
 
-const DEFAULT_GROUPS: CityChipGroup[] = [
+const DEFAULT_GROUPS: CityLinkGroup[] = [
   { label: "Gebäudereinigung", basePath: "/leistungen/gebaeudereinigung/" },
   { label: "Treppenhausreinigung", basePath: "/leistungen/treppenhausreinigung/" },
 ];
 
-function CityChips({ label, basePath }: CityChipGroup) {
+function CityRow({
+  city,
+  groups,
+}: {
+  city: (typeof cities)[number];
+  groups: CityLinkGroup[];
+}) {
   return (
-    <div>
-      <p className="mb-3 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-navy-500">
-        {label}
-      </p>
-      <ul className="flex flex-wrap gap-2">
-        {cities.map((city) => (
-          <li key={city.slug}>
+    // Mobil bewusst zweizeilig: einzeilig brechen lange Städtenamen wie
+    // "Kornwestheim" die Links um und die Zeilenhöhen werden ungleich.
+    <div className="flex flex-col gap-0.5 border-b border-line py-3 transition-colors hover:border-sky-300 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-5">
+      <span className="font-display text-[0.95rem] font-bold text-navy-950">
+        {city.name}
+      </span>
+      <span className="flex shrink-0 items-center gap-3 text-[0.78rem] font-semibold">
+        {groups.map((g, i) => (
+          <span key={g.basePath} className="flex items-center gap-3">
+            {i > 0 && (
+              <span aria-hidden="true" className="h-3 w-px shrink-0 bg-line" />
+            )}
             <Link
-              href={`${basePath}${city.slug}/`}
-              className="inline-flex min-h-11 items-center rounded-full border border-line bg-white px-4 py-2.5 text-[0.8rem] font-semibold text-navy-700 transition-all duration-200 hover:-translate-y-px hover:border-sky-300 hover:text-sky-700"
+              href={`${g.basePath}${city.slug}/`}
+              className="text-navy-500 underline-offset-4 transition-colors hover:text-sky-600 hover:underline"
             >
-              {city.name}
+              {g.label}
             </Link>
-          </li>
+          </span>
         ))}
-      </ul>
+      </span>
     </div>
   );
 }
@@ -392,8 +406,8 @@ export function RegionSection({
   groups = DEFAULT_GROUPS,
 }: {
   text: string;
-  /** Je Leistung ein Chip-Block. Default: Gebäude- und Treppenhausreinigung. */
-  groups?: CityChipGroup[];
+  /** Je Leistung eine Spalte im Städte-Verzeichnis. */
+  groups?: CityLinkGroup[];
 }) {
   return (
     <Container>
@@ -406,20 +420,6 @@ export function RegionSection({
               lead={text}
             />
           </Reveal>
-          <Reveal delay={0.1}>
-            <div className="space-y-6">
-              {groups.map((g) => (
-                <CityChips key={g.basePath} {...g} />
-              ))}
-            </div>
-            <Link
-              href="/einsatzgebiet/"
-              className="group mt-6 inline-flex items-center gap-2 text-sm font-bold text-sky-600 transition-colors hover:text-sky-700"
-            >
-              Alle Städte im Einsatzgebiet
-              <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </Reveal>
         </div>
         <Reveal delay={0.12} className="hidden lg:col-span-7 sm:block">
           <div className="dots flex justify-center rounded-[1.75rem] border border-line bg-white p-4 sm:p-8">
@@ -427,6 +427,31 @@ export function RegionSection({
           </div>
         </Reveal>
       </div>
+
+      <Reveal delay={0.08}>
+        <div className="mt-16 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b-2 border-navy-950 pb-3">
+          <h3 className="font-display text-[0.8rem] font-extrabold uppercase tracking-[0.16em] text-navy-950">
+            18 Städte, je zwei eigene Seiten
+          </h3>
+          <Link
+            href="/einsatzgebiet/"
+            className="group inline-flex items-center gap-1.5 text-[0.8rem] font-bold text-sky-600 transition-colors hover:text-sky-700"
+          >
+            Einsatzgebiet im Detail
+            <IconArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </div>
+      </Reveal>
+
+      {/* Zwei Spalten erst ab lg: bei 768px ist eine Spalte zu schmal für
+          Stadtname + beide Leistungs-Links, die Zeilen laufen über. */}
+      <ul className="grid lg:grid-cols-2 lg:gap-x-14">
+        {cities.map((city, i) => (
+          <Reveal as="li" key={city.slug} delay={0.02 * (i % 6)}>
+            <CityRow city={city} groups={groups} />
+          </Reveal>
+        ))}
+      </ul>
     </Container>
   );
 }
